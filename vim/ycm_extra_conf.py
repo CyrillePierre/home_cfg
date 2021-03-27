@@ -29,6 +29,7 @@ SOURCE_DIRS = ["src"]
 HEADER_EXTS = [".h", ".hh", ".hpp", ".hxx"]
 SOURCE_EXTS = [".c", ".cc", ".cpp", ".cxx"]
 
+CMAKE_FILE = "CMakeLists.txt"
 CCJSON = "compile_commands.json"
 X_FLAG = {"c": "-xc", "cpp": "-xc++"}
 
@@ -36,12 +37,19 @@ EXTRA_INCLUDE_DIRS = ["/opt/ros/usr/include"]
 ########################################
 
 ########################################
-def ProjectRoot(filename): # fallback to current working directory
-    try:
-        base = check_output("git rev-parse --show-toplevel", shell=True)
-    except CalledProcessError:
-        return os.path.realpath(filename)
-    return base.decode("utf-8").strip()
+def ProjectRoot(filename):
+    ''' search the directory containing the CMake config file
+    If there is no matching, it fallback to the current working directory.
+    '''
+    default_path = os.path.dirname(filename)
+    path = default_path
+
+    while path != '/':
+        if os.path.exists(path + '/' + CMAKE_FILE):
+            return path
+        path = os.path.dirname(path)
+
+    return default_path
 
 
 def FindBuildDir(basedir, build_subdir, build_dirs):
@@ -51,10 +59,9 @@ def FindBuildDir(basedir, build_subdir, build_dirs):
             ccjsonpath = prefix + "/" + build_dir + "/" + CCJSON
             if os.path.isfile(ccjsonpath):
                 return (prefix, build_dir)
-
             if build_subdir != "" and build_subdir != "." and ".." not in build_subdir:
-                ccjsonpath = prefix + "/" + build_dir + "/" + build_subdir + "/" + CCJSON
-                if os.path.isfile(ccjsonpath):
+                ccjson_subpath = prefix + "/" + build_dir + "/" + build_subdir + "/" + CCJSON
+                if os.path.isfile(ccjson_subpath):
                     return (prefix, build_dir + "/" + build_subdir)
         prefix = os.path.dirname(prefix)
     return (prefix, "")
@@ -167,6 +174,13 @@ def Settings(**kwargs):
     root = ProjectRoot(filename)
     build_subdir = os.path.basename(root)
     (prefix, build_dir) = FindBuildDir(root, build_subdir, BUILD_DIRS)
+
+#    print('----------------------------------------------')
+#    print("kwargs: ", kwargs)
+#    print("build_subdir: ", build_subdir)
+#    print("root: ", root)
+#    print("build_dir: ", build_dir)
+#    print("prefix: ", prefix)
 
     db_info = None
     if prefix != "/" and build_dir != "":
