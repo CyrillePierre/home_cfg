@@ -1,0 +1,195 @@
+scriptencoding utf-8
+
+""""""""""""""" Config Vundle """"""""""""""""""""""""
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'lervag/vimtex'
+Plugin 'celforyon/vimmake'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'dpelle/vim-Grammalecte'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'rust-lang/rust.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+ 
+
+""""""""""""""" Plugins config """""""""""""""""""""""""""
+
+let g:ycm_confirm_extra_conf    = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+let g:ycm_extra_conf_vim_data   = ['&filetype']
+let g:ycm_clangd_binary_path    = '/opt/llvm/bin/clangd'
+let g:ycm_use_clangd            = 1
+let g:ycm_filetype_blacklist    = {'tex': 1}
+
+let g:airline_powerline_fonts            = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme                      = 'jellybeans'
+
+let g:vimtex#re#youcompleteme = 0
+
+let g:grammalecte_cli_py='~/share/grammalecte/grammalecte-cli.py'
+
+let g:tex_flavor = "latex"
+
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-s>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
+""""""""""""""" Variables """"""""""""""""""""""""
+
+set nocompatible              " be iMproved, required
+set background=dark
+set number						" affichage des numéros de lignes
+set mouse=v
+set nocursorline					" met en valeur la ligne possedant le curseur
+set guioptions=m
+set guifont=Inconsolata\ 12
+set so=10						" 10 lignes autour du curseur
+set path=**,/usr/include,/usr/local/include
+set winminwidth=20
+set winwidth=110
+set noexpandtab					" transforme les tabulations en espaces
+set ts=4						" largeur d'une tabulation
+set sw=4						" un truc dans le même genre
+set backspace=indent,eol,start	" Le backspace
+set backupdir=$HOME/.vim/backup
+set directory=$HOME/.vim/swapfiles
+set backup						" Activer la sauvegarde
+set history=100					" un historique raisonnable
+set undolevels=150				" undo, pour revenir en arrière
+set suffixes=.jpg,.png,.jpeg,.gif,.bak,~,.swp,.swo,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyo
+set autoread					" Relecture auto des fichiers modifiés en dehors de vim
+set errorbells					" Aucun son ou affichage lors des erreurs
+set novisualbell
+set t_vb=
+set showmatch					" Affichage des paires de parenthèses
+set matchtime=2
+set laststatus=2				" Afficher la barre d'état
+set incsearch
+set noignorecase
+set infercase
+set hlsearch					" La recherche s'arrête à la fin du fichier
+set writeany					" Ne pas nous afficher un message quand on enregistre un readonly
+set showcmd						" Afficher les commandes incomplètes
+set ruler						" Afficher la position du curseur
+set nowrap
+set foldmethod=marker
+set wildmenu
+set wildignore=*.o,*#,*~,*.dll,*.so,*.a
+set wildmode=full
+"set statusline=%F%m\ %r\ Line:%l\/%L,%c\ %p%%
+set ttyfast						" TTY rapide, améliore l'affichage
+set lazyredraw					" Ne pas mettre à jour l'écran pendant un script
+set nocp
+set t_Co=256					" terminal avec les couleurs 256
+set hidden						" l'historique des actions est conservé même en changeant de buffer
+set cindent
+
+"set ts=2
+"set sw=2
+"set expandtab					" transforme les tabulations en espaces
+
+
+colorscheme ese
+"colorscheme perso
+syntax on
+
+"""""""" Raccourcis clavier """"""""""""""""""""""""
+
+function! s:isNTOpen()        
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! s:NTToggle()
+	NERDTreeToggle
+	if s:isNTOpen()
+"		exec <C-W> 35\|
+		set winfixwidth
+	endif
+endfunction
+
+map <A-left> <C-W>h:AirlineRefresh<cr>
+imap <A-left> <Esc><C-W>h:AirlineRefresh<cr>
+map <A-right> <C-W>l:AirlineRefresh<cr>
+imap <A-right> <Esc><C-W>l:AirlineRefresh<cr>
+map <S-A-left> :bN<CR>
+imap <S-A-left> <Esc>:bN<CR>
+map <S-A-right> :bn<CR>
+map <S-A-right> <Esc>:bn<CR>
+map <F2> :let @/=""<cr>
+map <F3> :call <SID>NTToggle()<CR>
+map <F4> :YcmCompleter GoTo<CR>
+map <F5> :YcmCompleter GetType<CR>
+map <F6> :TlistToggle<CR>
+map <C-B> :Make<CR>
+map <s-up> 15<c-y>
+map <s-down> 15<c-e>
+
+" mettre en commentaire
+
+command Bd bp|bd#
+
+
+"au Filetype html,xml,xsl,php source ~/.vim/plugin/closetag.vim
+
+
+" Autocmd 
+"
+autocmd FocusGained * checktime
+
+augroup filetypedetect
+	au BufRead,BufNewFile *.launch setfiletype xml
+	au BufRead,BufNewFile *.urdf setfiletype xml
+	au BufRead,BufNewFile *.shader setfiletype glsl
+	au BufRead,BufNewFile *.tex setlocal ts=2 sw=2 tw=100
+	au BufRead,BufNewFile *.tex setfiletype tex
+	au FileType python setlocal ts=4 expandtab
+	au FileType yaml setlocal ts=2 sw=2 expandtab
+	au FileType ruby setlocal ts=2 sw=2
+
+	au Filetype c,cpp,java,glsl,rust           map <buffer> ; :s!^!//!<CR><F2>
+	au Filetype c,cpp,java,glsl,rust           map <buffer> . :s!^\(\s*\)//!\1!<CR><F2>
+	au Filetype sh,bash,python,yaml,cmake,ruby map <buffer> ; :s!^!#!<CR><F2>
+	au Filetype sh,bash,python,yaml,cmake,ruby map <buffer> . :s!^\(\s*\)#!\1!<CR><F2>
+	au Filetype matlab,tex                map <buffer> ; :s!^!%!<CR><F2>
+	au Filetype matlab,tex                map <buffer> . :s!^\(\s*\)%!\1!<CR><F2>
+augroup END
+
+" prérequis tags
+filetype plugin on
+
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview

@@ -1,0 +1,152 @@
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/cyrille/.zshrc'
+
+# D'autres commande de completion sont dans un répertoire
+fpath=(~/.zsh/completion $fpath)
+
+autoload -Uz compinit
+compinit
+
+# End of lines added by compinstall
+
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=100000
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} r:|[._-]=** r:|=**'
+zstyle ':completion:*:rm:*' ignore-line yes # avoid including the same file several times
+zstyle ':completion:*:mv:*' ignore-line yes
+zstyle ':completion:*:cp:*' ignore-line yes
+
+setopt auto_pushd            # cd - (stack)
+setopt pushd_ignore_dups     # don't push multiple copies of the same directory onto the dir stack.
+setopt pushd_silent          # do not print the directory stack after pushd or popd.
+setopt pushd_to_home         # have pushd with no arguments act like `pushd $HOME'.
+setopt prompt_subst          # enable some expansions in prompt
+setopt extended_glob         # treat the `#', `~' and `^' characters as part of patterns
+#setopt always_to_end         # move the cursor to the end after a completion
+
+setopt append_history        # parallel zsh share new entries from history
+setopt bang_hist             # perform textual history expansion
+setopt hist_fcntl_lock       # lock on history file done with fctnl syscall
+setopt hist_find_no_dups     # no duplicates (even not contiguous) when searching for history entries 
+setopt hist_ignore_all_dups  # remove older similar entry when a new one is added to the history file
+setopt hist_ignore_space     # ignore command line which start with space in the history file
+setopt hist_reduce_blanks    # remove useless spaces in the history file
+setopt share_history         # import new commands from the history file
+
+unsetopt beep
+unsetopt complete_in_word    # if unset, the cursor is set to the end of the word
+
+#################### Keybindings ######################
+
+declare -A keycodes
+keycodes[ctrl_r]='^R'
+keycodes[shift_up]='^[[1;2A'
+keycodes[shift_dn]='^[[1;2B'
+keycodes[shift_tab]='^[[1;2B'
+
+bindkey -v
+
+bindkey ${keycodes[shift_tab]} reverse-menu-complete
+bindkey ${keycodes[ctrl_r]}    history-incremental-pattern-search-backward
+bindkey ${keycodes[shift_up]}  history-beginning-search-backward
+bindkey ${keycodes[shift_dn]}  history-beginning-search-forward
+
+unset keycodes
+
+#######################################################
+
+
+# Corrige les erreurs de syntaxe lors de l'écriture d'une commande
+
+zmodload zsh/complist
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+
+# Config du prompt
+autoload -U promptinit
+promptinit
+#prompt adam2 cyan green white
+prompt cfy
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ..='cd ..'
+alias ll='ls -alsFh'
+alias la='ls -A'
+alias l='ls -CF'
+alias top='top -d 1'
+alias go='xdg-open'
+alias dc=docker-compose
+alias reset='~/bin/reset'
+alias chromium='chromium-browser --enable-features="dns-over-https<DoHTrial" --force-fieldtrials="DoHTrial/Group1" --force-fieldtrial-params="DoHTrial.Group1:server/https%3A%2F%2F1.1.1.1%2Fdns-query/method/POST"'
+alias chromium-browser='chromium-browser --enable-features="dns-over-https<DoHTrial" --force-fieldtrials="DoHTrial/Group1" --force-fieldtrial-params="DoHTrial.Group1:server/https%3A%2F%2F1.1.1.1%2Fdns-query/method/POST"'
+alias ip='ip -c'
+
+tmpcd() {
+	if [ -n "$1" ] ; then
+		mkdir /tmp/$1
+		cd /tmp/$1
+	else
+		cd $(mktemp -d /tmp/ese_XXXXXX)
+	fi
+}
+
+mkcd() {
+	mkdir $1
+	cd $1
+}
+
+source_ros() { 
+	source ~/projects/ros/devel/setup.zsh
+	export ROSCONSOLE_FORMAT='[${severity}] (${time}) [${node}]: ${message}'
+}
+
+source_isibot() {
+	source ~/projects/ros_isibot/local/devel/setup.zsh
+	export ROSCONSOLE_FORMAT='[${severity}] (${time}) [${node}]: ${message}'
+}
+
+source_cocos() {
+	# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+	export COCOS_CONSOLE_ROOT="/home/cyrille/share/cocos2d-x/tools/cocos2d-console/bin"
+	export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+	# Add environment variable COCOS_X_ROOT for cocos2d-x
+	export COCOS_X_ROOT="/home/cyrille/share"
+	export PATH=$COCOS_X_ROOT:$PATH
+
+	# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+	export COCOS_TEMPLATES_ROOT="/home/cyrille/share/cocos2d-x/templates"
+	export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+}
+
+TRAPZERR() {
+	if [ -n "$TRACE_CORE" ] && [ -f core ] ; then
+		core_time=$(stat -c %Y core)
+		cur_time=$(date +%s)
+		expr $((core_time + 1 >= cur_time)) >/dev/null && resume_core
+	fi
+}
+
+ulimit -c unlimited
+export TRACE_CORE=1
+export PATH="$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin"
+export TERM=xterm-256color
+export LESS=-RSx2
+
+export_vdn() { export PATH="$PATH:/home/cyrille/share/vdn/bin" ; }
+export_arm() { export PATH="$PATH:/opt/gcc-arm/bin" ; }
+export_rust() { export PATH="$HOME/.cargo/bin:$PATH" }
+
+#######################################################
+#################### Extra configuration ##############
+__extra_config_dir=~/.zsh/cfg
+if [[ -d ${__extra_config_dir} ]]; then
+	files=$(find ${__extra_config_dir} -follow -type f)
+	for file in "${=files}"; source "${file}"
+fi
+#######################################################

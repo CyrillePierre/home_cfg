@@ -1,0 +1,9 @@
+all[prompt]='-rxza'
+left[prompt]='-e$? -d2'
+all[prompt/style]=b,b,b,b,b,b
+
+all[git/richtext]=1
+all[git/preferredzone]=r
+left[git]=-f
+right[git]=-n
+right[git/chars]=+✐✘⚑
