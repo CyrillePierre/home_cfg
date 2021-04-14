@@ -33,7 +33,7 @@ CMAKE_FILE = "CMakeLists.txt"
 CCJSON = "compile_commands.json"
 X_FLAG = {"c": "-xc", "cpp": "-xc++"}
 
-EXTRA_INCLUDE_DIRS = ["/opt/ros/usr/include"]
+EXTRA_INCLUDE_DIRS = []
 ########################################
 
 ########################################
