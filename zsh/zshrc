@@ -124,9 +124,15 @@ source_cocos() {
 	export PATH=$COCOS_TEMPLATES_ROOT:$PATH
 }
 
+source_tiara() {
+	source ~/projects/tiara_ws/devel/setup.zsh
+	export ROSCONSOLE_FORMAT='[${severity}] ${node}: ${message}'
+}
+
 TRAPZERR() {
-	if [ -n "$TRACE_CORE" ] && [ -f core ] ; then
-		core_time=$(stat -c %Y core)
+	core_file=/tmp/core
+	if [ -n "$TRACE_CORE" ] && [ -f "$core_file" ] ; then
+		core_time=$(stat -c %Y "$core_file")
 		cur_time=$(date +%s)
 		expr $((core_time + 1 >= cur_time)) >/dev/null && resume_core
 	fi

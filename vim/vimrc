@@ -116,6 +116,7 @@ set nocp
 set t_Co=256					" terminal avec les couleurs 256
 set hidden						" l'historique des actions est conservé même en changeant de buffer
 set cindent
+let &colorcolumn=join(range(100,300),",") " grise les lignes après la 95e colonne
 
 "set ts=2
 "set sw=2
@@ -160,6 +161,7 @@ map <s-down> 15<c-e>
 " mettre en commentaire
 
 command Bd bp|bd#
+map <C-D> :Bd<CR>
 
 
 "au Filetype html,xml,xsl,php source ~/.vim/plugin/closetag.vim

@@ -18,7 +18,7 @@ highlight Special          ctermfg=166
 highlight Comment          ctermfg=59
 highlight StatusLine       ctermfg=232	    ctermbg=245 term=none cterm=none
 highlight Statement        ctermfg=89
-highlight Type		         ctermfg=88 term=none cterm=none
+highlight Type		       ctermfg=88 term=none cterm=none
 highlight Constant	       ctermfg=22
 highlight Identifier       ctermfg=54 term=none cterm=none
 highlight Folded           ctermfg=BLack     ctermbg=Brown
@@ -42,3 +42,4 @@ highlight StatusLineNC     ctermbg=253 term=none cterm=none
 highlight StatusLineTerm   ctermbg=253 term=none cterm=none
 highlight StatusLineTermNC ctermbg=253 term=bold cterm=bold
 highlight SignColumn       ctermfg=245 ctermbg=White
+highlight ColorColumn      ctermbg=254

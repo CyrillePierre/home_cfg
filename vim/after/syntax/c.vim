@@ -7,6 +7,3 @@ highlight link cSymbol Operator
 syn match cDoxy /[@\\]\w*/
 "syn cluster cCommentGroup add=cDoxy
 highlight cDoxy guifg=#babaff gui=bold
-
-" Limitation de la longueur des lignes
-match OverLength /\%95v.\+/
