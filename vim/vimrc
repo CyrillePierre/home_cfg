@@ -142,14 +142,14 @@ function! s:NTToggle()
 	endif
 endfunction
 
-map <A-left> <C-W>h:AirlineRefresh<cr>
-imap <A-left> <Esc><C-W>h:AirlineRefresh<cr>
-map <A-right> <C-W>l:AirlineRefresh<cr>
-imap <A-right> <Esc><C-W>l:AirlineRefresh<cr>
-map <S-A-left> :bN<CR>
-imap <S-A-left> <Esc>:bN<CR>
-map <S-A-right> :bn<CR>
-map <S-A-right> <Esc>:bn<CR>
+map <C-left> <C-W>h:AirlineRefresh<cr>
+imap <C-left> <Esc><C-W>h:AirlineRefresh<cr>
+map <C-right> <C-W>l:AirlineRefresh<cr>
+imap <C-right> <Esc><C-W>l:AirlineRefresh<cr>
+map <S-C-left> :bN<CR>
+imap <S-C-left> <Esc>:bN<CR>
+map <S-C-right> :bn<CR>
+map <S-C-right> <Esc>:bn<CR>
 map <F2> :let @/=""<cr>
 map <F3> :call <SID>NTToggle()<CR>
 map <F4> :YcmCompleter GoTo<CR>

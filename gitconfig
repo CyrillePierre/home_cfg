@@ -1,0 +1,26 @@
+[user]
+	name = Cyrille Pierre
+	email = cypierre58@gmail.com
+[push]
+	default = simple
+[core]
+	autocrlf = input
+[alias]
+	sm  = submodule
+	co  = checkout
+	ss  = status -s
+	cm  = commit
+	lfu = ls-files -u
+	lo  = log --oneline
+	graph = log --graph --date-order --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(yellow)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --branches
+	pr  = pull -r
+[http]
+	sslverify = false
+[credential]
+	helper = cache
+[diff]
+    tool = meld
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
