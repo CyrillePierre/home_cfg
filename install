@@ -17,9 +17,13 @@ install_with_backup vim/vimrc .vimrc
 install_with_backup vim/ycm_extra_conf.py .vim/
 install_with_backup vim/colors .vim/
 install_with_backup vim/after .vim/
+[ -e $HOME/.vim/bundle/Vundle.vim ] \
+	|| git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+mkdir -p $HOME/.vim/swapfiles
+mkdir -p $HOME/.vim/backup
 
 install_with_backup zsh/zshrc .zshrc
-install_with_backup zsh/zsh .zsh
+install_with_backup zsh/zsh/ .zsh
 install_with_backup zsh/cfyzshprompt .cfyzshprompt
 
 install_with_backup gdbinit .gdbinit
