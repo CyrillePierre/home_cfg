@@ -142,7 +142,7 @@ ulimit -c unlimited
 export TRACE_CORE=1
 export PATH="$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin"
 export TERM=xterm-256color
-export LESS=-RSx2
+export LESS=-FRSx2
 
 export_vdn() { export PATH="$PATH:/home/cyrille/share/vdn/bin" ; }
 export_arm() { export PATH="$PATH:/opt/gcc-arm/bin" ; }

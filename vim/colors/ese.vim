@@ -38,3 +38,5 @@ highlight Todo        ctermfg=237       ctermbg=179
 highlight WildMenu    ctermfg=0         ctermbg=248
 highlight OverLength  ctermbg=53
 highlight ColorColumn ctermbg=233
+
+highlight YCMInverse ctermfg=15

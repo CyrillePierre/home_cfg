@@ -1,5 +1,5 @@
 [user]
-	name = Cyrille Pierre
+	name = Cyrille
 	email = cypierre58@gmail.com
 [push]
 	default = simple
@@ -24,3 +24,5 @@
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
+[init]
+	defaultBranch = master
