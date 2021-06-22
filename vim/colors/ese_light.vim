@@ -24,8 +24,8 @@ highlight Identifier       ctermfg=54 term=none cterm=none
 highlight Folded           ctermfg=BLack     ctermbg=Brown
 highlight CursorLine                         ctermbg=252      cterm=NONE
 highlight PreProc          ctermfg=130
-highlight SpellBad                           ctermbg=52
-highlight SpellCap                           ctermbg=23
+highlight SpellBad                           ctermbg=209      cterm=NONE
+highlight SpellCap                           ctermbg=213      cterm=NONE
 highlight SignColumn                         ctermbg=0
 highlight Operator         ctermfg=52
 highlight Visual                             ctermbg=253
