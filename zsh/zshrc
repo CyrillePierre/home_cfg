@@ -102,12 +102,12 @@ mkcd() {
 
 source_ros() { 
 	source ~/projects/ros/devel/setup.zsh
-	export ROSCONSOLE_FORMAT='[${severity}] (${time}) [${node}]: ${message}'
+	export ROSCONSOLE_FORMAT='[${severity}] [${node}]: ${message}'
 }
 
 source_isibot() {
 	source ~/projects/ros_isibot/local/devel/setup.zsh
-	export ROSCONSOLE_FORMAT='[${severity}] (${time}) [${node}]: ${message}'
+	export ROSCONSOLE_FORMAT='[${severity}] [${node}]: ${message}'
 }
 
 source_cocos() {
@@ -127,6 +127,8 @@ source_cocos() {
 source_tiara() {
 	source ~/projects/tiara_ws/devel/setup.zsh
 	export ROSCONSOLE_FORMAT='[${severity}] ${node}: ${message}'
+	export GAZEBO_RESOURCE_PATH="$HOME/data/tiara/gazebo"
+	export GAZEBO_MODEL_PATH="$HOME/data/tiara/gazebo/models"
 }
 
 TRAPZERR() {
