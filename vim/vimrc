@@ -46,6 +46,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_extra_conf_vim_data   = ['&filetype']
 let g:ycm_use_clangd            = 1
 let g:ycm_filetype_blacklist    = {'tex': 1}
+let g:ycm_auto_hover = ''
 
 let g:airline_powerline_fonts              = 1
 let g:airline#extensions#tabline#enabled   = 1
@@ -159,6 +160,7 @@ map <F6> :TlistToggle<CR>
 map <C-B> :Make<CR>
 map <s-up> 15<c-y>
 map <s-down> 15<c-e>
+nmap <F7> <plug>(YCMHover)
 
 " mettre en commentaire
 

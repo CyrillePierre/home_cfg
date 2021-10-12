@@ -1,6 +1,6 @@
 configuration {
 	theme: "solarized";
 	modi: "window,drun,ssh,combi";
-	combi-modi: "window,drun,ssh";
+	combi-modi: "run,drun";
 	matching: "fuzzy";
 }

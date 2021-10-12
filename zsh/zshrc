@@ -131,6 +131,11 @@ source_tiara() {
 	export GAZEBO_MODEL_PATH="$HOME/data/tiara/gazebo/models"
 }
 
+source_esp() {
+	export IDF_TOOLS_PATH=/home/eseris/.local/share/espressif
+	source ~/share/esp-idf/export.sh
+}
+
 TRAPZERR() {
 	core_file=/tmp/core
 	if [ -n "$TRACE_CORE" ] && [ -f "$core_file" ] ; then
