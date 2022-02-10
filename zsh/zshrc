@@ -85,6 +85,7 @@ alias reset='~/bin/reset'
 alias chromium='chromium-browser --enable-features="dns-over-https<DoHTrial" --force-fieldtrials="DoHTrial/Group1" --force-fieldtrial-params="DoHTrial.Group1:server/https%3A%2F%2F1.1.1.1%2Fdns-query/method/POST"'
 alias chromium-browser='chromium-browser --enable-features="dns-over-https<DoHTrial" --force-fieldtrials="DoHTrial/Group1" --force-fieldtrial-params="DoHTrial.Group1:server/https%3A%2F%2F1.1.1.1%2Fdns-query/method/POST"'
 alias ip='ip -c'
+alias dc=docker-compose
 
 tmpcd() {
 	if [ -n "$1" ] ; then

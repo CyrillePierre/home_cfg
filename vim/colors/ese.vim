@@ -21,7 +21,7 @@ highlight Statement   ctermfg=214
 highlight Type		  ctermfg=214
 highlight Constant	  ctermfg=142
 highlight Identifier  ctermfg=223                        cterm=NONE
-highlight Folded      ctermfg=BLack     ctermbg=Brown
+highlight Folded      ctermfg=250       ctermbg=234
 highlight CursorLine                    ctermbg=233      cterm=NONE
 highlight PreProc     ctermfg=130
 highlight SpellBad                      ctermbg=52
