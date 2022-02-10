@@ -89,6 +89,8 @@ set sw=4						" un truc dans le même genre
 set backspace=indent,eol,start	" Le backspace
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/swapfiles
+set undofile
+set undodir=$HOME/.vim/undodir
 set backup						" Activer la sauvegarde
 set history=100					" un historique raisonnable
 set undolevels=150				" undo, pour revenir en arrière
@@ -108,7 +110,7 @@ set writeany					" Ne pas nous afficher un message quand on enregistre un readon
 set showcmd						" Afficher les commandes incomplètes
 set ruler						" Afficher la position du curseur
 set nowrap
-set foldmethod=marker
+set foldmethod=syntax
 set wildmenu
 set wildignore=*.o,*#,*~,*.dll,*.so,*.a
 set wildmode=full
@@ -119,7 +121,9 @@ set nocp
 set t_Co=256					" terminal avec les couleurs 256
 set hidden						" l'historique des actions est conservé même en changeant de buffer
 set cindent
+set completeopt=menuone,menu,longest,preview
 let &colorcolumn=join(range(100,300),",") " grise les lignes après la 95e colonne
+set foldlevel=1
 
 "set ts=2
 "set sw=2
@@ -184,13 +188,6 @@ augroup filetypedetect
 	au FileType python setlocal ts=4 expandtab
 	au FileType yaml setlocal ts=2 sw=2 expandtab
 	au FileType ruby setlocal ts=2 sw=2
-
-	au Filetype c,cpp,java,glsl,rust           map <buffer> ; :s!^!//!<CR><F2>
-	au Filetype c,cpp,java,glsl,rust           map <buffer> . :s!^\(\s*\)//!\1!<CR><F2>
-	au Filetype sh,bash,python,yaml,cmake,ruby map <buffer> ; :s!^!#!<CR><F2>
-	au Filetype sh,bash,python,yaml,cmake,ruby map <buffer> . :s!^\(\s*\)#!\1!<CR><F2>
-	au Filetype matlab,tex                map <buffer> ; :s!^!%!<CR><F2>
-	au Filetype matlab,tex                map <buffer> . :s!^\(\s*\)%!\1!<CR><F2>
 augroup END
 
 " prérequis tags
@@ -198,4 +195,3 @@ filetype plugin on
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
