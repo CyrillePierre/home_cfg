@@ -124,6 +124,7 @@ set cindent
 set completeopt=menuone,menu,longest,preview
 let &colorcolumn=join(range(100,300),",") " grise les lignes après la 95e colonne
 set foldlevel=1
+set foldminlines=3
 
 "set ts=2
 "set sw=2
