@@ -14,7 +14,7 @@ echo "backup dir: $backup_dir"
 echo "updated files:"
 
 install_with_backup vim/vimrc .vimrc
-install_with_backup vim/ycm_extra_conf.py .vim/
+install_with_backup vim/ycm_extra_conf.py .vim/ycm_extra_conf.py.off
 install_with_backup vim/colors .vim/
 install_with_backup vim/after .vim/
 [ -e $HOME/.vim/bundle/Vundle.vim ] \
