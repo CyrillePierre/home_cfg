@@ -12,7 +12,7 @@
 	cm  = commit
 	lfu = ls-files -u
 	lo  = log --oneline
-	graph = log --graph --date-order --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(yellow)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --branches
+	graph = log --graph --all --date-order --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(yellow)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --branches
 	pr  = pull -r
 [http]
 	sslverify = false
@@ -26,3 +26,5 @@
     cmd = meld "$LOCAL" "$REMOTE"
 [init]
 	defaultBranch = master
+[pull]
+	ff = only
