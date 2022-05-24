@@ -130,6 +130,11 @@ source_tiara() {
 	export GAZEBO_MODEL_PATH="$HOME/data/tiara/gazebo/models"
 }
 
+export_nvidia() {
+  export __NV_PRIME_RENDER_OFFLOAD=1
+  export __GLX_VENDOR_LIBRARY_NAME=nvidia
+}
+
 source_esp() {
 	export IDF_TOOLS_PATH=/home/eseris/.local/share/espressif
 	source ~/share/esp-idf/export.sh

@@ -89,6 +89,7 @@ set winminwidth=20
 set winwidth=110
 set noexpandtab					" transforme les tabulations en espaces
 set ts=4						" largeur d'une tabulation
+set sts=4						" largeur des tabulations en mode insertion
 set sw=4						" un truc dans le même genre
 set backspace=indent,eol,start	" Le backspace
 set backupdir=$HOME/.vim/backup
@@ -194,11 +195,11 @@ augroup filetypedetect
 	au BufRead,BufNewFile *.launch setfiletype xml
 	au BufRead,BufNewFile *.urdf setfiletype xml
 	au BufRead,BufNewFile *.shader setfiletype glsl
-	au BufRead,BufNewFile *.tex setlocal ts=2 sw=2 tw=100
+	au BufRead,BufNewFile *.tex setlocal ts=2 sts=2 sw=2 tw=100
 	au BufRead,BufNewFile *.tex setfiletype tex
 	au FileType python setlocal ts=4 expandtab
-	au FileType yaml setlocal ts=2 sw=2 expandtab
-	au FileType ruby setlocal ts=2 sw=2
+	au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+	au FileType ruby setlocal ts=2 sts=2 sw=2
 augroup END
 
 " prérequis tags
