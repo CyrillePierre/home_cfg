@@ -197,7 +197,7 @@ augroup filetypedetect
 	au BufRead,BufNewFile *.shader setfiletype glsl
 	au BufRead,BufNewFile *.tex setlocal ts=2 sts=2 sw=2 tw=100
 	au BufRead,BufNewFile *.tex setfiletype tex
-	au FileType python setlocal ts=4 expandtab
+	au FileType python setlocal ts=4 sts=4 expandtab
 	au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 	au FileType ruby setlocal ts=2 sts=2 sw=2
 augroup END
