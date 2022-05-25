@@ -22,6 +22,7 @@ install_with_backup vim/after .vim/
 mkdir -p $HOME/.vim/swapfiles
 mkdir -p $HOME/.vim/backup
 mkdir -p $HOME/.vim/undodir
+mkdir -p $HOME/.config/htop/
 
 install_with_backup zsh/zshrc .zshrc
 install_with_backup zsh/zsh/ .zsh
@@ -30,3 +31,4 @@ install_with_backup zsh/cfyzshprompt/ .cfyzshprompt
 install_with_backup gdbinit .gdbinit
 install_with_backup gitconfig .gitconfig
 install_with_backup rofi/config.rasi .config/rofi/
+install_with_backup htop/htoprc .config/htop/
