@@ -135,6 +135,11 @@ export_nvidia() {
   export __GLX_VENDOR_LIBRARY_NAME=nvidia
 }
 
+export_cuda() {
+  export CUDA_HOME="/usr/local/cuda"
+  export PATH="$PATH:$CUDA_HOME/bin"
+}
+
 source_esp() {
 	export IDF_TOOLS_PATH=/home/eseris/.local/share/espressif
 	source ~/share/esp-idf/export.sh
