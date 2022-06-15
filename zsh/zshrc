@@ -145,6 +145,10 @@ source_esp() {
 	source ~/share/esp-idf/export.sh
 }
 
+export_conda() {
+  eval $(/home/cyrille/.local/share/miniconda3/bin/conda shell.zsh activate)
+}
+
 # TRAPZERR() {
 # 	core_file=/tmp/core
 # 	if [ -n "$TRACE_CORE" ] && [ -f "$core_file" ] ; then
