@@ -25,7 +25,7 @@ highlight Folded      ctermfg=250       ctermbg=234
 highlight CursorLine                    ctermbg=233      cterm=NONE
 highlight PreProc     ctermfg=130
 highlight SpellBad                      ctermbg=52
-highlight SpellCap                      ctermbg=23
+highlight SpellCap                      ctermbg=235
 highlight SignColumn                    ctermbg=0
 highlight Operator    ctermfg=172
 highlight Visual                        ctermbg=238
