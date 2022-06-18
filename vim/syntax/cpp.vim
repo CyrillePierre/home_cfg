@@ -5,3 +5,4 @@
 " mise en italique des fonctions virtuels
 syn match Virtual "virtual .*"
 highlight Virtual gui=italic
+
