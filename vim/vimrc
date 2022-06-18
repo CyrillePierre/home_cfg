@@ -142,8 +142,8 @@ set foldminlines=3
 "set expandtab					" transforme les tabulations en espaces
 
 
-colorscheme ese
-"colorscheme perso
+" colorscheme ese
+colorscheme ese2
 syntax on
 
 """""""" Raccourcis clavier """"""""""""""""""""""""

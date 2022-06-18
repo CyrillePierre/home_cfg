@@ -8,7 +8,7 @@ if exists("syntax_on")
   syntax reset
 endif
 "colorscheme default
-let g:colors_name = "ese"
+let g:colors_name = "ese2"
 
 " Console
 highlight Normal      ctermfg=223       ctermbg=234
