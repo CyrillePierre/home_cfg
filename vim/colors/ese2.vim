@@ -30,15 +30,15 @@ highlight Operator    ctermfg=203
 highlight Special     ctermfg=179
 highlight Visual                        ctermbg=238
 highlight Error       ctermfg=254       ctermbg=52
-highlight Pmenu       ctermfg=232       ctermbg=65
-highlight Pmenusel    ctermfg=252       ctermbg=23
+highlight Pmenu       ctermfg=252       ctermbg=23
+highlight Pmenusel    ctermfg=254       ctermbg=29
 highlight SpecialKey  ctermfg=72
 highlight Directory   ctermfg=72
 highlight Todo        ctermfg=237       ctermbg=179
 highlight WildMenu    ctermfg=0         ctermbg=248
 highlight OverLength                    ctermbg=53
 highlight ColorColumn                   ctermbg=235
-highlight MatchParen  ctermfg=232       ctermbg=79       cterm=none
+highlight MatchParen                    ctermbg=79       cterm=none
 highlight Title       ctermfg=172
 
 highlight YCMInverse ctermfg=15
