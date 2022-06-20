@@ -1,8 +1,9 @@
+syn clear cBlock
+
 " couleur des caractère spéciaux :
 syn match cBlockSymbol /[{}]/ display
-syn clear cBlock
-syn region cBlock start=/{/ end=/}/ matchgroup=cBlockSymbol transparent fold
-syn match cSymbol #[()\[\],.;:]# display contains=cComment,cCommentL
+syn region cBlock matchgroup=cBlockSymbol start=/{/ end=/}/ transparent fold
+syn match cSymbol #[()\[\],.;:]# display
 syn match cSymbolOperator #[|<>*+^/!?%&~=-]# display contains=cComment,cCommentL
 
 highlight link cBlockSymbol Special
