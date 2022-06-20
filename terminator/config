@@ -1,0 +1,44 @@
+[global_config]
+  dbus = False
+  borderless = True
+  scroll_tabbar = True
+  homogeneous_tabbar = False
+  title_transmit_bg_color = "#6a0001"
+  title_inactive_bg_color = "#828282"
+  inactive_color_offset = 1.0
+  enabled_plugins = ,
+  suppress_multiple_term_dialog = True
+  title_font = Inconsolata for Powerline Medium 11
+[keybindings]
+  rotate_cw = <Shift><Super>r
+  rotate_ccw = <Super>r
+  resize_up = <Primary><Super>Up
+  resize_down = <Primary><Super>Down
+  resize_left = <Primary><Super>Left
+  resize_right = <Primary><Super>Right
+  broadcast_off = <Primary><Shift>z
+  broadcast_all = <Primary><Shift>a
+[profiles]
+  [[default]]
+    background_color = "#191919"
+    cursor_color = "#fdb04d"
+    font = DejaVu Sans Mono for Powerline 12
+    foreground_color = "#f7ba75"
+    scrollbar_position = hidden
+    scrollback_lines = 1000
+    scrollback_infinite = True
+    palette = "#494949:#ff3c22:#6cb428:#e4bf1a:#6186b6:#a36aac:#5bef9b:#daa05d:#7c7c7c:#ef2929:#99ff89:#ffe972:#769dc7:#c494be:#89fabe:#eeeeec"
+    use_system_font = False
+  [[clair]]
+    background_color = "#ffffff"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#000000"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]

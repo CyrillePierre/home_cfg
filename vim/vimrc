@@ -22,6 +22,7 @@ Plugin 'dpelle/vim-Grammalecte'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'cespare/vim-toml'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -142,8 +143,8 @@ set foldminlines=3
 "set expandtab					" transforme les tabulations en espaces
 
 
-colorscheme ese
-"colorscheme perso
+" colorscheme ese
+colorscheme ese2
 syntax on
 
 """""""" Raccourcis clavier """"""""""""""""""""""""
