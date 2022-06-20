@@ -22,7 +22,7 @@
   [[default]]
     background_color = "#191919"
     cursor_color = "#fdb04d"
-    font = DejaVu Sans Mono for Powerline 12
+    font = DejaVu Sans Mono for Powerline 11
     foreground_color = "#f7ba75"
     scrollbar_position = hidden
     scrollback_lines = 1000
