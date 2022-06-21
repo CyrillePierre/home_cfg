@@ -32,7 +32,9 @@
   [[clair]]
     background_color = "#ffffff"
     cursor_color = "#aaaaaa"
+    font = DejaVu Sans Mono for Powerline 12
     foreground_color = "#000000"
+    use_system_font = False
 [layouts]
   [[default]]
     [[[child1]]]
@@ -41,4 +43,58 @@
     [[[window0]]]
       parent = ""
       type = Window
+  [[manips]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 3840:0
+      maximised = True
+      fullscreen = False
+      size = 1920, 1080
+      title = /bin/zsh
+      last_active_term = 495ddb94-e88b-4756-88b1-434e0f3273af
+      last_active_window = True
+    [[[child1]]]
+      type = HPaned
+      parent = child0
+      order = 0
+      position = 958
+      ratio = 0.5002610966057441
+    [[[child2]]]
+      type = VPaned
+      parent = child1
+      order = 0
+      position = 673
+      ratio = 0.626046511627907
+    [[[terminal3]]]
+      type = Terminal
+      parent = child2
+      order = 0
+      profile = clair
+      uuid = bff87fc9-63d7-41c6-a06f-052ea28cbea5
+    [[[terminal4]]]
+      type = Terminal
+      parent = child2
+      order = 1
+      profile = clair
+      uuid = 495ddb94-e88b-4756-88b1-434e0f3273af
+    [[[child5]]]
+      type = VPaned
+      parent = child1
+      order = 1
+      position = 673
+      ratio = 0.626046511627907
+    [[[terminal6]]]
+      type = Terminal
+      parent = child5
+      order = 0
+      profile = clair
+      uuid = 24e48535-a461-48cf-8a28-cab6b9e94ff7
+    [[[terminal7]]]
+      type = Terminal
+      parent = child5
+      order = 1
+      profile = clair
+      uuid = 70a30e13-8a59-4633-afd2-e148b67c40d9
 [plugins]
