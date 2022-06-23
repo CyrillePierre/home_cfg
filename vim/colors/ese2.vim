@@ -1,6 +1,6 @@
 " Vim color file
-" Maintainer:	Cyrille Pierre <cypierre58@gmail.com>
-" Last Change:	2020 Nov 07
+" Maintainer: Cyrille Pierre <cypierre58@gmail.com>
+" Last Change:  2020 Nov 07
 
 set background=dark
 hi clear
@@ -12,16 +12,16 @@ let g:colors_name = "ese2"
 
 " Console
 highlight Normal      ctermfg=223       ctermbg=234
-highlight Search      ctermfg=232	    ctermbg=179	     cterm=NONE
-highlight Cursor      ctermfg=Black	    ctermbg=Green	 cterm=bold
+highlight Search      ctermfg=232       ctermbg=179      cterm=none
+highlight Cursor      ctermfg=Black     ctermbg=Green    cterm=bold
 highlight Comment     ctermfg=102
-highlight StatusLine  ctermfg=Brown	    ctermbg=black
+highlight StatusLine  ctermfg=Brown     ctermbg=black
 highlight Statement   ctermfg=214
-highlight Type		  ctermfg=214
-highlight Constant	  ctermfg=148
-highlight Identifier  ctermfg=223                        cterm=NONE
+highlight Type        ctermfg=214
+highlight Constant    ctermfg=148
+highlight Identifier  ctermfg=223                        cterm=none
 highlight Folded      ctermfg=250       ctermbg=233
-highlight CursorLine                    ctermbg=237      cterm=NONE
+highlight CursorLine                    ctermbg=237      cterm=none
 highlight PreProc     ctermfg=172
 highlight SpellBad                      ctermbg=52
 highlight SpellCap                      ctermbg=232      cterm=none
