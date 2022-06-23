@@ -34,3 +34,4 @@ install_with_backup gitconfig .gitconfig
 install_with_backup rofi/config.rasi .config/rofi/
 install_with_backup htop/htoprc .config/htop/
 install_with_backup terminator .config/
+install_with_backup nvim .config/
