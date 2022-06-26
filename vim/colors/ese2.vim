@@ -11,34 +11,42 @@ endif
 let g:colors_name = "ese2"
 
 " Console
-highlight Normal      ctermfg=223       ctermbg=234
-highlight Search      ctermfg=232       ctermbg=179      cterm=none
-highlight Cursor      ctermfg=Black     ctermbg=Green    cterm=bold
-highlight Comment     ctermfg=102
-highlight StatusLine  ctermfg=Brown     ctermbg=black
-highlight Statement   ctermfg=214
-highlight Type        ctermfg=214
-highlight Constant    ctermfg=148
-highlight Identifier  ctermfg=223                        cterm=none
-highlight Folded      ctermfg=250       ctermbg=233
-highlight CursorLine                    ctermbg=237      cterm=none
-highlight PreProc     ctermfg=172
-highlight SpellBad                      ctermbg=52
-highlight SpellCap                      ctermbg=232      cterm=none
-highlight SignColumn                    ctermbg=0
-highlight Operator    ctermfg=203
-highlight Special     ctermfg=179
-highlight Visual                        ctermbg=238
-highlight Error       ctermfg=254       ctermbg=52
-highlight Pmenu       ctermfg=252       ctermbg=23
-highlight Pmenusel    ctermfg=254       ctermbg=29
-highlight SpecialKey  ctermfg=72
-highlight Directory   ctermfg=72
-highlight Todo        ctermfg=237       ctermbg=179
-highlight WildMenu    ctermfg=0         ctermbg=248
-highlight OverLength                    ctermbg=53
-highlight ColorColumn                   ctermbg=235
-highlight MatchParen                    ctermbg=79       cterm=none
-highlight Title       ctermfg=172
+highlight Normal       ctermfg=223       ctermbg=234
+highlight Search       ctermfg=232       ctermbg=179      cterm=none
+highlight Cursor       ctermfg=Black     ctermbg=Green    cterm=bold
+highlight Comment      ctermfg=102
+highlight StatusLine   ctermfg=Brown     ctermbg=black
+highlight Statement    ctermfg=214
+highlight Type         ctermfg=214
+highlight Constant     ctermfg=148
+highlight Identifier   ctermfg=223                        cterm=none
+highlight Folded       ctermfg=250       ctermbg=233
+highlight CursorLine                     ctermbg=237      cterm=none
+highlight PreProc      ctermfg=172
+highlight SpellBad                       ctermbg=52
+highlight SpellCap                       ctermbg=232      cterm=none
+highlight SignColumn                     ctermbg=0
+highlight Operator     ctermfg=203
+highlight Special      ctermfg=179
+highlight Visual                         ctermbg=238
+highlight Error        ctermfg=254       ctermbg=52
+highlight Pmenu        ctermfg=252       ctermbg=23
+highlight Pmenusel     ctermfg=254       ctermbg=29
+highlight SpecialKey   ctermfg=72
+highlight Directory    ctermfg=72
+highlight Todo         ctermfg=237       ctermbg=179
+highlight WildMenu     ctermfg=0         ctermbg=248
+highlight OverLength                     ctermbg=53
+highlight ColorColumn                    ctermbg=235
+highlight MatchParen                     ctermbg=79       cterm=none
+highlight Title        ctermfg=172
+highlight CursorColumn                   ctermbg=237
 
 highlight YCMInverse ctermfg=15
+
+highlight LspErrorHighlight                                   cterm=underline
+highlight LspWarningHighlight                                 cterm=underline
+highlight LspInformationHighlight                             cterm=underline
+highlight LspErrorText              ctermfg=203   ctermbg=16  cterm=none
+highlight LspWarningText            ctermfg=213   ctermbg=16  cterm=none
+highlight LspInformationText        ctermfg=153   ctermbg=16  cterm=none
