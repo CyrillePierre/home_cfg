@@ -220,7 +220,7 @@ nmap <F7> <plug>(YCMHover)
 
 " mettre en commentaire
 
-command Bd bp|bd#
+command Bd bp|bd!#
 nnoremap <C-D> :Bd<CR>
 
 
