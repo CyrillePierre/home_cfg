@@ -84,6 +84,7 @@ alias dc=docker-compose
 alias reset='~/bin/reset'
 alias ip='ip -c'
 alias dc=docker-compose
+alias tectonic='tectonic -X'
 
 tmpcd() {
 	if [ -n "$1" ] ; then
