@@ -42,6 +42,7 @@ highlight MatchParen                     ctermbg=79       cterm=none
 highlight Title        ctermfg=172
 highlight CursorColumn                   ctermbg=237
 highlight VertSplit                                       cterm=none
+highlight SignColumn                     ctermbg=none
 
 highlight YCMInverse ctermfg=15
 
