@@ -52,3 +52,4 @@ highlight LspInformationHighlight                             cterm=underline
 highlight LspErrorText              ctermfg=203   ctermbg=16  cterm=none
 highlight LspWarningText            ctermfg=213   ctermbg=16  cterm=none
 highlight LspInformationText        ctermfg=153   ctermbg=16  cterm=none
+highlight LspHintText               ctermfg=153   ctermbg=16  cterm=none

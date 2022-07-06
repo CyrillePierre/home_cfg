@@ -4,38 +4,28 @@ scriptencoding utf-8
 
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
+	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+	Plug 'vim-airline/vim-airline'
+	" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'tpope/vim-fugitive'
+	"Plug 'lervag/vimtex'
+	Plug 'celforyon/vimmake'
+	Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
+	Plug 'dpelle/vim-Grammalecte'
+	Plug 'terryma/vim-multiple-cursors'
+	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+	Plug 'tomtom/tcomment_vim'
+	Plug 'cespare/vim-toml', { 'for': 'toml' }
+	Plug 'DingDean/wgsl.vim', { 'for': 'wgsl' }
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'vim-airline/vim-airline'
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'lervag/vimtex'
-Plugin 'celforyon/vimmake'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'dpelle/vim-Grammalecte'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'rust-lang/rust.vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'cespare/vim-toml'
-Plugin 'DingDean/wgsl.vim'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+call plug#end()
 
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'mattn/vim-lsp-settings'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
