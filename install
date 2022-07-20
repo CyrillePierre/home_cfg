@@ -18,8 +18,6 @@ install_with_backup vim/ycm_extra_conf.py .vim/ycm_extra_conf.py.off
 install_with_backup vim/colors .vim/
 install_with_backup vim/after .vim/
 install_with_backup vim/syntax .vim/
-[ -e $HOME/.vim/bundle/Vundle.vim ] \
-	|| git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 mkdir -p $HOME/.vim/swapfiles
 mkdir -p $HOME/.vim/backup
 mkdir -p $HOME/.vim/undodir
