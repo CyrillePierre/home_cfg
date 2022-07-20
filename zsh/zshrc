@@ -82,7 +82,7 @@ alias top='top -d 1'
 alias go='xdg-open'
 alias dc=docker-compose
 alias reset='~/bin/reset'
-alias ip='ip -c'
+alias ip='ip -c=auto'
 alias dc=docker-compose
 alias tectonic='tectonic -X'
 
