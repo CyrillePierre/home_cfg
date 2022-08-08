@@ -28,6 +28,8 @@ call plug#begin()
 	Plug 'mattn/vim-lsp-settings'
 	Plug 'prabirshrestha/asyncomplete.vim'
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+  Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 call plug#end()
 
 " Brief help
@@ -101,6 +103,14 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+if executable('/usr/bin/clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info -> ['/usr/bin/clangd', '-background-index', '--header-insertion=never']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
 
 " config asynccomplete
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -195,6 +205,7 @@ function! s:NTToggle()
 	endif
 endfunction
 
+let mapleader = ","
 map <C-left> <C-W>h:AirlineRefresh<cr>
 imap <C-left> <Esc><C-W>h:AirlineRefresh<cr>
 map <C-right> <C-W>l:AirlineRefresh<cr>
@@ -203,7 +214,7 @@ map <S-C-left> :bN<CR>
 imap <S-C-left> <Esc>:bN<CR>
 map <S-C-right> :bn<CR>
 map <S-C-right> <Esc>:bn<CR>
-map <F2> :let @/=""<cr>
+map <F2> :noh<cr>
 map <F3> :call <SID>NTToggle()<CR>
 map <F4> :YcmCompleter GoTo<CR>
 map <F5> :YcmCompleter GetType<CR>
@@ -211,7 +222,7 @@ map <F6> :TlistToggle<CR>
 map <C-B> :Make<CR>
 map <s-up> 15<c-y>
 map <s-down> 15<c-e>
-nmap <F7> <plug>(YCMHover)
+map <leader>h :noh<cr>
 
 " mettre en commentaire
 
