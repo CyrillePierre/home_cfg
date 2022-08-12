@@ -206,10 +206,15 @@ function! s:NTToggle()
 endfunction
 
 let mapleader = ","
-map <C-left> <C-W>h:AirlineRefresh<cr>
-imap <C-left> <Esc><C-W>h:AirlineRefresh<cr>
-map <C-right> <C-W>l:AirlineRefresh<cr>
-imap <C-right> <Esc><C-W>l:AirlineRefresh<cr>
+ noremap <C-left>       <C-W>h
+inoremap <C-left>  <Esc><C-W>h
+ noremap <C-right>      <C-W>l
+inoremap <C-right> <Esc><C-W>l
+ noremap <C-down>       <C-W>j
+inoremap <C-down>  <Esc><C-W>j
+ noremap <C-up>         <C-W>k
+inoremap <C-up>    <Esc><C-W>k
+
 map <S-C-left> :bN<CR>
 imap <S-C-left> <Esc>:bN<CR>
 map <S-C-right> :bn<CR>
