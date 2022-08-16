@@ -2,6 +2,13 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
+""""""""""""" Plugin config """"""""""""""""""
+source ~/.config/nvim/gdb.vim
+
+""""""""""""" Fix configured settings """"""""
+set undodir=~/.local/share/nvim/undo
+
+""""""""""""" Mapping """"""""""""""""""""""""
 tnoremap <esc> <c-\><c-n>
 tnoremap <silent> <c-left>   <c-\><c-n><c-w>h
 tnoremap <silent> <c-right>  <c-\><c-n><c-w>l
