@@ -28,7 +28,7 @@ highlight SpellCap                       ctermbg=232      cterm=none
 highlight SignColumn                     ctermbg=0
 highlight Operator     ctermfg=203
 highlight Special      ctermfg=179
-highlight Visual                         ctermbg=238
+highlight Visual                         ctermbg=240
 highlight Error        ctermfg=254       ctermbg=52
 highlight Pmenu        ctermfg=252       ctermbg=23
 highlight Pmenusel     ctermfg=254       ctermbg=29
@@ -38,7 +38,7 @@ highlight Todo         ctermfg=237       ctermbg=179
 highlight WildMenu     ctermfg=0         ctermbg=248
 highlight OverLength                     ctermbg=53
 highlight ColorColumn                    ctermbg=235
-highlight MatchParen                     ctermbg=79       cterm=none
+highlight MatchParen   ctermfg=79        ctermbg=none     cterm=bold
 highlight Title        ctermfg=172
 highlight CursorColumn                   ctermbg=237
 highlight VertSplit                                       cterm=none
