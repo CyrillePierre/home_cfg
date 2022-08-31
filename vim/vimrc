@@ -177,7 +177,9 @@ set t_Co=256					" terminal avec les couleurs 256
 set hidden						" l'historique des actions est conservé même en changeant de buffer
 set cindent
 set cinoptions+=:0              " switch without indent for cases
-set cinoptions+=(0,Ws,m1        " indent for '('
+set cinoptions+=(s              " only 1 indent for '(' (default: 2 indents)
+set cinoptions+=Ws              " if '(0', don't indent if the line ends with '('
+set cinoptions+=m1              " unindent when ')' starts the line
 set cinoptions+=N-s             " namespace (no indent)
 set cinoptions+=E-s             " extern C (no indent)
 set cinoptions+=g0              " no indent for public
