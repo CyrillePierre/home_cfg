@@ -23,6 +23,7 @@ call plug#begin()
 	Plug 'tomtom/tcomment_vim'
 	Plug 'cespare/vim-toml', { 'for': 'toml' }
 	Plug 'DingDean/wgsl.vim', { 'for': 'wgsl' }
+  Plug 'dhruvasagar/vim-table-mode'
 
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
