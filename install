@@ -21,15 +21,17 @@ install_with_backup vim/syntax .vim/
 mkdir -p $HOME/.vim/swapfiles
 mkdir -p $HOME/.vim/backup
 mkdir -p $HOME/.vim/undodir
-mkdir -p $HOME/.config/htop/
 
 install_with_backup zsh/zshrc .zshrc
 install_with_backup zsh/zsh/ .zsh
 install_with_backup zsh/cfyzshprompt/ .cfyzshprompt
 
+mkdir -p $HOME/.config/htop/
+mkdir -p $HOME/.config/clangd/
 install_with_backup gdbinit .gdbinit
 install_with_backup gitconfig .gitconfig
 install_with_backup rofi/config.rasi .config/rofi/
 install_with_backup htop/htoprc .config/htop/
 install_with_backup terminator .config/
 install_with_backup nvim .config/
+install_with_backup clangd.yaml .config/clangd/config.yaml
