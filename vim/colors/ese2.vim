@@ -9,7 +9,7 @@ if exists("syntax_on")
 endif
 "colorscheme default
 let g:colors_name = "ese2"
-let g:airline_theme='ravenpower'
+let g:airline_theme='ese'
 
 " Console
 highlight Normal       ctermfg=223       ctermbg=234

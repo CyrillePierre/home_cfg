@@ -54,7 +54,7 @@ let g:ycm_auto_hover = ''
 
 let g:airline_powerline_fonts              = 1
 let g:airline#extensions#tabline#enabled   = 1
-let g:airline_theme                        = 'jellybeans'
+let g:airline_theme                        = 'ese'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 
@@ -73,10 +73,10 @@ let g:multi_cursor_skip_key            = '<C-s>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
 " bug with NERDtree: undefined variables
-let g:NERDTreeGlyphReadOnly = 'RO'
-let g:NERDTreeNodeDelimiter = "\u00b7"
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeGlyphReadOnly = 'RO'
+" let g:NERDTreeNodeDelimiter = "\u00b7"
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -214,14 +214,14 @@ function! s:NTToggle()
 endfunction
 
 let mapleader = ","
- noremap <C-left>       <C-W>h
-inoremap <C-left>  <Esc><C-W>h
- noremap <C-right>      <C-W>l
-inoremap <C-right> <Esc><C-W>l
- noremap <C-down>       <C-W>j
-inoremap <C-down>  <Esc><C-W>j
- noremap <C-up>         <C-W>k
-inoremap <C-up>    <Esc><C-W>k
+ noremap <C-left>       <C-W>h:AirlineRefresh<CR>
+inoremap <C-left>  <Esc><C-W>h:AirlineRefresh<CR>
+ noremap <C-right>      <C-W>l:AirlineRefresh<CR>
+inoremap <C-right> <Esc><C-W>l:AirlineRefresh<CR>
+ noremap <C-down>       <C-W>j:AirlineRefresh<CR>
+inoremap <C-down>  <Esc><C-W>j:AirlineRefresh<CR>
+ noremap <C-up>         <C-W>k:AirlineRefresh<CR>
+inoremap <C-up>    <Esc><C-W>k:AirlineRefresh<CR>
 
  noremap <S-C-left>       :bN<CR>
 inoremap <S-C-left>  <Esc>:bN<CR>
