@@ -22,8 +22,8 @@ function! airline#themes#ese#refresh()
   let g:airline#themes#ese#palette.normal_modified.airline_error = s:Nerr
 
   " let s:I1 = airline#themes#get_highlight2(['DbgCurrent', 'bg'], ['String', 'fg'], 'bold')
-  let s:I1 = [ '#aaaaaa' , '#000000' , 232 , 106 , 'bold' ]
-  let s:I2 = [ '#aaaaaa' , '#000000' , 106 , 233 , '' ]
+  let s:I1 = [ '#aaaaaa' , '#000000' , 232 , 64 , 'bold' ]
+  let s:I2 = [ '#aaaaaa' , '#000000' , 64 , 233 , '' ]
   " let s:I2 = airline#themes#get_highlight2(['String', 'fg'], ['Folded', 'bg'])
   let s:I3 = s:N3
   let g:airline#themes#ese#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
