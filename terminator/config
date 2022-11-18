@@ -34,6 +34,7 @@
     cursor_color = "#aaaaaa"
     font = DejaVu Sans Mono for Powerline 12
     foreground_color = "#000000"
+    scrollback_infinite = True
     use_system_font = False
   [[small]]
     background_color = "#191919"
