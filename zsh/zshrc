@@ -80,11 +80,12 @@ alias la='ls -A'
 alias l='ls -CF'
 alias top='top -d 1'
 alias go='xdg-open'
-alias dc=docker-compose
-alias reset='~/bin/reset'
 alias ip='ip -c=auto'
-alias dc=docker-compose
 alias tectonic='tectonic -X'
+alias dc='docker compose'
+alias dcu='docker compose up -d'
+alias dcr='docker compose restart'
+alias dcd='docker compose down'
 
 tmpcd() {
 	if [ -n "$1" ] ; then
