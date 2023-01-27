@@ -1,6 +1,7 @@
 [global_config]
   dbus = False
   borderless = True
+  extra_styling = False
   scroll_tabbar = True
   homogeneous_tabbar = False
   title_transmit_bg_color = "#6a0001"
@@ -8,6 +9,7 @@
   inactive_color_offset = 1.0
   enabled_plugins = ,
   suppress_multiple_term_dialog = True
+  always_split_with_profile = True
   title_font = Inconsolata for Powerline Medium 11
 [keybindings]
   rotate_cw = <Shift><Super>r
@@ -51,6 +53,7 @@
     [[[child1]]]
       parent = window0
       type = Terminal
+      profile = default
     [[[window0]]]
       parent = ""
       type = Window
