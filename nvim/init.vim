@@ -16,3 +16,10 @@ tnoremap <silent> <c-down>   <c-\><c-n><c-w>j
 tnoremap <silent> <c-up>     <c-\><c-n><c-w>k
 tnoremap <silent> <s-c-left>  <c-\><c-n>:bN<cr>
 tnoremap <silent> <s-c-right> <c-\><c-n>:bn<cr>
+
+nmap <leader>f :Neoformat<cr>
+
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre *.c,*.cpp,*.h,*.hpp undojoin | Neoformat
+" augroup END

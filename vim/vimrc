@@ -13,7 +13,7 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline'
 	" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
 	Plug 'vim-airline/vim-airline-themes'
-	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-fugitive', { 'on': 'Git' }
 	"Plug 'lervag/vimtex'
 	Plug 'celforyon/vimmake'
 	Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
@@ -31,7 +31,10 @@ call plug#begin()
 	Plug 'prabirshrestha/asyncomplete.vim'
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-  Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+	if has('nvim')
+		Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
+		Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+	endif
 call plug#end()
 
 " Brief help
