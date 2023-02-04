@@ -24,7 +24,7 @@ call plug#begin()
 	Plug 'cespare/vim-toml', { 'for': 'toml' }
 	Plug 'DingDean/wgsl.vim', { 'for': 'wgsl' }
 	Plug 'dhruvasagar/vim-table-mode'
-	" Plug 'github/copilot.vim'
+	Plug 'niklasl/vim-rdf'
 
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
