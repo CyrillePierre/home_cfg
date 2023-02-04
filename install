@@ -38,3 +38,4 @@ install_with_backup terminator .config/
 install_with_backup nvim .config/
 install_with_backup clangd.yaml .config/clangd/config.yaml
 install_with_backup pycodestyle .config/
+install_with_backup clang-format .clang-format
