@@ -191,7 +191,7 @@ set cinoptions+=E-s             " extern C (no indent)
 set cinoptions+=g0              " no indent for public
 set cinoptions+=hs              " indent after public
 set completeopt=menuone,menu,longest,preview
-let &colorcolumn=join(range(100,300),",") " grise les lignes après la 95e colonne
+let &colorcolumn=join(range(101,300),",") " grise les lignes après la 100e colonne
 set foldlevel=1
 set foldminlines=3
 

@@ -1,45 +1,69 @@
-﻿---
-AlignAfterOpenBracket: AlwaysBreak
-AlignConsecutiveMacros: true
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
-AlignOperands: true
+---
+AccessModifierOffset: -2
+AlignAfterOpenBracket: BlockIndent
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  PadOperators: true
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  PadOperators: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  PadOperators: true
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  PadOperators: true
+AlignOperands: AlignAfterOperator
 AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortBlocksOnASingleLine: true
+AllowShortBlocksOnASingleLine: Always
 AllowShortCaseLabelsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: Inline
+AllowShortFunctionsOnASingleLine: InlineOnly
 AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterReturnType: None
-AlwaysBreakTemplateDeclarations: 'Yes'
+AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
-BreakBeforeBinaryOperators: NonAssignment
-BreakBeforeBraces: Stroustrup
+BreakBeforeBinaryOperators: All
+BreakBeforeBraces: Custom
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
 BreakStringLiterals: true
-ColumnLimit: '100'
+ColumnLimit: 100
 CompactNamespaces: false
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
+ContinuationIndentWidth: 2
 Cpp11BracedListStyle: false
 DerivePointerAlignment: false
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 IndentCaseLabels: false
 IndentPPDirectives: AfterHash
-IndentWidth: '4'
+IndentWidth: 2
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
-MaxEmptyLinesToKeep: '1'
+MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 PointerAlignment: Left
+QualifierAlignment: Right
 ReflowComments: true
-SortIncludes: true
+SortIncludes: CaseSensitive
 SpaceAfterCStyleCast: true
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: true
@@ -51,13 +75,62 @@ SpaceBeforeInheritanceColon: false
 SpaceBeforeParens: Never
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: '2'
-SpacesInAngles: false
+SpacesBeforeTrailingComments: 2
+SpacesInAngles: Never
 SpacesInCStyleCastParentheses: false
 SpacesInContainerLiterals: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-Standard: Cpp11
-TabWidth: '4'
-UseTab: ForIndentation
-...
+Standard: Auto
+TabWidth: 2
+UseTab: Never
+AlignArrayOfStructures: Left
+AlignEscapedNewlines: Right
+AllowShortEnumsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakBeforeMultilineStrings: true
+BitFieldColonSpacing: After
+BreakBeforeConceptDeclarations: Always
+DeriveLineEnding: false
+EmptyLineAfterAccessModifier: Leave
+EmptyLineBeforeAccessModifier: Always
+IndentAccessModifiers: false
+IndentCaseBlocks: false
+IndentExternBlock: NoIndent
+IndentGotoLabels: false
+IndentRequiresClause: false
+InsertBraces: false
+InsertTrailingCommas: Wrapped
+LambdaBodyIndentation: Signature
+PPIndentWidth: 2
+PackConstructorInitializers: Never
+ReferenceAlignment: Pointer
+RequiresClausePosition: OwnLine
+SeparateDefinitionBlocks: Always
+ShortNamespaceLines: 8
+SortUsingDeclarations: false
+SpaceAroundPointerQualifiers: Default
+SpaceBeforeSquareBrackets: false
+SpacesInConditionalStatement: false
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: -1
+BraceWrapping:
+  SplitEmptyFunction: false
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: MultiLine
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
