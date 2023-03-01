@@ -9,7 +9,8 @@ if empty(glob(plug_path))
 endif
 
 call plug#begin()
-	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } |
+    \ Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'vim-airline/vim-airline'
 	" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
 	Plug 'vim-airline/vim-airline-themes'
