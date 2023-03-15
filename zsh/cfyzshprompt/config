@@ -7,3 +7,4 @@ all[git/preferredzone]=r
 left[git]=-f
 right[git]=-n
 right[git/chars]=+✐✘⚑
+left[git/minhash]=7
