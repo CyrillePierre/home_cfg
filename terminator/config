@@ -48,6 +48,16 @@
     scrollback_infinite = True
     palette = "#494949:#ff3c22:#6cb428:#e4bf1a:#6186b6:#a36aac:#5bef9b:#daa05d:#7c7c7c:#ef2929:#99ff89:#ffe972:#769dc7:#c494be:#89fabe:#eeeeec"
     use_system_font = False
+  [[ssh]]
+    background_color = "#191919"
+    cursor_color = "#fdb04d"
+    font = DejaVu Sans Mono for Powerline 12
+    foreground_color = "#baf775"
+    scrollbar_position = hidden
+    scrollback_lines = 1000
+    scrollback_infinite = True
+    palette = "#494949:#ff3c22:#6cb428:#e4bf1a:#6186b6:#a36aac:#5bef9b:#daa05d:#7c7c7c:#ef2929:#99ff89:#ffe972:#769dc7:#c494be:#89fabe:#eeeeec"
+    use_system_font = False
 [layouts]
   [[default]]
     [[[child1]]]
