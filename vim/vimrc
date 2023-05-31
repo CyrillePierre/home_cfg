@@ -9,14 +9,16 @@ if empty(glob(plug_path))
 endif
 
 call plug#begin()
-	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } |
+	Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeVCS', 'NERDTreeFind'] } |
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'vim-airline/vim-airline'
 	" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'tpope/vim-fugitive', { 'on': 'Git' }
+	Plug 'tpope/vim-obsession'
 	"Plug 'lervag/vimtex'
 	Plug 'celforyon/vimmake'
+	Plug 'celforyon/vimas'
 	Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
 	Plug 'dpelle/vim-Grammalecte'
 	Plug 'terryma/vim-multiple-cursors'
@@ -76,6 +78,10 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-s>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+if has('nvim')
+	let g:vimas_sessions_dir = fnamemodify('~', ':p').'.local/share/nvim/sessions/'
+endif
 
 " bug with NERDtree: undefined variables
 " let g:NERDTreeGlyphReadOnly = 'RO'
@@ -205,7 +211,6 @@ set foldminlines=3
 colorscheme ese2
 syntax on
 
-"""""""" Raccourcis clavier """"""""""""""""""""""""
 
 function! s:isNTOpen()        
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
@@ -218,6 +223,22 @@ function! s:NTToggle()
 		set winfixwidth
 	endif
 endfunction
+
+function! AutoNerdTree()
+    NERDTreeVCS
+    wincmd l
+    NERDTreeFind
+    wincmd l
+endfunction
+
+function! SetupVimAS()
+    if exists('g:loaded_vimas') && vimas#vimas() && len(filter(getbufinfo({'buflisted':1}), 'v:val.name != ""')) != 0
+        call AutoNerdTree()
+    endif
+endfunction
+
+
+"""""""" Raccourcis clavier """"""""""""""""""""""""
 
 let mapleader = ","
  noremap <C-left>       <C-W>h:AirlineRefresh<CR>
@@ -266,6 +287,8 @@ augroup filetypedetect
 	au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 	au FileType ruby setlocal ts=2 sts=2 sw=2
 augroup END
+
+autocmd VimEnter * call timer_start(0, { tid -> SetupVimAS() })
 
 " prérequis tags
 filetype plugin on

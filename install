@@ -23,6 +23,7 @@ install_with_backup vim/autoload .vim/
 mkdir -p $HOME/.vim/swapfiles
 mkdir -p $HOME/.vim/backup
 mkdir -p $HOME/.vim/undodir
+mkdir -p $HOME/.local/share/nvim/sessions
 
 install_with_backup zsh/zshrc .zshrc
 install_with_backup zsh/zsh/ .zsh
