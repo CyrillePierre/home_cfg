@@ -67,7 +67,7 @@
     [[[window0]]]
       parent = ""
       type = Window
-  [[manips]]
+  [[manips_tiara_pom]]
     [[[child0]]]
       type = Window
       parent = ""
@@ -97,12 +97,14 @@
       order = 0
       profile = clair
       uuid = bff87fc9-63d7-41c6-a06f-052ea28cbea5
+      command = "zsh -c 'source ~/.zshrc ; source_tiara ; roscd tiara_bringup ; source ../../env_robot ; env | grep ROS_MASTER | cat ; zsh'"
     [[[terminal4]]]
       type = Terminal
       parent = child2
       order = 1
       profile = clair
       uuid = 495ddb94-e88b-4756-88b1-434e0f3273af
+      command = "zsh -c 'source ~/.zshrc ; source_tiara ; roscd tiara_bringup ; source ../../env_robot ; env | grep ROS_MASTER | cat ; zsh'"
     [[[child5]]]
       type = VPaned
       parent = child1
@@ -115,10 +117,70 @@
       order = 0
       profile = clair
       uuid = 24e48535-a461-48cf-8a28-cab6b9e94ff7
+      command = "zsh -c 'source ~/.zshrc ; source_tiara ; roscd tiara_bringup ; source ../../env_robot ; env | grep ROS_MASTER | cat ; zsh'"
     [[[terminal7]]]
       type = Terminal
       parent = child5
       order = 1
       profile = clair
       uuid = 70a30e13-8a59-4633-afd2-e148b67c40d9
+      command = '''zsh -c 'source ~/.zshrc ; source_tiara ; roscd tiara_bringup ; source ../../env_robot ; cd ~/data/tiara/manips ; echo -n "nouveau repertoire de manip: " ; read dir ; [[ -n "$dir" ]] && mkcd "$dir" ; zsh''''
+  [[manips_tiara2_pom]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 0:23
+      maximised = True
+      fullscreen = False
+      size = 1920, 1057
+      title = /bin/zsh
+      last_active_term = 0a35c5aa-fdb3-4b43-a8b4-613b8339e9fc
+      last_active_window = True
+    [[[child1]]]
+      type = HPaned
+      parent = child0
+      order = 0
+      position = 958
+      ratio = 0.5002610966057441
+    [[[terminal2]]]
+      type = Terminal
+      parent = child1
+      order = 0
+      profile = clair
+      uuid = 0a35c5aa-fdb3-4b43-a8b4-613b8339e9fc
+      command = "zsh -c 'source ~/.zshrc ; source_tiara2 ; echo source_tiara2 ; cd ~/projects/tiara_ros2 ; source ~/projects/tiara_ws/env_robot ; env | grep ROS_MASTER | cat ; zsh'"
+    [[[child3]]]
+      type = VPaned
+      parent = child1
+      order = 1
+      position = 355
+      ratio = 0.33745247148288976
+    [[[terminal4]]]
+      type = Terminal
+      parent = child3
+      order = 0
+      profile = clair
+      uuid = 07c4e59a-7c97-4873-8e46-c9ed7698a53a
+      command = "zsh -c 'source ~/.zshrc ; source_tiara ; echo source_tiara ; source_tiara2 ; echo source_tiara2 ; cd ~/projects/tiara_ros2 ; source ~/projects/tiara_ws/env_robot ; env | grep ROS_MASTER | cat ; zsh'"
+    [[[child5]]]
+      type = VPaned
+      parent = child3
+      order = 1
+      position = 343
+      ratio = 0.492816091954023
+    [[[terminal6]]]
+      type = Terminal
+      parent = child5
+      order = 0
+      profile = clair
+      uuid = d1c65113-4886-4323-aba7-5f3e384f4fd8
+      command = "zsh -c 'source ~/.zshrc ; source_tiara ; echo source_tiara ; source_tiara2 ; echo source_tiara2 ; cd ~/projects/tiara_ros2 ; source ~/projects/tiara_ws/env_robot ; env | grep ROS_MASTER | cat ; zsh'"
+    [[[terminal7]]]
+      type = Terminal
+      parent = child5
+      order = 1
+      profile = clair
+      uuid = c4403408-73a5-4ac2-92d7-e636b252b536
+      command = "zsh -c 'source ~/.zshrc ; source_tiara ; echo source_tiara ; cd ~/projects/tiara_ros2 ; source ~/projects/tiara_ws/env_robot ; env | grep ROS_MASTER | cat ; zsh'"
 [plugins]
