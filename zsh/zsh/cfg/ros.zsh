@@ -50,3 +50,6 @@ source_tirrex() {
 	export GAZEBO_RESOURCE_PATH="$GAZEBO_RESOURCE_PATH:$HOME/data/romea/gazebo"
 	export GAZEBO_MODEL_PATH="$GAZEBO_MODEL_PATH:$HOME/data/romea/gazebo/models"
 }
+
+alias ccd="colcon_cd"
+alias ccb="colcon build"
