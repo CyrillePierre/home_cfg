@@ -46,6 +46,7 @@ source_tirrex() {
   source /usr/share/colcon_cd/function/colcon_cd.sh
   eval "$(register-python-argcomplete3 ros2)"
   eval "$(register-python-argcomplete3 colcon)"
+  export RCUTILS_COLORIZED_OUTPUT=1
   export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity}] {name}: {message}"
 	export GAZEBO_RESOURCE_PATH="$GAZEBO_RESOURCE_PATH:$HOME/data/romea/gazebo"
 	export GAZEBO_MODEL_PATH="$GAZEBO_MODEL_PATH:$HOME/data/romea/gazebo/models"
