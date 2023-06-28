@@ -9,3 +9,6 @@ configuration {
 element-text {
 	text-color: white / 60%;
 }
+
+/* vim:ft=css
+ */
