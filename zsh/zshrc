@@ -25,7 +25,8 @@ setopt pushd_silent          # do not print the directory stack after pushd or p
 setopt pushd_to_home         # have pushd with no arguments act like `pushd $HOME'.
 setopt prompt_subst          # enable some expansions in prompt
 setopt extended_glob         # treat the `#', `~' and `^' characters as part of patterns
-setopt always_to_end         # move the cursor to the end after a completion
+# setopt always_to_end         # move the cursor to the end of the word after a completion
+setopt auto_list             # list choices on  an ambiguous completion
 
 setopt append_history        # parallel zsh share new entries from history
 setopt bang_hist             # perform textual history expansion
@@ -153,6 +154,11 @@ fi
 #source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+if [ -d ~/share/fzf/ ] ; then
+  source ~/share/fzf/shell/completion.zsh
+  source ~/share/fzf/shell/key-bindings.zsh
+fi
 
 # execute special command
 if [[ -n "$RUN_CMD" ]]; then
