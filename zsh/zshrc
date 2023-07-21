@@ -155,11 +155,6 @@ fi
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-if [ -d ~/share/fzf/ ] ; then
-  source ~/share/fzf/shell/completion.zsh
-  source ~/share/fzf/shell/key-bindings.zsh
-fi
-
 # execute special command
 if [[ -n "$RUN_CMD" ]]; then
 	eval "$RUN_CMD"
