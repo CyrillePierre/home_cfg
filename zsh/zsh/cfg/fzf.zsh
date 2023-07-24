@@ -1,6 +1,8 @@
-if [ -d ~/share/fzf/ ] ; then
-  source ~/share/fzf/shell/completion.zsh
-  source ~/share/fzf/shell/key-bindings.zsh
+cfg_fzf_dir='/opt/fzf'
+
+if [ -d "${cfg_fzf_dir}" ] ; then
+  source "${cfg_fzf_dir}/shell/completion.zsh"
+  source "${cfg_fzf_dir}/shell/key-bindings.zsh"
 
   # Use fd (https://github.com/sharkdp/fd) instead of the default find
   # command for listing path candidates.
@@ -16,3 +18,5 @@ if [ -d ~/share/fzf/ ] ; then
   }
 
 fi
+
+unset cfg_fzf_dir
