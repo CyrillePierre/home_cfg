@@ -28,6 +28,8 @@ call plug#begin()
 	Plug 'DingDean/wgsl.vim', { 'for': 'wgsl' }
 	Plug 'dhruvasagar/vim-table-mode'
 	Plug 'niklasl/vim-rdf'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
@@ -78,6 +80,9 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-s>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+let g:fzf_preview_command = 'batcat --color=always --plain {-1}'
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --hidden -g "!.git/"'
 
 if has('nvim')
 	let g:vimas_sessions_dir = fnamemodify('~', ':p').'.local/share/nvim/sessions/'
@@ -263,6 +268,9 @@ inoremap <S-C-left>  <Esc>:bN<CR>
  noremap <s-up>           15<c-y>
  noremap <s-down>         15<c-e>
  noremap <leader>h        :noh<cr>
+
+ noremap <leader>ff       :FzfPreviewGitFilesRpc<cr>
+ noremap <leader>fg       :FzfPreviewProjectGrepRpc<space>
 
 " mettre en commentaire
 
