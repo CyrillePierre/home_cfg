@@ -9,48 +9,39 @@ if empty(glob(plug_path))
 endif
 
 call plug#begin()
-	Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeVCS', 'NERDTreeFind'] } |
+  Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeVCS', 'NERDTreeFind'] } |
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
-	Plug 'vim-airline/vim-airline'
-	" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'tpope/vim-fugitive', { 'on': 'Git' }
-	Plug 'tpope/vim-obsession'
-	"Plug 'lervag/vimtex'
-	Plug 'celforyon/vimmake'
-	Plug 'celforyon/vimas'
-	Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
-	Plug 'dpelle/vim-Grammalecte'
-	Plug 'terryma/vim-multiple-cursors'
-	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-	Plug 'tomtom/tcomment_vim'
-	Plug 'cespare/vim-toml', { 'for': 'toml' }
-	Plug 'DingDean/wgsl.vim', { 'for': 'wgsl' }
-	Plug 'dhruvasagar/vim-table-mode'
-	Plug 'niklasl/vim-rdf'
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
+  Plug 'vim-airline/vim-airline'
+  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'tpope/vim-fugitive', { 'on': 'Git' }
+  Plug 'tpope/vim-obsession'
+  "Plug 'lervag/vimtex'
+  Plug 'celforyon/vimmake'
+  Plug 'celforyon/vimas'
+  Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
+  Plug 'dpelle/vim-Grammalecte'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'tomtom/tcomment_vim'
+  Plug 'cespare/vim-toml', { 'for': 'toml' }
+  Plug 'DingDean/wgsl.vim', { 'for': 'wgsl' }
+  Plug 'dhruvasagar/vim-table-mode'
+  Plug 'niklasl/vim-rdf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
-	Plug 'prabirshrestha/asyncomplete.vim'
-	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-	if has('nvim')
-		Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
-		Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
-	endif
+  if has('nvim')
+    Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
+    Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+  endif
 call plug#end()
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
- 
 
 """"""""""""""" Plugins config """""""""""""""""""""""""""
 
@@ -81,11 +72,10 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-s>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
-let g:fzf_preview_command = 'batcat --color=always --plain {-1}'
-let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --hidden -g "!.git/"'
+let g:fzf_command_prefix = 'Fzf'
 
 if has('nvim')
-	let g:vimas_sessions_dir = fnamemodify('~', ':p').'.local/share/nvim/sessions/'
+  let g:vimas_sessions_dir = fnamemodify('~', ':p').'.local/share/nvim/sessions/'
 endif
 
 " bug with NERDtree: undefined variables
@@ -112,7 +102,7 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
+
     " refer to doc to add more commands
 endfunction
 
@@ -146,53 +136,53 @@ let g:nvimgdb_disable_start_keymaps = 1
 
 set nocompatible              " be iMproved, required
 set background=dark
-set number						" affichage des numéros de lignes
+set number            " affichage des numéros de lignes
 set mouse=v
-set nocursorline					" met en valeur la ligne possedant le curseur
+set nocursorline          " met en valeur la ligne possedant le curseur
 set guioptions=m
 set guifont=Inconsolata\ 12
-set so=10						" 10 lignes autour du curseur
+set so=10           " 10 lignes autour du curseur
 set path=**,/usr/include,/usr/local/include
 set winminwidth=20
 set winwidth=110
-set noexpandtab					" transforme les tabulations en espaces
-set ts=4						" largeur d'une tabulation
-set sts=4						" largeur des tabulations en mode insertion
-set sw=4						" un truc dans le même genre
-set backspace=indent,eol,start	" Le backspace
+set noexpandtab         " transforme les tabulations en espaces
+set ts=4            " largeur d'une tabulation
+set sts=4           " largeur des tabulations en mode insertion
+set sw=4            " un truc dans le même genre
+set backspace=indent,eol,start  " Le backspace
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/swapfiles
 set undofile
 set undodir=$HOME/.vim/undodir
-set backup						" Activer la sauvegarde
-set history=100					" un historique raisonnable
-set undolevels=150				" undo, pour revenir en arrière
+set backup            " Activer la sauvegarde
+set history=100         " un historique raisonnable
+set undolevels=150        " undo, pour revenir en arrière
 set suffixes=.jpg,.png,.jpeg,.gif,.bak,~,.swp,.swo,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyo
-set autoread					" Relecture auto des fichiers modifiés en dehors de vim
-set errorbells					" Aucun son ou affichage lors des erreurs
+set autoread          " Relecture auto des fichiers modifiés en dehors de vim
+set errorbells          " Aucun son ou affichage lors des erreurs
 set novisualbell
 set t_vb=
-set showmatch					" Affichage des paires de parenthèses
+set showmatch         " Affichage des paires de parenthèses
 set matchtime=2
-set laststatus=2				" Afficher la barre d'état
+set laststatus=2        " Afficher la barre d'état
 set incsearch
 set noignorecase
 set infercase
-set hlsearch					" La recherche s'arrête à la fin du fichier
-set writeany					" Ne pas nous afficher un message quand on enregistre un readonly
-set showcmd						" Afficher les commandes incomplètes
-set ruler						" Afficher la position du curseur
+set hlsearch          " La recherche s'arrête à la fin du fichier
+set writeany          " Ne pas nous afficher un message quand on enregistre un readonly
+set showcmd           " Afficher les commandes incomplètes
+set ruler           " Afficher la position du curseur
 set nowrap
 set foldmethod=syntax
 set wildmenu
 set wildignore=*.o,*#,*~,*.dll,*.so,*.a
 set wildmode=full
 "set statusline=%F%m\ %r\ Line:%l\/%L,%c\ %p%%
-set ttyfast						" TTY rapide, améliore l'affichage
-set lazyredraw					" Ne pas mettre à jour l'écran pendant un script
+set ttyfast           " TTY rapide, améliore l'affichage
+set lazyredraw          " Ne pas mettre à jour l'écran pendant un script
 set nocp
-set t_Co=256					" terminal avec les couleurs 256
-set hidden						" l'historique des actions est conservé même en changeant de buffer
+set t_Co=256          " terminal avec les couleurs 256
+set hidden            " l'historique des actions est conservé même en changeant de buffer
 set cindent
 set cinoptions+=:0              " switch without indent for cases
 set cinoptions+=(s              " only 1 indent for '(' (default: 2 indents)
@@ -209,7 +199,7 @@ set foldminlines=3
 
 "set ts=2
 "set sw=2
-"set expandtab					" transforme les tabulations en espaces
+"set expandtab          " transforme les tabulations en espaces
 
 
 " colorscheme ese
@@ -217,23 +207,23 @@ colorscheme ese2
 syntax on
 
 
-function! s:isNTOpen()        
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+function! s:isNTOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 function! s:NTToggle()
-	NERDTreeToggle
-	if s:isNTOpen()
-"		exec <C-W> 35\|
-		set winfixwidth
-	endif
+  NERDTreeToggle
+  if s:isNTOpen()
+"   exec <C-W> 35\|
+    set winfixwidth
+  endif
 endfunction
 
 function! AutoNerdTree()
-    NERDTreeVCS
-    wincmd l
-    NERDTreeFind
-    wincmd l
+  NERDTreeVCS
+  wincmd l
+  NERDTreeFind
+  wincmd l
 endfunction
 
 function! SetupVimAS()
@@ -269,8 +259,9 @@ inoremap <S-C-left>  <Esc>:bN<CR>
  noremap <s-down>         15<c-e>
  noremap <leader>h        :noh<cr>
 
- noremap <leader>ff       :FzfPreviewGitFilesRpc<cr>
- noremap <leader>fg       :FzfPreviewProjectGrepRpc<space>
+ noremap <leader>ff       :FzfGFiles<cr>
+ noremap <leader>fg       :FzfRg<space>
+ noremap <leader>fb       :FzfBuffers<cr>
 
 " mettre en commentaire
 
@@ -281,19 +272,19 @@ nnoremap <C-D> :Bd<CR>
 "au Filetype html,xml,xsl,php source ~/.vim/plugin/closetag.vim
 
 
-" Autocmd 
+" Autocmd
 "
 autocmd FocusGained * checktime
 
 augroup filetypedetect
-	au BufRead,BufNewFile *.launch setfiletype xml
-	au BufRead,BufNewFile *.urdf setfiletype xml
-	au BufRead,BufNewFile *.shader setfiletype glsl
-	au BufRead,BufNewFile *.tex setlocal ts=2 sts=2 sw=2 tw=100
-	au BufRead,BufNewFile *.tex setfiletype tex
-	au FileType python setlocal ts=4 sts=4 expandtab
-	au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-	au FileType ruby setlocal ts=2 sts=2 sw=2
+  au BufRead,BufNewFile *.launch setfiletype xml
+  au BufRead,BufNewFile *.urdf setfiletype xml
+  au BufRead,BufNewFile *.shader setfiletype glsl
+  au BufRead,BufNewFile *.tex setlocal ts=2 sts=2 sw=2 tw=100
+  au BufRead,BufNewFile *.tex setfiletype tex
+  au FileType python setlocal ts=4 sts=4 expandtab
+  au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  au FileType ruby setlocal ts=2 sts=2 sw=2
 augroup END
 
 autocmd VimEnter * call timer_start(0, { tid -> SetupVimAS() })
