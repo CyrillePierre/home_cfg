@@ -253,6 +253,7 @@ inoremap <S-C-left>  <Esc>:bN<CR>
  noremap <leader>ff       :FzfFiles<cr>
  noremap <leader>fg       :FzfRg<space>
  noremap <leader>fb       :FzfBuffers<cr>
+ noremap <leader>fh       :FzfFiles ~<cr>
 
 
 
