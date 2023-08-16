@@ -193,9 +193,15 @@ set cinoptions+=E-s             " extern C (no indent)
 set cinoptions+=g0              " no indent for public
 set cinoptions+=hs              " indent after public
 set completeopt=menuone,menu,longest,preview
-let &colorcolumn=join(range(101,300),",") " grise les lignes après la 100e colonne
+let &colorcolumn = join(range(101,300),",") " grise les lignes après la 100e colonne
 set foldlevel=1
 set foldminlines=3
+
+let g:python_indent = {}
+let g:python_indent.open_paren   = 'shiftwidth()'
+let g:python_indent.nested_paren = 'shiftwidth()'
+let g:python_indent.continue     = 'shiftwidth()'
+let g:python_indent.closed_paren_align_last_line = v:false
 
 "set ts=2
 "set sw=2
@@ -262,6 +268,7 @@ inoremap <S-C-left>  <Esc>:bN<CR>
  noremap <s-down>         15<c-e>
  noremap <leader>h        :noh<cr>
  noremap <leader>nf       :NERDTreeFind<cr>
+ noremap <leader>ld       :LspDocumentDiagnostics<cr>
 
  noremap <leader>ff       :FzfFiles<cr>
  noremap <leader>fg       :FzfRg<space>
