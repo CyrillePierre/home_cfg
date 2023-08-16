@@ -12,7 +12,6 @@ call plug#begin()
   Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeVCS', 'NERDTreeFind'] } |
     \ Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'vim-airline/vim-airline'
-  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer -rust-completer' }
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive', { 'on': 'Git' }
   Plug 'tpope/vim-obsession'
@@ -45,13 +44,6 @@ call plug#end()
 
 """"""""""""""" Plugins config """""""""""""""""""""""""""
 
-let g:ycm_confirm_extra_conf    = 0
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-let g:ycm_extra_conf_vim_data   = ['&filetype']
-let g:ycm_use_clangd            = 1
-let g:ycm_filetype_blacklist    = {'tex': 1}
-let g:ycm_auto_hover = ''
-
 let g:airline_powerline_fonts              = 1
 let g:airline#extensions#tabline#enabled   = 1
 let g:airline_theme                        = 'ese'
@@ -78,12 +70,6 @@ if has('nvim')
   let g:vimas_sessions_dir = fnamemodify('~', ':p').'.local/share/nvim/sessions/'
 endif
 
-" bug with NERDtree: undefined variables
-" let g:NERDTreeGlyphReadOnly = 'RO'
-" let g:NERDTreeNodeDelimiter = "\u00b7"
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
-
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -102,8 +88,6 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-
-    " refer to doc to add more commands
 endfunction
 
 augroup lsp_install
@@ -140,7 +124,6 @@ set number            " affichage des numéros de lignes
 set mouse=v
 set nocursorline          " met en valeur la ligne possedant le curseur
 set guioptions=m
-set guifont=Inconsolata\ 12
 set so=10           " 10 lignes autour du curseur
 set path=**,/usr/include,/usr/local/include
 set winminwidth=20
@@ -149,6 +132,7 @@ set noexpandtab         " transforme les tabulations en espaces
 set ts=4            " largeur d'une tabulation
 set sts=4           " largeur des tabulations en mode insertion
 set sw=4            " un truc dans le même genre
+set tw=100
 set backspace=indent,eol,start  " Le backspace
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/swapfiles
@@ -202,10 +186,6 @@ let g:python_indent.open_paren   = 'shiftwidth()'
 let g:python_indent.nested_paren = 'shiftwidth()'
 let g:python_indent.continue     = 'shiftwidth()'
 let g:python_indent.closed_paren_align_last_line = v:false
-
-"set ts=2
-"set sw=2
-"set expandtab          " transforme les tabulations en espaces
 
 
 " colorscheme ese
@@ -276,11 +256,8 @@ inoremap <S-C-left>  <Esc>:bN<CR>
 
 
 
-"au Filetype html,xml,xsl,php source ~/.vim/plugin/closetag.vim
+"""""""" Auto-commandes """""""""""""""""""""""""""""""""
 
-
-" Autocmd
-"
 autocmd FocusGained * checktime
 
 augroup filetypedetect
