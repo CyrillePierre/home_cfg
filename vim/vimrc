@@ -207,9 +207,13 @@ endfunction
 
 function! AutoNerdTree()
   NERDTreeVCS
-  wincmd l
+  " show all buffers in the tree
+  for buf in filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    execute 'NERDTreeFind ' . bufname(buf)
+  endfor
+  wincmd p
   NERDTreeFind
-  wincmd l
+  wincmd p
 endfunction
 
 function! SetupVimAS()
@@ -247,7 +251,8 @@ inoremap <S-C-left>  <Esc>:bN<CR>
  noremap <s-up>           15<c-y>
  noremap <s-down>         15<c-e>
  noremap <leader>h        :noh<cr>
- noremap <leader>nf       :NERDTreeFind<cr>
+ noremap <leader>nf       :NERDTreeFind<cr><c-w>p
+ noremap <leader>nF       :call AutoNerdTree()<cr>
  noremap <leader>ld       :LspDocumentDiagnostics<cr>
 
  noremap <leader>ff       :FzfFiles<cr>
