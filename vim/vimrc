@@ -121,7 +121,7 @@ let g:nvimgdb_disable_start_keymaps = 1
 set nocompatible              " be iMproved, required
 set background=dark
 set number            " affichage des numéros de lignes
-set mouse=v
+set mouse=nv
 set nocursorline          " met en valeur la ligne possedant le curseur
 set guioptions=m
 set so=10           " 10 lignes autour du curseur
@@ -178,7 +178,7 @@ set cinoptions+=g0              " no indent for public
 set cinoptions+=hs              " indent after public
 set completeopt=menuone,menu,longest,preview
 let &colorcolumn = join(range(101,300),",") " grise les lignes après la 100e colonne
-set foldlevel=1
+set foldlevel=2
 set foldminlines=3
 
 let g:python_indent = {}
@@ -254,6 +254,7 @@ inoremap <S-C-left>  <Esc>:bN<CR>
  noremap <leader>nf       :NERDTreeFind<cr><c-w>p
  noremap <leader>nF       :call AutoNerdTree()<cr>
  noremap <leader>ld       :LspDocumentDiagnostics<cr>
+ noremap <leader>=        :Neoformat<cr>
 
  noremap <leader>ff       :FzfFiles<cr>
  noremap <leader>fg       :FzfRg<space>
@@ -272,6 +273,8 @@ augroup filetypedetect
   au BufRead,BufNewFile *.shader setfiletype glsl
   au BufRead,BufNewFile *.tex setlocal ts=2 sts=2 sw=2 tw=100
   au BufRead,BufNewFile *.tex setfiletype tex
+  au BufRead,BufNewFile *.h,*.hpp setlocal foldlevel=2
+  au BufRead,BufNewFile *.c,*.cpp setlocal foldlevel=1
   au FileType python setlocal ts=4 sts=4 expandtab
   au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   au FileType ruby setlocal ts=2 sts=2 sw=2
