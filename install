@@ -40,3 +40,4 @@ install_with_backup nvim .config/
 install_with_backup pycodestyle .config/
 install_with_backup clang/clangd.yaml .config/clangd/config.yaml
 install_with_backup clang/clang-format .clang-format
+install_with_backup yapf .config/
