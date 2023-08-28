@@ -13,3 +13,4 @@ end
 
 set print asm-demangle on
 set breakpoint pending on
+set pagination off

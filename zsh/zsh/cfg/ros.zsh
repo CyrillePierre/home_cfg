@@ -53,4 +53,4 @@ source_tirrex() {
 }
 
 alias ccd="colcon_cd"
-alias ccb="colcon build"
+alias ccb="colcon build --symlink-install"
