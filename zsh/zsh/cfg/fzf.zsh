@@ -7,6 +7,8 @@ if [ -d "${cfg_fzf_dir}" ] ; then
   export FZF_COMPLETION_OPTS="--preview '${FZF_PREVIEW_COMMAND} 2>/dev/null'"
   export FZF_CTRL_T_OPTS="--preview '${FZF_PREVIEW_COMMAND} 2>/dev/null'"
   export FZF_ALT_C_OPTS="--preview '${fzf_dir_preview_command} 2>/dev/null'"
+  export FZF_TMUX_HEIGHT='60%'
+  export FZF_DEFAULT_OPTS='--bind ctrl-k:preview-up,ctrl-j:preview-down'
 
   source "${cfg_fzf_dir}/shell/completion.zsh"
   source "${cfg_fzf_dir}/shell/key-bindings.zsh"

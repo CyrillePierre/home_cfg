@@ -64,6 +64,7 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-s>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
+let g:fzf_layout = { 'window': { 'width': 0.94, 'height': 0.8 } }
 let g:fzf_command_prefix = 'Fzf'
 
 if has('nvim')
@@ -260,8 +261,12 @@ inoremap <S-C-left>  <Esc>:bN<CR>
 
  noremap <leader>ff       :FzfFiles<cr>
  noremap <leader>fg       :FzfRg<space>
+ noremap <leader>fG       :FzfRG<cr>
+vnoremap <leader>fg       "sy:FzfRg <c-r>s
+vnoremap <leader>fG       "sy:FzfRG <c-r>s<cr>
  noremap <leader>fb       :FzfBuffers<cr>
  noremap <leader>fh       :FzfFiles ~<cr>
+ noremap <leader>fc       :FzfBCommits<cr>
 
 
 
