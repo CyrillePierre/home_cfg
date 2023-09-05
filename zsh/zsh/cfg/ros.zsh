@@ -25,6 +25,7 @@ source_tiara2() {
   export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity}] {name}: {message}"
 	export GAZEBO_RESOURCE_PATH="$HOME/data/tiara/gazebo:$HOME/data/romea/gazebo"
 	export GAZEBO_MODEL_PATH="$HOME/data/tiara/gazebo/models:$HOME/data/romea/gazebo/models"
+  export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 }
 
 source_romea2() {
