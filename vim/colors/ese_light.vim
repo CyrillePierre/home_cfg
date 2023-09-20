@@ -12,10 +12,10 @@ let g:colors_name = "ese_light"
 let g:airline_theme='google_light'
 
 " Console
-highlight Normal           ctermfg=232        ctermbg=White
+highlight Normal           ctermfg=232        ctermbg=231
 highlight Search           ctermfg=232        ctermbg=248	  cterm=NONE
 highlight Cursor           ctermfg=Black	  ctermbg=Green	  cterm=bold
-highlight Special          ctermfg=166
+highlight Special          ctermfg=130
 highlight Comment          ctermfg=59
 highlight StatusLine       ctermfg=232	      ctermbg=245     term=none cterm=none
 highlight Statement        ctermfg=89
@@ -44,3 +44,18 @@ highlight StatusLineTerm                     ctermbg=253      term=none cterm=no
 highlight StatusLineTermNC                   ctermbg=253      term=bold cterm=bold
 highlight SignColumn       ctermfg=245       ctermbg=White
 highlight ColorColumn                        ctermbg=254
+
+highlight LspErrorHighlight                                   cterm=underline
+highlight LspWarningHighlight                                 cterm=underline
+highlight LspInformationHighlight                             cterm=underline
+highlight LspErrorText              ctermfg=52   ctermbg=224  cterm=none
+highlight LspWarningText            ctermfg=53   ctermbg=225  cterm=none
+highlight LspInformationText        ctermfg=20   ctermbg=223  cterm=none
+highlight LspHintText               ctermfg=94   ctermbg=188  cterm=none
+highlight link LspErrorVirtualText LspErrorText
+highlight link LspWarningVirtualText LspWarningText
+highlight link LspInformationVirtualText LspInformationText
+highlight link LspHintVirtualText LspHintText
+highlight link LspCodeActionText Normal
+
+doautoall syntaxset FileType

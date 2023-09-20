@@ -54,3 +54,10 @@ highlight LspErrorText              ctermfg=203   ctermbg=16  cterm=none
 highlight LspWarningText            ctermfg=213   ctermbg=16  cterm=none
 highlight LspInformationText        ctermfg=153   ctermbg=16  cterm=none
 highlight LspHintText               ctermfg=153   ctermbg=16  cterm=none
+highlight link LspErrorVirtualText LspErrorText
+highlight link LspWarningVirtualText LspWarningText
+highlight link LspInformationVirtualText LspInformationText
+highlight link LspHintVirtualText LspHintText
+highlight link LspCodeActionText Normal
+
+doautoall syntaxset FileType
