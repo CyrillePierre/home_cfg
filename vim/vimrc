@@ -9,8 +9,8 @@ if empty(glob(plug_path))
 endif
 
 call plug#begin()
-  Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeVCS', 'NERDTreeFind'] } |
-    \ Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeVCS', 'NERDTreeFind'] }
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-fugitive', { 'on': 'Git' }
@@ -19,7 +19,6 @@ call plug#begin()
   Plug 'celforyon/vimmake'
   Plug 'celforyon/vimas'
   Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
-  Plug 'dpelle/vim-Grammalecte'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'tomtom/tcomment_vim'
@@ -29,6 +28,8 @@ call plug#begin()
   Plug 'niklasl/vim-rdf'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'dpelle/vim-Grammalecte', { 'on': 'GrammalecteCheck' }
+  Plug 'dpelle/vim-LanguageTool', { 'on': 'LanguageToolCheck' }
 
   Plug 'prabirshrestha/vim-lsp'
   Plug 'mattn/vim-lsp-settings'
@@ -50,7 +51,7 @@ let g:airline_theme                        = 'ese'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 
-let g:grammalecte_cli_py='~/share/grammalecte/grammalecte-cli.py'
+let g:grammalecte_cli_py='~/.local/share/grammalecte/grammalecte-cli.py'
 
 let g:tex_flavor = "latex"
 
