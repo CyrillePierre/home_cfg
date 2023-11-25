@@ -183,6 +183,7 @@ set completeopt=menuone,menu,longest,preview
 let &colorcolumn = join(range(101,300),",") " grise les lignes après la 100e colonne
 set foldlevel=2
 set foldminlines=3
+set matchpairs+=<:>
 
 let g:python_indent = {}
 let g:python_indent.open_paren   = 'shiftwidth()'
