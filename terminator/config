@@ -4,13 +4,10 @@
   extra_styling = False
   scroll_tabbar = True
   homogeneous_tabbar = False
-  title_transmit_bg_color = "#6a0001"
-  title_inactive_bg_color = "#828282"
   inactive_color_offset = 1.0
   enabled_plugins = ,
   suppress_multiple_term_dialog = True
   always_split_with_profile = True
-  title_font = Inconsolata for Powerline Medium 11
 [keybindings]
   rotate_cw = <Shift><Super>r
   rotate_ccw = <Super>r
@@ -24,8 +21,7 @@
 [profiles]
   [[default]]
     background_color = "#191919"
-    cursor_color = "#fdb04d"
-    font = DejaVu Sans Mono for Powerline 12
+    font = DejaVuSansM Nerd Font Mono 12
     foreground_color = "#f7ba75"
     scrollbar_position = hidden
     scrollback_lines = 1000
@@ -34,15 +30,13 @@
     use_system_font = False
   [[clair]]
     background_color = "#ffffff"
-    cursor_color = "#aaaaaa"
-    font = DejaVu Sans Mono for Powerline 12
+    font = DejaVuSansM Nerd Font Mono 12
     foreground_color = "#000000"
     scrollback_infinite = True
     use_system_font = False
   [[small]]
     background_color = "#191919"
-    cursor_color = "#fdb04d"
-    font = DejaVu Sans Mono for Powerline 11
+    font = DejaVuSansM Nerd Font Mono 11
     foreground_color = "#f7ba75"
     scrollbar_position = hidden
     scrollback_lines = 1000
@@ -51,8 +45,7 @@
     use_system_font = False
   [[ssh]]
     background_color = "#191919"
-    cursor_color = "#fdb04d"
-    font = DejaVu Sans Mono for Powerline 12
+    font = DejaVuSansM Nerd Font Mono 12
     foreground_color = "#baf775"
     scrollbar_position = hidden
     scrollback_lines = 1000
