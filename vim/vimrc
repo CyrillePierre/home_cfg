@@ -277,9 +277,8 @@ vnoremap <leader>fG       "sy:FzfRG <c-r>s<cr>
 autocmd FocusGained * checktime
 
 augroup filetypedetect
-  au BufRead,BufNewFile *.launch setfiletype xml
-  au BufRead,BufNewFile *.urdf setfiletype xml
-  au BufRead,BufNewFile *.shader setfiletype glsl
+  au BufRead,BufNewFile *.launch,*.world,*.urdf setfiletype xml
+  au BufRead,BufNewFile *.shader,*.frag,*.vert setfiletype glsl
   au BufRead,BufNewFile *.tex setlocal ts=2 sts=2 sw=2 tw=100
   au BufRead,BufNewFile *.tex setfiletype tex
   au BufRead,BufNewFile *.h,*.hpp setlocal foldlevel=2
