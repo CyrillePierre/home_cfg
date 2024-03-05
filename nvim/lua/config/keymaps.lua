@@ -86,9 +86,7 @@ vim.keymap.set('t', '<C-Down>', '<C-\\><C-n><C-w>j')
 vim.keymap.set('t', '<C-Up>', '<C-\\><C-n><C-w>k')
 vim.keymap.set('t', '<C-Right>', '<C-\\><C-n><C-w>l')
 
-vim.keymap.set('n', '<leader>tt', vim.cmd.ToggleTerm, {silent = true})
-vim.keymap.set('n', '<leader>t<CR>', vim.cmd.ToggleTermSendCurrentLine, {silent = true})
-vim.keymap.set('v', '<leader>t<CR>', vim.cmd.ToggleTermSendVisualLines, {silent = true})
+vim.keymap.set('n', '<leader>t', vim.cmd.ToggleTerm, {silent = true})
 
 vim.keymap.set('n', '<leader>=', ':Neoformat', {silent = true})
 vim.keymap.set('n', '<F2>', ':noh<CR>', {silent = true})

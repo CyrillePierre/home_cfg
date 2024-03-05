@@ -13,6 +13,20 @@ install_nvim() {
 	install_with_backup nvim .config/
 }
 
+install_tmux() {
+	install_with_backup tmux .config/
+
+	TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
+	if test ! -d "${TPM_DIR}"; then
+		git clone 'https://github.com/tmux-plugins/tpm' "${HOME}/.config/tmux/plugins/tpm"
+		if test -z "${TMUX}"; then
+			tmux new "${TPM_DIR}/bindings/install_plugins"
+		else
+			"${TPM_DIR}/bindings/install_plugins"
+		fi
+	fi
+}
+
 # cd to script directory
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
@@ -49,6 +63,7 @@ install_with_backup yapf .config/
 install_with_backup fonts .local/share/
 
 install_nvim
+install_tmux
 
 # update fonts
 fc-cache

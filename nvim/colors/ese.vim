@@ -28,8 +28,8 @@ highlight Operator     ctermfg=203                                     guifg=#D8
 highlight Special      ctermfg=179                                     guifg=#D7AF5F
 highlight Visual                         ctermbg=240                                  guibg=#585858
 highlight Error        ctermfg=254       ctermbg=52                    guifg=#E4E4E4  guibg=#5F0000
-highlight Pmenu        ctermfg=252       ctermbg=23                    guifg=#D0D0D0  guibg=#005F5F
-highlight Pmenusel     ctermfg=254       ctermbg=29                    guifg=#E4E4E4  guibg=#00875F
+highlight Pmenu        ctermfg=252       ctermbg=23                    guifg=#D0D0D0  guibg=#083636
+highlight Pmenusel     ctermfg=254       ctermbg=29                    guifg=#E4E4E4  guibg=#095c5c
 highlight SpecialKey   ctermfg=72                                      guifg=#5FAF87
 highlight Directory    ctermfg=72                                      guifg=#5FAF87
 highlight Todo         ctermfg=237       ctermbg=179                   guifg=#3A3A3A  guibg=#D7AF5F
@@ -39,10 +39,11 @@ highlight ColorColumn                    ctermbg=235                            
 highlight MatchParen   ctermfg=79        ctermbg=none     cterm=bold   guifg=#5FD7AF  guibg=none     gui=bold
 highlight Title        ctermfg=172                                     guifg=#D08000
 highlight CursorColumn                   ctermbg=237                                  guibg=#3A3A3A
-highlight VertSplit                                       cterm=none                                 gui=none
+highlight VertSplit     ctermfg=179                       cterm=none   guifg=#837c69                 gui=none
 highlight SignColumn                     ctermbg=none                                 guibg=none
-highlight LineNr       ctermfg=179       ctermbg=237      cterm=none   guifg=#B59B59  guibg=none     gui=none
-highlight CursorLineNr ctermfg=179       ctermbg=237      cterm=none   guifg=#F5D78C  guibg=none     gui=none
+highlight LineNr       ctermfg=179       ctermbg=237      cterm=none   guifg=#837c69  guibg=none     gui=none
+highlight CursorLineNr ctermfg=179       ctermbg=237      cterm=none   guifg=#d9cfb6  guibg=none     gui=none
+highlight NonText      ctermfg=12                                      guifg=#3366c4
 
 highlight LspErrorHighlight                                cterm=underline                           gui=underline
 highlight LspWarningHighlight                              cterm=underline                           gui=underline
