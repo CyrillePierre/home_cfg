@@ -17,7 +17,7 @@ vim.opt.titlestring = ''
 vim.opt.titleold = ''
 
 vim.opt.winminwidth = 20
-vim.opt.winwidth = 120
+vim.opt.winwidth = 110
 
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
@@ -28,7 +28,7 @@ vim.opt.incsearch = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
-vim.o.cinoptions = ':0,(0,Ws,m1,N-s,E-s,g0,hs'
+vim.o.cinoptions = ':0,(s,Ws,m1,N-s,E-s,g0,hs'
 
 vim.opt.expandtab = false
 vim.opt.shiftwidth = 2
@@ -43,3 +43,13 @@ vim.opt.wildmode = 'longest:full,full'
 vim.o.sessionoptions='buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 vim.opt.termguicolors = true
+
+vim.opt.number = true
+vim.opt.mouse = 'nv'
+vim.opt.tw = 100
+
+local columns = {}
+for i = 101, 300 do
+	table.insert(columns, i)
+end
+vim.opt.colorcolumn = table.concat(columns, ',')

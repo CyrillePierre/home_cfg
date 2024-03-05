@@ -4,7 +4,7 @@ return {
 		dependencies = {'tpope/vim-obsession'},
 
 		init = function()
-			vim.g.vimas_sessions_dir = vim.fn.stdpath('state') .. '/sessions'
+			vim.g.vimas_sessions_dir = vim.fn.stdpath('state') .. '/sessions/'
 		end,
 
 		config = function()

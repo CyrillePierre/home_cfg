@@ -1,7 +1,7 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
-vim.cmd.colorscheme('cfy')
+vim.cmd.colorscheme('ese')
 
 require('config.globals')
 
