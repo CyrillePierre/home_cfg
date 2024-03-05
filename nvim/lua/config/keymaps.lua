@@ -60,7 +60,7 @@ vim.keymap.set('i', '<S-A-Right>', '<Esc>:bn<CR>a', {silent = true})
 vim.keymap.set('n', '<leader>q', ':BDelete hidden<CR>', {silent = true})
 vim.keymap.set('n', '<leader>Q', ':BDelete other<CR>', {silent = true})
 
-vim.keymap.set('i', '<Tab>', '<C-r>=CleverTabs(shiftwidth())<CR>', {silent = true})
+-- vim.keymap.set('i', '<Tab>', '<C-r>=CleverTabs(shiftwidth())<CR>', {silent = true})
 
 vim.keymap.set('n', '<leader>hh', AddHeaderGuards, {silent = true})
 
@@ -91,3 +91,4 @@ vim.keymap.set('n', '<leader>t<CR>', vim.cmd.ToggleTermSendCurrentLine, {silent 
 vim.keymap.set('v', '<leader>t<CR>', vim.cmd.ToggleTermSendVisualLines, {silent = true})
 
 vim.keymap.set('n', '<leader>=', ':Neoformat', {silent = true})
+vim.keymap.set('n', '<F2>', ':noh<CR>', {silent = true})

@@ -11,8 +11,8 @@ local colors = {
   magenta   = '#c678dd',
   blue      = '#51afef',
   red       = '#ec5f67',
-	active    = '#bababa',
-	inactive  = '#5a5a5a',
+	active    = '#e0e0e0',
+	inactive  = '#909090',
 }
 
 local conditions = {
@@ -65,7 +65,7 @@ local config = {
 				icons = false,
 				use_mode_colors = true,
 				buffers_color = {
-					active = {fg = colors.active},
+					active = {fg = colors.active, gui = 'bold'},
 					inactive = {fg = colors.inactive},
 				},
 				symbols = {
