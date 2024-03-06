@@ -1,19 +1,39 @@
 --{{{ Values "
-local colors = {
-  bg        = '#202328',
-  fg        = '#bbc2cf',
-  yellow    = '#ECBE7B',
-  cyan      = '#008080',
-  darkblue  = '#081633',
-  green     = '#98be65',
-  orange    = '#FF8800',
-  violet    = '#a9a1e1',
-  magenta   = '#c678dd',
-  blue      = '#51afef',
-  red       = '#ec5f67',
-	active    = '#e0e0e0',
-	inactive  = '#909090',
-}
+local colors
+print('background: ' .. vim.o.background)
+if vim.o.background == 'dark' then
+	colors = {
+		bg        = '#202328',
+		fg        = '#bbc2cf',
+		yellow    = '#ECBE7B',
+		cyan      = '#008080',
+		darkblue  = '#081633',
+		green     = '#98be65',
+		orange    = '#FF8800',
+		violet    = '#a9a1e1',
+		magenta   = '#c678dd',
+		blue      = '#51afef',
+		red       = '#ec5f67',
+		active    = '#e0e0e0',
+		inactive  = '#909090',
+	}
+else
+	colors = {
+		bg        = '#bbc2cf',
+		fg        = '#202328',
+		yellow    = '#ECBE7B',
+		cyan      = '#008080',
+		darkblue  = '#081633',
+		green     = '#98be65',
+		orange    = '#FF8800',
+		violet    = '#a9a1e1',
+		magenta   = '#c678dd',
+		blue      = '#51afef',
+		red       = '#ec5f67',
+		active    = '#202020',
+		inactive  = '#909090',
+	}
+end
 
 local conditions = {
   buffer_not_empty = function()
@@ -243,3 +263,7 @@ add_right{
 --}}}
 
 require('lualine').setup(config)
+-- require('lualine').setup {
+-- 	options = {
+-- 	}
+-- }

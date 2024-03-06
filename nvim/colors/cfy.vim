@@ -10,6 +10,7 @@ endif
 let g:colors_name = "cfy"
 
 "{{{ default "
+highlight Normal            ctermfg=223       ctermbg=234                             guifg=#AAAAAA  guibg=#000000
 highlight SpecialKey        ctermfg=4                                                 guifg=#3465A4
 highlight NonText           ctermfg=12                                                guifg=#729FCF
 highlight Directory         ctermfg=4                                                 guifg=#3465a4
