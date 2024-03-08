@@ -1,39 +1,5 @@
 --{{{ Values "
-local colors
-print('background: ' .. vim.o.background)
-if vim.o.background == 'dark' then
-	colors = {
-		bg        = '#202328',
-		fg        = '#bbc2cf',
-		yellow    = '#ECBE7B',
-		cyan      = '#008080',
-		darkblue  = '#081633',
-		green     = '#98be65',
-		orange    = '#FF8800',
-		violet    = '#a9a1e1',
-		magenta   = '#c678dd',
-		blue      = '#51afef',
-		red       = '#ec5f67',
-		active    = '#e0e0e0',
-		inactive  = '#909090',
-	}
-else
-	colors = {
-		bg        = '#bbc2cf',
-		fg        = '#202328',
-		yellow    = '#ECBE7B',
-		cyan      = '#008080',
-		darkblue  = '#081633',
-		green     = '#98be65',
-		orange    = '#FF8800',
-		violet    = '#a9a1e1',
-		magenta   = '#c678dd',
-		blue      = '#51afef',
-		red       = '#ec5f67',
-		active    = '#202020',
-		inactive  = '#909090',
-	}
-end
+local colors = require('lualine.themes.ese').colors()
 
 local conditions = {
   buffer_not_empty = function()
@@ -53,10 +19,7 @@ local conditions = {
 --{{{ Config "
 local config = {
   options = {
-    theme = {
-      normal = {c = {fg = colors.fg, bg = colors.bg}},
-      inactive = {c = {fg = colors.fg, bg = colors.bg}},
-    },
+    theme = 'ese',
 		component_separators = '',
 		section_separators = '',
 		disabled_filetypes = {},
@@ -79,7 +42,9 @@ local config = {
     lualine_x = {},
   },
 	tabline = {
-		lualine_a = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {
 			{
 				'buffers',
 				icons = false,
@@ -98,20 +63,23 @@ local config = {
 				end,
 			},
 		},
-		lualine_b = {},
-		lualine_c = {},
 		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 	},
 	extensions = {},
 }
---}}}
 
---{{{ Left "
 local function add_left(component)
   table.insert(config.sections.lualine_c, component)
 end
+
+local function add_right(component)
+  table.insert(config.sections.lualine_x, component)
+end
+--}}}
+
+--{{{ Left "
 
 add_left{
   -- mode component
@@ -142,15 +110,15 @@ add_left{
       ['!'] = colors.red,
       t = colors.red,
     }
-    return {fg = mode_color[vim.fn.mode()]}
+    return {fg = mode_color[vim.fn.mode()], gui = 'bold'}
   end,
   padding = {left = 1},
 }
 
 add_left{
   'branch',
-  icon = '',
-  color = {fg = colors.violet, gui = 'bold'},
+  -- icon = '',
+  -- color = {fg = colors.violet, gui = 'bold'},
 }
 
 add_left{
@@ -178,11 +146,11 @@ add_left{
 	end,
 }
 
-add_left{
+add_right{
 	'filetype',
 }
 
-add_left{
+add_right{
   -- Lsp server name .
   function()
     local msg = 'no active lsp'
@@ -200,14 +168,11 @@ add_left{
     return msg
   end,
   icon = '󱤵',
-  color = {fg = '#bbbbbb', gui = 'bold'},
+  -- color = {fg = '#bbbbbb', gui = 'bold'},
 }
 --}}}
 
 --{{{ Right "
-local function add_right(component)
-  table.insert(config.sections.lualine_x, component)
-end
 
 add_right{
 	function()
@@ -263,7 +228,3 @@ add_right{
 --}}}
 
 require('lualine').setup(config)
--- require('lualine').setup {
--- 	options = {
--- 	}
--- }
