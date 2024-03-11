@@ -1,5 +1,5 @@
 --{{{ Values "
-local colors = require('lualine.themes.ese').colors()
+local colors = require('lualine.themes.ese.colors')
 
 local conditions = {
   buffer_not_empty = function()

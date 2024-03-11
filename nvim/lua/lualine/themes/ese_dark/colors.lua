@@ -1,4 +1,4 @@
-local colors = {
+return {
 	bg        = '#202328',
 	fg        = '#bbc2cf',
 	active    = '#e0e0e0',
@@ -14,18 +14,3 @@ local colors = {
 	blue      = '#51afef',
 	red       = '#ec5f67',
 }
-
-local theme = {
-	normal = {
-		c = { fg = colors.fg, bg = colors.bg },
-	},
-	inactive = {
-		c = { fg = colors.fg, bg = colors.bg },
-	},
-}
-
-function theme.colors()
-	return colors
-end
-
-return theme
