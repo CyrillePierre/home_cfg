@@ -17,13 +17,15 @@
   go_right = ""
   rotate_cw = <Shift><Super>r
   rotate_ccw = <Super>r
+  split_horiz = ""
+  split_vert = ""
   resize_up = <Primary><Super>Up
   resize_down = <Primary><Super>Down
   resize_left = <Primary><Super>Left
   resize_right = <Primary><Super>Right
-  broadcast_off = <Primary><Shift>z
-  broadcast_all = <Primary><Shift>a
+  scaled_zoom = <Primary><Shift>z
   next_profile = <Alt>p
+  help = ""
 [profiles]
   [[default]]
     background_color = "#191919"
