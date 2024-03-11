@@ -59,4 +59,12 @@ highlight link LspInformationVirtualText LspInformationText
 highlight link LspHintVirtualText LspHintText
 highlight link LspCodeActionText Normal
 
+highlight DiffAdd           ctermfg=512       ctermbg=22      cterm=none       guifg=#000000   guibg=#306F10   gui=none
+highlight DiffDelete        ctermfg=darkblue  ctermbg=black   cterm=none       guifg=darkblue  guibg=#000000   gui=none
+highlight DiffChange        ctermfg=251       ctermbg=166     cterm=none       guifg=#C6C6C6   guibg=#B75F00   gui=none
+
+highlight GitGutterAdd      ctermfg=22        ctermbg=none    cterm=none       guifg=#306F10   guibg=none      gui=none
+highlight GitGutterChange   ctermfg=166       ctermbg=none    cterm=none       guifg=#B75F00   guibg=none      gui=none
+highlight GitGutterDelete   ctermfg=darkred   ctermbg=none    cterm=none       guifg=darkred   guibg=none      gui=none
+
 " doautoall syntaxset FileType
