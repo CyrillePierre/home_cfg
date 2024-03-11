@@ -2,7 +2,7 @@ return {
 	bg        = '#d3dced',
 	fg        = '#202328',
 	active    = '#102040',
-	inactive  = '#808080',
+	inactive  = '#606060',
 
 	yellow    = '#ECBE7B',
 	cyan      = '#008080',

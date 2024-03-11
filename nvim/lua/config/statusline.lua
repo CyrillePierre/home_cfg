@@ -47,11 +47,13 @@ local config = {
 		lualine_c = {
 			{
 				'buffers',
-				icons = false,
-				use_mode_colors = true,
+				icons_enabled = false,
+				use_mode_colors = false,
+				show_filename_only = true,
+				show_modified_status = true,
 				buffers_color = {
-					active = {fg = colors.active, gui = 'bold'},
-					inactive = {fg = colors.inactive},
+					active = 'lualine_a_inactive',
+					inactive = 'lualine_c_inactive',
 				},
 				symbols = {
 					modified = '',
@@ -117,8 +119,8 @@ add_left{
 
 add_left{
   'branch',
-  -- icon = '',
-  -- color = {fg = colors.violet, gui = 'bold'},
+  icon = '',
+  color = {fg = colors.violet, gui = 'bold'},
 }
 
 add_left{
@@ -135,8 +137,8 @@ add_left{
 
 add_left{
   'filename',
+	path = 1,
   cond = conditions.buffer_not_empty,
-  color = {fg = colors.fg},
 }
 
 -- mid section
