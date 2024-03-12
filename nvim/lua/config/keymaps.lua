@@ -35,6 +35,9 @@ vim.keymap.set('n', '<S-C-left>', ':bN<CR>', {silent = true})
 vim.keymap.set('n', '<S-C-right>', ':bn<CR>', {silent = true})
 vim.keymap.set('n', '<C-D>', ':Bd<CR>', {silent = true})
 
+vim.keymap.set('n', '<S-Up>', '15<C-Y>', {silent = true})
+vim.keymap.set('n', '<S-Down>', '15<C-E>', {silent = true})
+
 vim.keymap.set('n', '<leader>ff', ':FzfLua files<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fF', ':FzfLua files resume=true<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fb', ':FzfLua buffers<CR>', {silent = true})
@@ -51,11 +54,6 @@ vim.keymap.set('n', '<leader>fr', ':FzfLua lsp_references<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fi', ':FzfLua lsp_incoming_calls<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fo', ':FzfLua lsp_outgoing_calls<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fh', ':FzfLua files cwd=~<CR>', {silent = true})
-
-vim.keymap.set('n', '<S-A-Left>', ':bN<CR>', {silent = true})
-vim.keymap.set('i', '<S-A-Left>', '<Esc>:bN<CR>a', {silent = true})
-vim.keymap.set('n', '<S-A-Right>', ':bn<CR>', {silent = true})
-vim.keymap.set('i', '<S-A-Right>', '<Esc>:bn<CR>a', {silent = true})
 
 vim.keymap.set('n', '<leader>q', ':BDelete hidden<CR>', {silent = true})
 vim.keymap.set('n', '<leader>Q', ':BDelete other<CR>', {silent = true})
