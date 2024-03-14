@@ -10,23 +10,21 @@ return {
       'MunifTanjim/nui.nvim',
     },
 
-		config = function()
-			require('neo-tree').setup{
-				filesystem = {
-					filtered_items = {
-						visible = false, -- when true, they will just be displayed differently than normal items
-						hide_dotfiles = true,
-						hide_gitignored = true,
-						hide_by_pattern = {
-							--"*.meta",
-							--"*/src/*/tsconfig.json",
-						},
-						always_show = { -- remains visible even if other settings would normally hide it
-							'src',
-						},
+		opts = {
+			filesystem = {
+				filtered_items = {
+					visible = false, -- when true, they will just be displayed differently than normal items
+					hide_dotfiles = true,
+					hide_gitignored = true,
+					hide_by_pattern = {
+						--"*.meta",
+						--"*/src/*/tsconfig.json",
 					},
-				}
-			}
-		end,
+					always_show = { -- remains visible even if other settings would normally hide it
+						'src',
+					},
+				},
+			},
+		},
 	},
 }
