@@ -1,5 +1,6 @@
 return {
-	{'celforyon/vimsynctex', ft = 'tex'},
+	-- {'celforyon/vimsynctex', ft = 'tex'},
+
 	-- {
 	-- 	'lervag/vimtex',
 	-- 	ft = 'tex',

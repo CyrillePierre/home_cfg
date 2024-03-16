@@ -67,11 +67,11 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 	..     ' | call TexNewMathZone("gather", "gather", 1)'
 	..     ' | call TexNewMathZone("multiline", "multiline", 1)',
 })
-vim.api.nvim_create_autocmd({'BufWritePost'}, {
-	pattern = '*.tex',
-	group = autogroup_tex,
-	command = 'MakeAsync!',
-})
+-- vim.api.nvim_create_autocmd({'BufWritePost'}, {
+-- 	pattern = '*.tex',
+-- 	group = autogroup_tex,
+-- 	command = 'MakeAsync!',
+-- })
 
 local autogroup_md = vim.api.nvim_create_augroup('md', {clear = false})
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {

@@ -138,6 +138,7 @@ export PATH="$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin"
 export TERM=xterm-256color
 export LESS=-FRSx2
 export CLANGD_FLAGS="--header-insertion=never"
+[[ -z "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
 
 export_vdn() { export PATH="$PATH:/home/cyrille/share/vdn/bin" ; }
 export_arm() { export PATH="$PATH:/opt/gcc-arm/bin" ; }
