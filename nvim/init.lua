@@ -12,9 +12,8 @@ require('config.functions')
 require('config.commands')
 require('config.keymaps')
 require('config.autocommands')
+require('config.filetypes')
 
 require('config.statusline')
 require('config.lsp')
 require('config.gdb')
-
-require('config.setup')

@@ -30,11 +30,6 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 	command = 'setlocal expandtab',
 })
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-	pattern = 'compose.yaml,compose.yml,docker-compose.yaml,docker-compose.yml',
-	group = init_lua,
-	command = 'setlocal ft=yaml.docker-compose',
-})
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 	pattern = '*.vim,.vimrc,vimrc,*.tex,*.lua',
 	group = init_lua,
 	command = 'set foldmethod=marker foldtext=v:lua.FoldMarkerText()',
@@ -74,14 +69,6 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 -- })
 
 local autogroup_md = vim.api.nvim_create_augroup('md', {clear = false})
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-	pattern = '*.md',
-	group = autogroup_md,
-	command = 'syn match admonishTag "%%.*"'
-	..     ' | syn cluster mkdNonListItem add=admonishTag'
-	..     ' | hi def link admonishTag Constant',
-})
-
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 	pattern = '*.md',
 	group = autogroup_md,
