@@ -30,7 +30,7 @@ vim.opt.smartindent = true
 
 vim.o.cinoptions = ':0,(s,Ws,m1,N-s,E-s,g0,hs'
 
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

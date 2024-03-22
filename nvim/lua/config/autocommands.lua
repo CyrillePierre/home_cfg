@@ -76,3 +76,9 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 	..     ' | syn cluster mkdNonListItem add=admonishTag'
 	..     ' | hi def link admonishTag Constant',
 })
+
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+	pattern = '*.py',
+	group = init_lua,
+	command = 'setlocal ts=4 sts=4 sw=4 expandtab',
+})
