@@ -22,16 +22,16 @@ return {
 
 	{'folke/neodev.nvim', config = true},
 
-	{
-		'hinell/lsp-timeout.nvim',
-		init = function()
-			vim.g.lspTimeoutConfig = {
-				stopTimeout = 1000 * 60 * 5,
-				startTimeout = 1000 * 2.5,
-				silent = true,
-			}
-		end,
-		event = 'VeryLazy',
-		dependencies = {'neovim/nvim-lspconfig'}
-	},
+	-- {
+	-- 	'hinell/lsp-timeout.nvim',
+	-- 	init = function()
+	-- 		vim.g.lspTimeoutConfig = {
+	-- 			stopTimeout = 1000 * 60 * 5,
+	-- 			startTimeout = 1000 * 2.5,
+	-- 			silent = true,
+	-- 		}
+	-- 	end,
+	-- 	event = 'VeryLazy',
+	-- 	dependencies = {'neovim/nvim-lspconfig'}
+	-- },
 }
