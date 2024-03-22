@@ -77,8 +77,8 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 	..     ' | hi def link admonishTag Constant',
 })
 
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-	pattern = '*.py',
+vim.api.nvim_create_autocmd({'FileType'}, {
+	pattern = 'python',
 	group = init_lua,
 	command = 'setlocal ts=4 sts=4 sw=4 expandtab',
 })
