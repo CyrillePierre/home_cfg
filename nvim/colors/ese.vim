@@ -80,4 +80,4 @@ highlight doxygenParamName  ctermfg=darkgray  ctermbg=none    cterm=underline  g
 highlight default link doxygenSpecialOnelineDesc doxygenBrief
 "}}}
 
-" doautoall syntaxset FileType
+highlight NeoTreeGitIgnored   guifg=#888888
