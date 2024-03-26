@@ -5,7 +5,7 @@ zstyle :compinstall filename '/home/cyrille/.zshrc'
 fpath=(~/.zsh/completion $fpath)
 
 autoload -Uz compinit
-compinit
+compinit -i
 
 # End of lines added by compinstall
 

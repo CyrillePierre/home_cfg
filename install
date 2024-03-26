@@ -33,6 +33,19 @@ install_zoxide() {
   fi
 }
 
+install_zsh() {
+  zsh_config_dir='.zsh'
+  docker_completion_file="${zsh_config_dir}/completion/_docker"
+
+  install_with_backup zsh/zshrc .zshrc
+  install_with_backup zsh/zsh/ "${zsh_config_dir}"
+  install_with_backup zsh/cfyzshprompt/ .cfyzshprompt
+
+  if [[ ! -r "${docker_completion_file}" ]] ; then
+    docker completion zsh >"${HOME}/${docker_completion_file}"
+  fi
+}
+
 # cd to script directory
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
@@ -51,9 +64,7 @@ mkdir -p $HOME/.vim/backup
 mkdir -p $HOME/.vim/undodir
 mkdir -p $HOME/.vim/sessions
 
-install_with_backup zsh/zshrc .zshrc
-install_with_backup zsh/zsh/ .zsh
-install_with_backup zsh/cfyzshprompt/ .cfyzshprompt
+install_zsh
 
 mkdir -p $HOME/.config/htop/
 mkdir -p $HOME/.config/clangd/
@@ -68,7 +79,6 @@ install_with_backup clang/clang-format .clang-format
 install_with_backup yapf .config/
 install_with_backup fonts .local/share/
 
-echo "other install..."
 install_nvim
 install_tmux
 install_zoxide
