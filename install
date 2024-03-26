@@ -1,20 +1,15 @@
 #!/bin/bash
-backup_dir_model='/tmp/backup_home_XXXXXX'
-backup_dir="$(mktemp -d "$backup_dir_model")"
-
-install_with_backup() {
-	path_dest="$HOME/$2"
-	rsync -a --info=NAME --backup-dir="$backup_dir" "$1" "$path_dest"
-}
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source common.sh
 
 install_nvim() {
 	# sudo apt-get install -y python3-venv
 	mkdir -p $HOME/.local/share/nvim/sessions
-	install_with_backup nvim .config/
+	install_config nvim .config/
 }
 
 install_tmux() {
-	install_with_backup tmux .config/
+	install_config tmux .config/
 
 	TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
 	if test ! -d "${TPM_DIR}"; then
@@ -49,16 +44,15 @@ install_zsh() {
 # cd to script directory
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-echo "backup dir: $backup_dir"
 echo "updated files:"
 
 mkdir -p $HOME/.vim/
-install_with_backup vim/vimrc .vimrc
-install_with_backup vim/ycm_extra_conf.py .vim/ycm_extra_conf.py.off
-install_with_backup vim/colors .vim/
-install_with_backup vim/after .vim/
-#install_with_backup vim/syntax .vim/
-install_with_backup vim/autoload .vim/
+install_config vim/vimrc .vimrc
+install_config vim/ycm_extra_conf.py .vim/ycm_extra_conf.py.off
+install_config vim/colors .vim/
+install_config vim/after .vim/
+#install_config vim/syntax .vim/
+install_config vim/autoload .vim/
 mkdir -p $HOME/.vim/swapfiles
 mkdir -p $HOME/.vim/backup
 mkdir -p $HOME/.vim/undodir
@@ -68,16 +62,16 @@ install_zsh
 
 mkdir -p $HOME/.config/htop/
 mkdir -p $HOME/.config/clangd/
-install_with_backup gdbinit .gdbinit
-install_with_backup gitconfig .gitconfig
-install_with_backup rofi/config.rasi .config/rofi/
-install_with_backup htop/htoprc .config/htop/
-install_with_backup terminator .config/
-install_with_backup pycodestyle .config/
-install_with_backup clang/clangd.yaml .config/clangd/config.yaml
-install_with_backup clang/clang-format .clang-format
-install_with_backup yapf .config/
-install_with_backup fonts .local/share/
+install_config gdb/gdbinit .gdbinit
+install_config git/gitconfig .gitconfig
+install_config rofi/config.rasi .config/rofi/
+install_config htop/htoprc .config/htop/
+install_config terminator .config/
+install_config python/pycodestyle .config/
+install_config clang/clangd.yaml .config/clangd/config.yaml
+install_config clang/clang-format .clang-format
+install_config yapf .config/
+install_config fonts .local/share/
 
 install_nvim
 install_tmux
