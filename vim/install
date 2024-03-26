@@ -1,0 +1,16 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+mkdir -p $HOME/.vim/
+mkdir -p $HOME/.vim/swapfiles
+mkdir -p $HOME/.vim/backup
+mkdir -p $HOME/.vim/undodir
+mkdir -p $HOME/.vim/sessions
+
+install_config vimrc .vimrc
+install_config ycm_extra_conf.py .vim/ycm_extra_conf.py.off
+install_config colors .vim/
+install_config after .vim/
+#install_config syntax .vim/
+install_config autoload .vim/

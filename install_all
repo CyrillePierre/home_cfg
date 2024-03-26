@@ -1,0 +1,8 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source common.sh
+
+for script in $(find . -maxdepth 2 -perm /u+x,g+x -name "install") ; do
+  echo -e "\e[01;34mInstall $(basename $(dirname "$script"))\e[00m"
+  "$script" "$backup_dir"
+done

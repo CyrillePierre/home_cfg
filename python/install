@@ -1,0 +1,6 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+install_config pycodestyle .config/
+install_config yapf .config/

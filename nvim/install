@@ -1,0 +1,15 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+mkdir -p $HOME/.config/nvim/
+mkdir -p $HOME/.local/share/nvim/sessions
+
+if ! python3 -c 'import venv' ; then
+  sudo apt-get install -y python3-venv
+fi
+
+
+install_config after .config/nvim/
+install_config colors .config/nvim/
+install_config lua .config/nvim/
