@@ -4,4 +4,4 @@ source ../common.sh
 
 mkdir -p $HOME/.config/htop/
 
-install_config htoprc .config/htop/
+install_config htoprc .config/htop/htoprc

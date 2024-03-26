@@ -2,11 +2,13 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+mkdir -p "$HOME/.zsh/completion"
+
 zsh_config_dir='.zsh'
 docker_completion_file="${zsh_config_dir}/completion/_docker"
 
 install_config zshrc .zshrc
-install_config zsh/ "${zsh_config_dir}"
+install_config cfg "${zsh_config_dir}/cfg"
 install_config cfyzshprompt/ .cfyzshprompt
 
 if [[ ! -r "${docker_completion_file}" ]] ; then

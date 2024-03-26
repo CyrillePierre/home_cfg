@@ -2,8 +2,10 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-mkdir -p .local/share/fonts/
+mkdir -p "$HOME/.local/share/fonts"
 
-install_config *.ttf .local/share/fonts/
+for font in $(find . -name '*.ttf') ; do
+  install_config "$font" ".local/share/fonts/$font"
+done
 
 fc-cache

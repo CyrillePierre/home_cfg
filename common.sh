@@ -8,6 +8,21 @@ else
 fi
 
 install_config() {
-	path_dest="$HOME/$2"
-	rsync -a --info=NAME --backup-dir="$backup_dir" "$1" "$path_dest"
+  path_dest="$HOME/$2"
+  create_link='false'
+
+  if [[ -e "$path_dest" ]] ; then
+    if [[ -z "$(find "$path_dest" -type l)" ]] ; then
+      mkdir -p "$(dirname "$backup_dir/$2")"
+      mv "$path_dest" "$backup_dir/$2"
+      create_link='true'
+    fi
+  else
+    create_link='true'
+  fi
+
+  if [[ "$create_link" = 'true' ]] ; then
+    echo -n "  - "
+    ln -vfsr "$1" "$path_dest"  
+  fi
 }

@@ -10,6 +10,7 @@ if ! python3 -c 'import venv' ; then
 fi
 
 
-install_config after .config/nvim/
-install_config colors .config/nvim/
-install_config lua .config/nvim/
+install_config after .config/nvim/after
+install_config colors .config/nvim/colors
+install_config lua .config/nvim/lua
+install_config init.lua .config/nvim/init.lua

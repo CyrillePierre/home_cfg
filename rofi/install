@@ -4,4 +4,4 @@ source ../common.sh
 
 mkdir -p $HOME/.config/rofi/
 
-install_config config.rasi .config/rofi/
+install_config config.rasi .config/rofi/config.rasi

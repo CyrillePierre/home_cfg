@@ -9,8 +9,8 @@ mkdir -p $HOME/.vim/undodir
 mkdir -p $HOME/.vim/sessions
 
 install_config vimrc .vimrc
-install_config ycm_extra_conf.py .vim/ycm_extra_conf.py.off
-install_config colors .vim/
-install_config after .vim/
-#install_config syntax .vim/
-install_config autoload .vim/
+#install_config ycm_extra_conf.py .vim/ycm_extra_conf.py.off
+install_config colors .vim/colors
+install_config after .vim/after
+#install_config syntax .vim/syntax
+install_config autoload .vim/autoload
