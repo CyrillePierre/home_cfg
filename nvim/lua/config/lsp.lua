@@ -26,6 +26,9 @@ local on_attach = function(client, bufnr)
 	nmap('<leader>gN', vim.diagnostic.goto_prev, 'Previous diagnostic')
 	nmap('<leader>ss', vim.cmd.ClangdSwitchSourceHeader, 'Switch source/header')
 
+  vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', {silent = false})
+  vim.keymap.set('n', '<leader>ls', ':LspStop<CR>', {silent = false})
+
 	if client.server_capabilities.signatureHelpProvider then
 		require('lsp-overloads').setup(client, {
 			keymaps = {
