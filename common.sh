@@ -18,6 +18,11 @@ install_config() {
       create_link='true'
     fi
   else
+    dest_dir=$(dirname $path_dest)
+    if [[ ! -e "$dest_dir" ]] ; then
+      mkdir -p "$dest_dir"
+    fi
+
     create_link='true'
   fi
 

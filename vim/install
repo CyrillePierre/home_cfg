@@ -13,4 +13,4 @@ install_config vimrc .vimrc
 install_config colors .vim/colors
 install_config after .vim/after
 #install_config syntax .vim/syntax
-install_config autoload .vim/autoload
+install_config autoload/airline/themes/ese.vim .vim/autoload/airline/themes/ese.vim

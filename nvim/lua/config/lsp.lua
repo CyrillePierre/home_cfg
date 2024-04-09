@@ -42,7 +42,6 @@ local on_attach = function(client, bufnr)
 end
 
 require('mason').setup()
-require('mason-lspconfig').setup()
 
 local servers = {
 	bashls = {},
