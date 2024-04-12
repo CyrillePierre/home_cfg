@@ -73,9 +73,9 @@ highlight default link Overlength ColorColumn
 "{{{ Doxygen "
 let g:load_doxygen_syntax = 1
 
-highlight doxygenComment    ctermfg=blue      ctermbg=none    cterm=none       guifg=blue      guibg=none      gui=none
-highlight doxygenBrief      ctermfg=darkblue  ctermbg=none    cterm=none       guifg=darkblue  guibg=none      gui=none
-highlight doxygenParamName  ctermfg=darkgray  ctermbg=none    cterm=underline  guifg=darkgray  guibg=none      gui=none
+highlight doxygenComment    ctermfg=blue      ctermbg=none    cterm=none       guifg=#6387ab   guibg=none      gui=none
+highlight doxygenBrief      ctermfg=darkblue  ctermbg=none    cterm=none       guifg=#6387ab   guibg=none      gui=none
+highlight doxygenParamName  ctermfg=darkgray  ctermbg=none    cterm=underline  guifg=#6387ab   guibg=none      gui=none
 
 highlight default link doxygenSpecialOnelineDesc doxygenBrief
 "}}}
