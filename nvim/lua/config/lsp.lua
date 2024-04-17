@@ -55,15 +55,27 @@ local servers = {
 			telemetry = {enable = false},
 		},
 	},
-	pylsp = {
-		pylsp = {
-			plugins = {
-				pycodestyle = {
-					ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
-				}
-			}
-		}
-	},
+  pyright = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = 'off',
+        diagnosticMode = 'openFilesOnly',
+        diagnosticSeverityOverrides = {
+        },
+      },
+    },
+  },
+	-- pylsp = {
+	-- 	pylsp = {
+	-- 		plugins = {
+	-- 			pycodestyle = {
+	-- 				ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
+	-- 			}
+	-- 		}
+	-- 	}
+	-- },
 	texlab = {},
 }
 
