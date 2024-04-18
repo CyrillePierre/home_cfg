@@ -34,4 +34,32 @@ return {
 	-- 	event = 'VeryLazy',
 	-- 	dependencies = {'neovim/nvim-lspconfig'}
 	-- },
+
+  {
+    'mfussenegger/nvim-lint',
+		event = 'VeryLazy',
+  },
+
+  {
+    'rshkarin/mason-nvim-lint',
+		event = 'VeryLazy',
+    config = true,
+  },
+
+  {
+    'princejoogie/mason-formatter.nvim',
+    event = 'VeryLazy',
+    dependencies = { 'mhartington/formatter.nvim' },
+    config = function()
+      require('formatter').setup {
+        filetype = {
+          python = require("formatter.filetypes.python").ruff,
+          cpp = require('formatter.filetypes.cpp').clangformat,
+          c = require('formatter.filetypes.c').clangformat,
+        },
+      }
+
+      require('mason-formatter').setup()
+    end,
+  },
 }
