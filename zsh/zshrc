@@ -4,8 +4,12 @@ zstyle :compinstall filename '/home/cyrille/.zshrc'
 # D'autres commande de completion sont dans un répertoire
 fpath=(~/.zsh/completion $fpath)
 
-autoload -Uz compinit
-compinit -i
+# autoload -Uz compinit
+# compinit -i
+if [ "$(find ~/.zcompdump -mtime 1)" ] ; then
+    compinit
+fi
+compinit -C
 
 # End of lines added by compinstall
 
