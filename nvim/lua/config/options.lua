@@ -20,7 +20,7 @@ vim.opt.winminwidth = 20
 vim.opt.winwidth = 110
 
 vim.opt.cursorline = true
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 vim.opt.wrap = false
 vim.opt.listchars = {eol = '$', tab = '>-', trail = '#'}
 vim.opt.hlsearch = true
