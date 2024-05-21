@@ -34,7 +34,8 @@ local on_attach = function(client, bufnr)
       ui = {
         max_height = 12,
         max_width = 85,
-        offset_y = 1,
+        offset_y = -1,
+        floating_window_above_cur_line = true,
       },
       keymaps = {
         next_signature = '<down>',
@@ -163,5 +164,5 @@ cmp.setup{
 }
 
 require('lint').linters_by_ft = {
-  -- python = { 'ruff' }
+  python = { 'ruff' }
 }
