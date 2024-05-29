@@ -1,10 +1,13 @@
+# uncomment to profile startup time
+# zmodload zsh/zprof
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/cyrille/.zshrc'
 
 # D'autres commande de completion sont dans un répertoire
 fpath=(~/.zsh/completion $fpath)
 
-# autoload -Uz compinit
+autoload -Uz compinit
 # compinit -i
 if [ "$(find ~/.zcompdump -mtime 1)" ] ; then
     compinit
@@ -169,3 +172,6 @@ if [[ -n "$RUN_CMD" ]]; then
 	eval "$RUN_CMD"
 	unset RUN_CMD
 fi
+
+# uncomment to profile startup time
+# zprof
