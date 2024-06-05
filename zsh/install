@@ -9,7 +9,7 @@ docker_completion_file="${zsh_config_dir}/completion/_docker"
 
 install_config zshrc .zshrc
 install_config cfg "${zsh_config_dir}/cfg"
-install_config cfyzshprompt/ .cfyzshprompt
+install_config cfyzshprompt/ .config/cfyzshprompt
 
 if [[ ! -r "${docker_completion_file}" ]] ; then
   docker completion zsh >"${HOME}/${docker_completion_file}"
