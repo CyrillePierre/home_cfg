@@ -38,12 +38,14 @@
     use_system_font = False
   [[clair]]
     background_color = "#ffffff"
+    cursor_color = "#000000"
     font = DejaVuSansM Nerd Font Mono 12
     foreground_color = "#000000"
     scrollback_infinite = True
     use_system_font = False
   [[small]]
     background_color = "#191919"
+    cursor_color = "#f7ba75"
     font = DejaVuSansM Nerd Font Mono 11
     foreground_color = "#f7ba75"
     scrollbar_position = hidden
@@ -53,6 +55,7 @@
     use_system_font = False
   [[ssh]]
     background_color = "#191919"
+    cursor_color = "#baf775"
     font = DejaVuSansM Nerd Font Mono 12
     foreground_color = "#baf775"
     scrollbar_position = hidden
@@ -62,6 +65,7 @@
     use_system_font = False
   [[tmux]]
     background_color = "#191919"
+    cursor_color = "#f7ba75"
     font = DejaVuSansM Nerd Font Mono 12
     foreground_color = "#f7ba75"
     show_titlebar = False
