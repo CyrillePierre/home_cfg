@@ -23,9 +23,6 @@
   cam = commit -am
   c = commit
 
-[http]
-  sslverify = false
-
 [credential]
   helper = cache
 
