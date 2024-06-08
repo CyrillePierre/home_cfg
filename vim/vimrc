@@ -123,7 +123,7 @@ let g:neoformat_enabled_python = ['yapf']
 """"""""""""""" Variables """"""""""""""""""""""""
 
 set nocompatible              " be iMproved, required
-set background=dark
+" set background=dark
 set number            " affichage des numéros de lignes
 set mouse=nv
 set nocursorline          " met en valeur la ligne possedant le curseur

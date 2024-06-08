@@ -1,6 +1,6 @@
  " Vim color file
 " Maintainer:	Cyrille Pierre <cypierre58@gmail.com>
-" Last Change:	2020 Nov 07
+" Last Change:	2024 June 08
 
 hi clear
 if exists("syntax_on")
