@@ -13,3 +13,6 @@ update_venv() {
 
 autoload -U add-zsh-hook
 add-zsh-hook chpwd update_venv
+
+# call it when a new terminal is open
+update_venv
