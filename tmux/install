@@ -5,6 +5,7 @@ source ../common.sh
 mkdir -p $HOME/.config/tmux/
 
 install_config tmux.conf .config/tmux/tmux.conf
+install_config ese_theme .config/tmux/ese_theme
 
 TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
 if [[ ! -d "${TPM_DIR}" ]] ; then
