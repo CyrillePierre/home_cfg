@@ -2,14 +2,12 @@
 " Maintainer:	Cyrille Pierre <cypierre58@gmail.com>
 " Last Change:	2020 Nov 07
 
-set background=light
 hi clear
 if exists("syntax_on")
   syntax reset
 endif
 "colorscheme default
 let g:colors_name = "ese_light"
-let g:airline_theme='google_light'
 
 " Console
 highlight Normal      ctermfg=232  ctermbg=231                guifg=#000000  guibg=#ffffff
