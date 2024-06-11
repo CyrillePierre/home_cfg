@@ -2,4 +2,22 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+version() {
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'
+}
+
+check_delta_version() {
+  target=0.17.0
+  current=$(delta --version | cut -d' ' -f2)
+  [[ $(version $current) -ge $(version $target) ]]
+}
+
+install_delta() {
+  if ! which delta >/dev/null || ! check_delta_version ; then
+    wget -O/tmp/git-delta.deb 'https://github.com/dandavison/delta/releases/download/0.17.0/git-delta-musl_0.17.0_amd64.deb'
+    sudo dpkg -i /tmp/git-delta.deb
+  fi
+}
+
 install_config gitconfig .gitconfig
+install_delta
