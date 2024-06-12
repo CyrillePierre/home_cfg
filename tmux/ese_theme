@@ -7,6 +7,7 @@ declare -A theme=(
   [dark,rose_pine_variant]='moon'
   [dark,rose_pine_bg]='#322c44'
   [dark,mode]='bg=#4d485c'
+  [dark,cursor]='#f7ba75'
 
   [light,window]='fg=#000000,bg=#ffffff'
   [light,border]='fg=#807688,bg=#ffffff'
@@ -14,6 +15,7 @@ declare -A theme=(
   [light,rose_pine_variant]='dawn'
   [light,rose_pine_bg]='#ebe8f2'
   [light,mode]='bg=#c0bad4'
+  [light,cursor]='#000000'
 )
 
 set_style() {
@@ -42,6 +44,7 @@ set_style() {
   tmux set -g pane-border-style ${theme[$1,border]}
   tmux set -g pane-active-border-style ${theme[$1,active_border]}
   tmux set -g mode-style ${theme[$1,mode]}
+  tmux set -g cursor-colour ${theme[$1,cursor]}
 
   tmux set -g set-titles on
   tmux set -g set-titles-string "[#S] #W"
