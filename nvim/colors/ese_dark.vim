@@ -10,61 +10,74 @@ endif
 let g:colors_name = "ese_dark"
 
 " Console
-highlight Normal       ctermfg=223       ctermbg=234                   guifg=#FFD7AF  guibg=#1C1C1C
-highlight Search       ctermfg=232       ctermbg=179      cterm=none   guifg=#080808  guibg=#D7AF5F  gui=none
-highlight Comment      ctermfg=102                                     guifg=#878787
-" highlight StatusLine   ctermfg=Brown     ctermbg=black
-highlight Statement    ctermfg=214                        cterm=bold   guifg=#f29a27                 gui=bold
-highlight Type         ctermfg=214                        cterm=none   guifg=#f7ce5e                 gui=none
-highlight Constant     ctermfg=148                                     guifg=#AFD010
-highlight Identifier   ctermfg=223                        cterm=none   guifg=#FFD7AF                 gui=none
-highlight Folded       ctermfg=250       ctermbg=233                   guifg=#BCBCBC  guibg=#262626
-highlight CursorLine                     ctermbg=237      cterm=none                  guibg=#101010  gui=none
-highlight PreProc      ctermfg=172                                     guifg=#D08000
-highlight SpellBad                       ctermbg=52                                   guibg=#5F0000
-highlight SpellCap                       ctermbg=232      cterm=none                  guibg=#080808  gui=none
-highlight Operator     ctermfg=203                                     guifg=#D85454
-highlight Special      ctermfg=179                                     guifg=#D7AF5F
-highlight Visual                         ctermbg=240                                  guibg=#585858
-highlight Error        ctermfg=254       ctermbg=52                    guifg=#E4E4E4  guibg=#5F0000
-highlight Pmenu        ctermfg=252       ctermbg=23                    guifg=#D0D0D0  guibg=#083636
-highlight Pmenusel     ctermfg=254       ctermbg=29                    guifg=#E4E4E4  guibg=#095c5c
-highlight SpecialKey   ctermfg=72                                      guifg=#5FAF87
-highlight Directory    ctermfg=72                                      guifg=#5FAF87
-highlight Todo         ctermfg=237       ctermbg=179                   guifg=#3A3A3A  guibg=#D7AF5F
-highlight WildMenu     ctermfg=0         ctermbg=248                                  guibg=#A8A8A8
-highlight OverLength                     ctermbg=53                                   guibg=#5F005F
-highlight ColorColumn                    ctermbg=235                                  guibg=#262626
-highlight MatchParen   ctermfg=79        ctermbg=none     cterm=bold   guifg=#5FD7AF  guibg=none     gui=bold
-highlight Title        ctermfg=172                                     guifg=#D08000
-highlight CursorColumn                   ctermbg=237                                  guibg=#3A3A3A
-highlight VertSplit     ctermfg=179                       cterm=none   guifg=#837c69                 gui=none
-highlight SignColumn                     ctermbg=none                                 guibg=none
-highlight LineNr       ctermfg=179       ctermbg=237      cterm=none   guifg=#837c69  guibg=none     gui=none
-highlight CursorLineNr ctermfg=179       ctermbg=237      cterm=none   guifg=#d9cfb6  guibg=none     gui=none
-highlight NonText      ctermfg=12                                      guifg=#3366c4
+highlight Normal       guifg=#FFD7AF  guibg=#191919
+highlight Search       guifg=#080808  guibg=#c59a43  gui=none
+highlight CurSearch    guifg=#080808  guibg=#d9be8b  gui=none
+highlight Folded       guifg=#BCBCBC  guibg=#262626
+highlight CursorLine                  guibg=#0e0e0e  gui=none
+highlight SpellBad                    guibg=#5F0000
+highlight SpellCap                    guibg=#080808  gui=none
+highlight Special      guifg=#D7AF5F
+highlight Visual                      guibg=#585858
+highlight Error        guifg=#E4E4E4  guibg=#5F0000
+highlight Pmenu        guifg=#D0D0D0  guibg=#083636
+highlight Pmenusel     guifg=#E4E4E4  guibg=#095c5c
+highlight SpecialKey   guifg=#5FAF87
+highlight Directory    guifg=#5FAF87
+highlight Todo         guifg=#3A3A3A  guibg=#D7AF5F
+highlight WildMenu                    guibg=#A8A8A8
+highlight OverLength                  guibg=#5F005F
+highlight ColorColumn                 guibg=#262626
+highlight MatchParen   guifg=#5FD7AF  guibg=none     gui=bold
+highlight Title        guifg=#D08000
+highlight CursorColumn                guibg=#3A3A3A
+highlight VertSplit    guifg=#837c69                 gui=none
+highlight SignColumn                  guibg=none
+highlight LineNr       guifg=#837c69  guibg=none     gui=none
+highlight CursorLineNr guifg=#d9cfb6  guibg=none     gui=none
+highlight NonText      guifg=#3366c4
 
-highlight LspErrorHighlight                                cterm=underline                           gui=underline
-highlight LspWarningHighlight                              cterm=underline                           gui=underline
-highlight LspInformationHighlight                          cterm=underline                           gui=underline
-highlight LspErrorText            ctermfg=203  ctermbg=16  cterm=none        guifg=#F05F50           gui=none
-highlight LspWarningText          ctermfg=213  ctermbg=16  cterm=none        guifg=#F087DA           gui=none
-highlight LspInformationText      ctermfg=153  ctermbg=16  cterm=none        guifg=#A0D7F0           gui=none
-highlight LspHintText             ctermfg=153  ctermbg=16  cterm=none        guifg=#A0D7F0           gui=none
-highlight link LspErrorVirtualText LspErrorText
-highlight link LspWarningVirtualText LspWarningText
-highlight link LspInformationVirtualText LspInformationText
-highlight link LspHintVirtualText LspHintText
-highlight link LspCodeActionText Normal
+" Code
+highlight Comment      guifg=#89909e
+highlight Type         guifg=#dacfb0                 gui=none
+highlight cppStructure guifg=#c7a3a9                 gui=bold
+highlight Function     guifg=#fbeee1                 gui=none
+highlight @variable    guifg=#fbc894                 gui=none
+highlight Identifier   guifg=#FFD7AF                 gui=none
+highlight Constant     guifg=#82b983
+highlight String       guifg=#acc044
+highlight Operator     guifg=#d16f6f
+highlight Statement    guifg=#e29f46                 gui=bold
+highlight PreProc      guifg=#cf831b
+
+
+" highlight LspErrorHighlight                               gui=underline
+" highlight LspWarningHighlight                             gui=underline
+" highlight LspInformationHighlight                         gui=underline
+" highlight LspErrorText            guifg=#F05F50           gui=none
+" highlight LspWarningText          guifg=#F087DA           gui=none
+" highlight LspInformationText      guifg=#A0D7F0           gui=none
+" highlight LspHintText             guifg=#A0D7F0           gui=none
+" highlight link LspErrorVirtualText LspErrorText
+" highlight link LspWarningVirtualText LspWarningText
+" highlight link LspInformationVirtualText LspInformationText
+" highlight link LspHintVirtualText LspHintText
+" highlight link LspCodeActionText Normal
+
+highlight DiagnosticError  guifg=#f32914  gui=none
+highlight DiagnosticWarn   guifg=#ec85e6  gui=none
+highlight DiagnosticInfo   guifg=#74c8ee  gui=none
+highlight DiagnosticHint   guifg=#74c8ee  gui=none
+highlight DiagnosticOk     guifg=#21e056  gui=none
 
 "{{{ cfy "
-highlight DiffAdd           ctermfg=512       ctermbg=22      cterm=none       guifg=#000000   guibg=#306F10   gui=none
-highlight DiffDelete        ctermfg=darkblue  ctermbg=black   cterm=none       guifg=darkblue  guibg=#000000   gui=none
-highlight DiffChange        ctermfg=251       ctermbg=166     cterm=none       guifg=#C6C6C6   guibg=#B75F00   gui=none
+highlight DiffAdd           guifg=#000000   guibg=#306F10   gui=none
+highlight DiffDelete        guifg=darkblue  guibg=#000000   gui=none
+highlight DiffChange        guifg=#C6C6C6   guibg=#B75F00   gui=none
 
-highlight GitGutterAdd      ctermfg=22        ctermbg=none    cterm=none       guifg=#306F10   guibg=none      gui=none
-highlight GitGutterChange   ctermfg=166       ctermbg=none    cterm=none       guifg=#B75F00   guibg=none      gui=none
-highlight GitGutterDelete   ctermfg=darkred   ctermbg=none    cterm=none       guifg=darkred   guibg=none      gui=none
+highlight GitGutterAdd      guifg=#306F10   guibg=none      gui=none
+highlight GitGutterChange   guifg=#B75F00   guibg=none      gui=none
+highlight GitGutterDelete   guifg=darkred   guibg=none      gui=none
 
 highlight default link Overlength ColorColumn
 "}}}
@@ -72,9 +85,9 @@ highlight default link Overlength ColorColumn
 "{{{ Doxygen "
 let g:load_doxygen_syntax = 1
 
-highlight doxygenComment    ctermfg=blue      ctermbg=none    cterm=none       guifg=#6387ab   guibg=none      gui=none
-highlight doxygenBrief      ctermfg=darkblue  ctermbg=none    cterm=none       guifg=#6387ab   guibg=none      gui=none
-highlight doxygenParamName  ctermfg=darkgray  ctermbg=none    cterm=underline  guifg=#6387ab   guibg=none      gui=none
+highlight doxygenComment    guifg=#6387ab   guibg=none      gui=none
+highlight doxygenBrief      guifg=#6387ab   guibg=none      gui=none
+highlight doxygenParamName  guifg=#6387ab   guibg=none      gui=none
 
 highlight default link doxygenSpecialOnelineDesc doxygenBrief
 "}}}

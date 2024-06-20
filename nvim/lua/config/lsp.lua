@@ -2,7 +2,7 @@
 -- This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
   -- disable semantic tokens
-  client.server_capabilities.semanticTokensProvider = nil
+  -- client.server_capabilities.semanticTokensProvider = nil
 
   local nmap = function(keys, func, desc)
     if desc then
