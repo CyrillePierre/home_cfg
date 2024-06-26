@@ -12,8 +12,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>gd', vim.lsp.buf.declaration, 'Goto declaration')
-  nmap('<leader>gD', vim.lsp.buf.definition, 'Goto definition')
+  nmap('<leader>gd', vim.lsp.buf.definition, 'Goto definition')
+  nmap('<leader>gD', vim.lsp.buf.declaration, 'Goto declaration')
   nmap('<leader>gs', vim.lsp.buf.document_symbol, 'Document symbols')
   nmap('<leader>gr', vim.lsp.buf.references, 'List references')
   nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
