@@ -7,7 +7,8 @@ declare -A theme=(
   [dark,rose_pine_variant]='moon'
   [dark,rose_pine_bg]='#322c44'
   [dark,mode]='bg=#4d485c'
-  [dark,cursor]='#f7ba75'
+  # [dark,cursor]='#f7ba75'
+  [dark,blink]='fg=#f7ba75,bg=#333333'
 
   [light,window]='fg=#000000,bg=#ffffff'
   [light,border]='fg=#807688,bg=#ffffff'
@@ -15,10 +16,14 @@ declare -A theme=(
   [light,rose_pine_variant]='dawn'
   [light,rose_pine_bg]='#ebe8f2'
   [light,mode]='bg=#c0bad4'
-  [light,cursor]='#000000'
+  # [light,cursor]='#000000'
+  [light,blink]='fg=#000000,bg=#bababa'
 )
 
 set_style() {
+  tmux set -g @ese_window_style ${theme[$1,window]}
+  tmux set -g @ese_blink_style ${theme[$1,blink]}
+
   tmux set -g @mode_indicator_empty_prompt '#{}'
   tmux set -g @mode_indicator_prefix_mode_style 'bg=#294980,fg=#ffffff'
   tmux set -g @mode_indicator_copy_mode_style 'bg=#8b740e,fg=#ffffff'
@@ -44,7 +49,7 @@ set_style() {
   tmux set -g pane-border-style ${theme[$1,border]}
   tmux set -g pane-active-border-style ${theme[$1,active_border]}
   tmux set -g mode-style ${theme[$1,mode]}
-  tmux set -g cursor-colour ${theme[$1,cursor]}
+  # tmux set -g cursor-colour ${theme[$1,cursor]}
 
   tmux set -g set-titles on
   tmux set -g set-titles-string "[#S] #W"
