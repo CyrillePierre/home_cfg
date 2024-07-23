@@ -83,6 +83,24 @@ local servers = {
    }
   },
   texlab = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true
+      },
+    }
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

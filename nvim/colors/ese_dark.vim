@@ -10,7 +10,7 @@ endif
 let g:colors_name = "ese_dark"
 
 " Console
-highlight Normal       guifg=#FFD7AF  guibg=#191919
+highlight Normal       guifg=#FFD7AF
 highlight Search       guifg=#080808  guibg=#c59a43  gui=none
 highlight CurSearch    guifg=#080808  guibg=#d9be8b  gui=none
 highlight Folded       guifg=#BCBCBC  guibg=#262626
