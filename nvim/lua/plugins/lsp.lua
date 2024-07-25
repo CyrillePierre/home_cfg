@@ -56,6 +56,7 @@ return {
           python = require("formatter.filetypes.python").ruff,
           cpp = require('formatter.filetypes.cpp').clangformat,
           c = require('formatter.filetypes.c').clangformat,
+          rust = require('formatter.filetypes.rust').rustfmt,
         },
       }
 
