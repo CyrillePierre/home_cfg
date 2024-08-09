@@ -96,6 +96,7 @@ alias dcu='docker compose up -d'
 alias dcr='docker compose restart'
 alias dcd='docker compose down'
 alias dcrun='docker compose run --rm --no-deps'
+alias vc='vcs -nsw6 custom --args'
 
 source_cocos() {
 	# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
