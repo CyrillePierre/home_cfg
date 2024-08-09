@@ -34,8 +34,8 @@ local on_attach = function(client, bufnr)
       ui = {
         max_height = 12,
         max_width = 85,
-        offset_y = -1,
-        floating_window_above_cur_line = true,
+        offset_y = 0,
+        close_events = { "CursorMoved", "BufHidden", "InsertLeave", "InsertCharPre" },
       },
       keymaps = {
         next_signature = '<down>',
