@@ -1,9 +1,9 @@
 return {
-	{
-		'robitx/gp.nvim',
-		config = function()
-			return os.getenv('OPENAI_API_KEY') ~= nil
-		end,
-		lazy = true,
-	},
+  {
+    'robitx/gp.nvim',
+    opts = {
+      openai_api_key = {'bw', 'get', 'password', 'gp.nvim_openai'},
+    },
+    event = 'VeryLazy',
+  },
 }
