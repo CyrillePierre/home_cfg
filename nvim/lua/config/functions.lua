@@ -105,7 +105,3 @@ function AutoFoldToggle()
 		vim.g.autofoldtoggle = 'active'
 	end
 end
-
-function GpSetAPIKey(opts)
-	require('gp').setup{openai_api_key = opts.fargs[1]}
-end
