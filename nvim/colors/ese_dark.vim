@@ -11,13 +11,13 @@ let g:colors_name = "ese_dark"
 
 " Console
 highlight Normal       guifg=#FFD7AF
+highlight NormalFloat                 guibg=#112d2d
 highlight Search       guifg=#080808  guibg=#c59a43  gui=none
 highlight CurSearch    guifg=#080808  guibg=#d9be8b  gui=none
 highlight Folded       guifg=#BCBCBC  guibg=#262626
-highlight CursorLine                  guibg=#0e0e0e  gui=none
+highlight CursorLine                  guibg=#000000  gui=none
 highlight SpellBad                    guibg=#5F0000
 highlight SpellCap                    guibg=#080808  gui=none
-highlight Special      guifg=#D7AF5F
 highlight Visual                      guibg=#585858
 highlight Error        guifg=#E4E4E4  guibg=#5F0000
 highlight Pmenu        guifg=#D0D0D0  guibg=#083636
@@ -38,17 +38,18 @@ highlight CursorLineNr guifg=#d9cfb6  guibg=none     gui=none
 highlight NonText      guifg=#3366c4
 
 " Code
-highlight Comment      guifg=#89909e
-highlight Type         guifg=#dacfb0                 gui=none
-highlight cppStructure guifg=#c7a3a9                 gui=bold
-highlight Function     guifg=#fbeee1                 gui=none
-highlight @variable    guifg=#fbc894                 gui=none
-highlight Identifier   guifg=#FFD7AF                 gui=none
-highlight Constant     guifg=#82b983
-highlight String       guifg=#acc044
-highlight Operator     guifg=#d16f6f
+highlight Comment      guifg=#77819b
+highlight Type         guifg=#96bd9a                 gui=none
+highlight cppStructure guifg=#c9929b                 gui=bold
+highlight Function     guifg=#fefbed                 gui=none
+highlight Identifier   guifg=#feefc9                 gui=none
+highlight @variable    guifg=#f6cda4                 gui=none
 highlight Statement    guifg=#e29f46                 gui=bold
 highlight PreProc      guifg=#cf831b
+highlight Special      guifg=#D7AF5F
+highlight Operator     guifg=#d67474
+highlight Constant     guifg=#92e2d0
+highlight String       guifg=#b6c342
 
 
 " highlight LspErrorHighlight                               gui=underline

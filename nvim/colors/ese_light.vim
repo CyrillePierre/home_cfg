@@ -10,7 +10,7 @@ endif
 let g:colors_name = "ese_light"
 
 " Console
-highlight Normal      ctermfg=232                             guifg=#000000
+highlight Normal      ctermfg=232                             guifg=#000000  guibg=#ffffff
 highlight Search      ctermfg=232  ctermbg=248    cterm=none  guifg=#000000  guibg=#a8a8a8  gui=none
 highlight Special     ctermfg=130                             guifg=#af5f00
 highlight Comment     ctermfg=59                              guifg=#5f5f5f
