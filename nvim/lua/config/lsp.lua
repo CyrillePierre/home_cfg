@@ -17,9 +17,11 @@ local on_attach = function(client, bufnr)
   nmap('<leader>gs', vim.lsp.buf.document_symbol, 'Document symbols')
   nmap('<leader>gr', vim.lsp.buf.references, 'List references')
   nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+
   nmap('<leader>g<space>', function()
     vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
   end, 'Code action')
+
   nmap('K', vim.lsp.buf.hover, 'Hover documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
   nmap('<leader>gn', vim.diagnostic.goto_next, 'Next diagnostic')
