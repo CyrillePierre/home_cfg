@@ -1,0 +1,7 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+mkdir -p $HOME/.config/alacritty/
+
+install_config alacritty.toml .config/alacritty/alacritty.toml

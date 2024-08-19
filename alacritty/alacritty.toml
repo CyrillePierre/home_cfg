@@ -1,0 +1,15 @@
+shell = "tmux"
+
+[window]
+dimensions = { columns = 100, lines = 30 }
+position = "None"
+padding = { x = 1, y = 1 }
+dynamic_padding = true  # spread padding evenly arround terminal content
+decorations = "None"
+resize_increments = false
+
+[scrolling]
+history = 0  # disabled
+
+[font]
+normal = { family = "DejaVuSansM Nerd Font", style = "Regular" }
