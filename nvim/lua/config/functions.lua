@@ -62,7 +62,8 @@ end
 function FoldMarkerText()
 	local text = vim.fn.getline(vim.v.foldstart+1)
 	local info = vim.fn.getline(vim.v.foldstart)
-	info = vim.fn.substitute(info , '^.*{{{[ "]*\\(.*\\)$', '\\1', '') -- }}}
+	info = vim.fn.substitute(info , '^\\s*\\S*\\s*', '', '') -- remove comment symbols
+	info = vim.fn.substitute(info , '{{{', '', '')  -- remove {{{
 
 	if info:len() ~= 0 then
 		local rev_info = vim.fn.join(vim.fn.reverse(vim.fn.split(info, '.\\zs')), '')
