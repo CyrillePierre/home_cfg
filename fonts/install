@@ -2,10 +2,25 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-mkdir -p "$HOME/.local/share/fonts"
+nerdfonts_url='https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1'
+fonts_dir="$HOME/.local/share/fonts"
 
-for font in $(find . -name '*.ttf') ; do
-  install_config "$font" ".local/share/fonts/$font"
-done
+mkdir -p "$fonts_dir"
 
+download() {
+  name=$1
+  dest_dir="$fonts_dir/$name"
+
+  [[ -d "$dest_dir" ]] && return
+
+  echo "  - download fonts: ${name}"
+  pushd /tmp >/dev/null
+  wget -q "${nerdfonts_url}/${name}.tar.xz"
+  mkdir -p "$dest_dir"
+  tar -C "$dest_dir" -xf "${name}.tar.xz"
+  popd >/dev/null
+}
+
+download DejaVuSansMono
+download JetBrainsMono
 fc-cache
