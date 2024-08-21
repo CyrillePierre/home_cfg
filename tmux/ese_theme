@@ -5,8 +5,8 @@ declare -A theme=(
   [dark,border]='fg=#807688,bg=#191919'
   [dark,active_border]='fg=#807688,bg=#191919'
   [dark,status_theme]='moon'
-  [dark,status_bg]='#342956'
-  [dark,status_bg_inactive]='#605c6f'
+  [dark,status_bg]='#3b2956'
+  [dark,status_bg_inactive]='#565263'
   [dark,mode]='bg=#4d485c'
   # [dark,cursor]='#f7ba75'
   [dark,blink]='fg=#f7ba75,bg=#333333'
@@ -18,7 +18,7 @@ declare -A theme=(
   [light,active_border]='fg=#807688,bg=#ffffff'
   [light,status_theme]='dawn'
   [light,status_bg]='#ebe5fb'
-  [light,status_bg_inactive]='#afaabb'
+  [light,status_bg_inactive]='#b4b0c0'
   [light,mode]='bg=#c0bad4'
   # [light,cursor]='#000000'
   [light,blink]='fg=#000000,bg=#bababa'
@@ -33,7 +33,7 @@ set_style() {
 
   tmux set -g @mode_indicator_empty_prompt '#{}'
   tmux set -g @mode_indicator_prefix_mode_style 'bg=#294980,fg=#ffffff'
-  tmux set -g @mode_indicator_copy_mode_style 'bg=#8b740e,fg=#ffffff'
+  tmux set -g @mode_indicator_copy_mode_style 'bg=#9d830b,fg=#ffffff'
   tmux set -g @mode_indicator_sync_mode_style 'bg=#9b3c13,fg=#ffffff'
   tmux set -g @mode_indicator_empty_mode_style 'bg=#574c6b,fg=#dbdbdb'
 
