@@ -10,8 +10,8 @@ declare -A theme=(
   [dark,mode]='bg=#4d485c'
   # [dark,cursor]='#f7ba75'
   [dark,blink]='fg=#f7ba75,bg=#333333'
-  [dark,palette]="#535353 #f46449 #67b121 #e3bf1a #4e85ce #a868b3 #48dfa9 #b6b0aa "
-  [dark,palette]+="#7e7e7e #f9958a #adfb83 #ffe972 #90addb #cfa2ca #b4f7dd #fcfcfc"
+  [dark,palette]="#535353 #f24b2c #67b121 #e3bf1a #4e85ce #a868b3 #48dfa9 #b6b0aa "
+  [dark,palette]+="#7e7e7e #f8887b #adfb83 #ffe972 #90addb #cfa2ca #b4f7dd #fcfcfc"
 
   [light,window]='fg=#000000,bg=#ffffff'
   [light,border]='fg=#807688,bg=#ffffff'

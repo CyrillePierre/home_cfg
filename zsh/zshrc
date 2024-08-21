@@ -143,7 +143,6 @@ export_conda() {
 ulimit -c unlimited
 export TRACE_CORE=1
 export PATH="$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin"
-export TERM=xterm-256color
 export LESS=-FRSx2
 export CLANGD_FLAGS="--header-insertion=never"
 [[ -z "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
