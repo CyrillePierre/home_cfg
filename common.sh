@@ -27,7 +27,7 @@ install_config() {
   fi
 
   if [[ "$create_link" = 'true' ]] ; then
-    echo -n "  - "
+    echo -n "  "
     ln -vfsr "$1" "$path_dest"  
   fi
 }
