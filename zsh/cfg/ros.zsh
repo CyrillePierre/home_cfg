@@ -1,5 +1,5 @@
 source_tiara() {
-	source ~/projects/ros/tiara_ws/devel/setup.zsh
+	source ~/projects/ros/tiara_workspace/devel/setup.zsh
 	export ROSCONSOLE_FORMAT='[${severity}] ${node}: ${message}'
 	export GAZEBO_RESOURCE_PATH="$HOME/data/tiara/gazebo:$HOME/data/romea/gazebo"
 	export GAZEBO_MODEL_PATH="$HOME/data/tiara/gazebo/models:$HOME/data/romea/gazebo/models"
