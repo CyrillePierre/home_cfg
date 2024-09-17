@@ -24,7 +24,7 @@
   c = commit
 
 [credential]
-  helper = cache
+  helper = store
 
 [diff]
   tool = meld
@@ -45,6 +45,7 @@
   diffFilter = delta --color-only --features=interactive
 
 [delta]
+  navigate = true
   features = decorations
 
 [delta "interactive"]
