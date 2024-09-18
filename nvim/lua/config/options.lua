@@ -1,6 +1,8 @@
 vim.opt.matchpairs:append('<:>')
-vim.opt.foldmethod = 'syntax'
 vim.opt.foldlevel = 20
+-- vim.opt.foldmethod = 'syntax'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 500
