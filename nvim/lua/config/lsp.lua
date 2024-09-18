@@ -103,6 +103,12 @@ local servers = {
       },
     }
   },
+  ltex = {
+    additionalRules = {
+      enablePickyRules = true,
+      motherTongues = 'fr',
+    },
+  }
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
