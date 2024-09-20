@@ -2,8 +2,36 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-mkdir -p $HOME/.config/tmux/
+make_install_tmux() {
+  src_dir="$HOME/.local/src/"
 
+  mkdir -p "$src_dir"
+  pushd $src_dir >/dev/null
+
+  apt-get install -y \
+    libncurses-dev bison gcc make libevent-dev ncurses-dev build-essential bison pkg-config automake
+
+  if [[ ! -d "./tmux" ]] ; then
+    git clone --recursive --depth 1 https://github.com/tmux/tmux.git
+  else
+    git -C tmux pull
+  fi
+
+  pushd tmux >/dev/null
+  sh autogen.sh
+  ./configure
+  make -j14
+  make install
+
+  popd >/dev/null
+  popd >/dev/null
+}
+
+if ! which tmux ; then
+  make_install_tmux
+fi
+
+mkdir -p $HOME/.config/tmux/
 install_config tmux.conf .config/tmux/tmux.conf
 install_config ese_theme .config/tmux/ese_theme
 
