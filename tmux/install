@@ -27,7 +27,7 @@ make_install_tmux() {
   popd >/dev/null
 }
 
-if ! which tmux ; then
+if ! which tmux >/dev/null ; then
   make_install_tmux
 fi
 
