@@ -104,9 +104,11 @@ local servers = {
     }
   },
   ltex = {
-    additionalRules = {
-      enablePickyRules = true,
-      motherTongues = 'fr',
+    ltex = {
+      additionalRules = {
+        enablePickyRules = true,
+        motherTongues = 'fr',
+      },
     },
   }
 }
