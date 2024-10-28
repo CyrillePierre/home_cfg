@@ -14,6 +14,6 @@ return {
 					vim.fn['vimas#vimas']()
 				end
 			end))
-		end
+		end,
 	},
 }

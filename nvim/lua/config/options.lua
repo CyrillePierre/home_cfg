@@ -42,7 +42,7 @@ vim.opt.completeopt = 'menu,preview,noselect'
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:full,full'
 
-vim.o.sessionoptions='buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+vim.o.sessionoptions='buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions'
 
 vim.opt.termguicolors = true
 
