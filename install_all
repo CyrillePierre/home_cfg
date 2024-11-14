@@ -2,7 +2,24 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source common.sh
 
-for script in $(find . -maxdepth 2 -perm /u+x,g+x -name "install") ; do
-  echo -e "\e[01;34mInstall $(basename $(dirname "$script"))\e[00m"
-  "$script" "$backup_dir"
-done
+install() {
+  dir=$1
+  echo -e "\e[01;34mInstall ${dir}\e[00m"
+  "${dir}/install" "$backup_dir"
+}
+
+install alacritty
+install cargo
+install clang
+install fonts
+install gdb
+install git
+install kitty
+install nvim
+install python
+install rofi
+install terminator
+install tmux
+install tools
+install vim
+install zsh
