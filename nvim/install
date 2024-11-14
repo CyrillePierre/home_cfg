@@ -2,6 +2,37 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+install_nvim() {
+  pushd /tmp >/dev/null
+
+  curl -LO 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
+
+  if [[ $USER == 'root' ]] ; then
+    sudo_cmd=''
+    global_install='y'
+  else
+    echo -n "Do you want to install nvim using sudo? (if no, install in home dir) [Y/n]: "
+    read answer
+    if [[ "$answer" != 'n' ]] && [[ "$answer" != 'N' ]] ; then
+      sudo_cmd='sudo'
+      global_install='y'
+    fi
+  fi
+  
+  if [[ "$global_install" == 'y' ]] ; then
+    "$sudo_cmd" rm -rf /opt/nvim
+    "$sudo_cmd" tar -C /opt -xzf nvim-linux64.tar.gz
+    "$sudo_cmd" update-alternatives --install /usr/local/bin/nvim nvim /opt/nvim-linux64/bin/nvim 10
+  else
+    tar -C "${HOME}/.local/share" -xzf nvim-linux64.tar.gz
+    ln -sfr "${HOME}/.local/share/nvim-linux64/bin/nvim" "${HOME}/.local/bin"
+    echo "nvim installed in ${HOME}/.local/bin"
+  fi
+
+  rm nvim-linux64.tar.gz
+  popd >/dev/null
+}
+
 mkdir -p $HOME/.config/nvim/
 mkdir -p $HOME/.local/share/nvim/sessions
 
@@ -9,6 +40,9 @@ if ! python3 -c 'import venv' ; then
   sudo apt-get install -y python3-venv
 fi
 
+if ! which nvim >/dev/null ; then
+  install_nvim
+fi
 
 install_config after .config/nvim/after
 install_config colors .config/nvim/colors
