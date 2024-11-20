@@ -53,15 +53,18 @@ require('mason').setup()
 
 local servers = {
   bashls = {},
-  clangd = {},
+  clangd = {
+		cmd = {"clangd", "--clang-tidy"},
+  },
   cmake = {},
   dockerls = {},
   docker_compose_language_service = {},
   lua_ls = {
-    Lua = {
-      workspace = {checkThirdParty = false},
-      telemetry = {enable = false},
-    },
+		prefix = "Lua",
+		settings = {
+			workspace = {checkThirdParty = false},
+			telemetry = {enable = false},
+		},
   },
   -- pyright = {
   --   python = {
@@ -75,18 +78,19 @@ local servers = {
   --     },
   --   },
   -- },
-  pylsp = {
-   pylsp = {
-     plugins = {
-       pycodestyle = {
-         ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
-       }
-     }
-   }
-  },
+	pylsp = {
+		settings = {
+			plugins = {
+				pycodestyle = {
+					ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
+				}
+			}
+		}
+	},
   texlab = {},
   rust_analyzer = {
-    ["rust-analyzer"] = {
+    prefix = 'rust-analyzer',
+    settings = {
       imports = {
         granularity = {
           group = "module",
@@ -104,13 +108,14 @@ local servers = {
     }
   },
   ltex = {
-    ltex = {
+		autostart = false,
+    settings = {
       additionalRules = {
         enablePickyRules = true,
         motherTongues = 'fr',
       },
     },
-  }
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -121,14 +126,24 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
+	function(server_name)
+		local server = servers[server_name] or {}
+		local prefix = server.prefix or server_name
+		local autostart = true
+
+		if server.autostart ~= nil then
+			autostart = server.autostart
+		end
+
+		require('lspconfig')[server_name].setup {
+			cmd = server.cmd,
+			autostart = autostart,
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {[prefix] = server.settings},
+			filetypes = server.filetypes,
+		}
+	end,
 }
 
 local cmp = require('cmp')
