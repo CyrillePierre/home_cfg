@@ -2,3 +2,21 @@ CompileFlags:
   Add: []
 Hover:
   ShowAKA: Yes
+Diagnostics:
+  ClangTidy:
+    Add: 
+      - bugprone-*
+      - concurrency-*
+      - clang-analyzer-*
+      - cppcoreguidelines-*
+      - misc-*
+      - modernize-*
+      - performance-*
+      - readability-*
+    Remove: 
+      - misc-non-private-member-variables-in-classes
+      - modernize-use-trailing-return-type
+      - readability-identifier-length
+      - readability-braces-around-statements
+      - readability-isolate-declaration
+      - readability-implicit-bool-conversion

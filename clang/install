@@ -5,4 +5,4 @@ source ../common.sh
 mkdir -p $HOME/.config/clangd/
 
 install_config clangd.yaml .config/clangd/config.yaml
-install_config clang-format .clang-format
+install_config clang-format.yaml .clang-format
