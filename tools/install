@@ -2,6 +2,19 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-if ! which zoxide 2>&1 >/dev/null ; then
-  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+if [[ ! "$CONFIG_ONLY" ]] ; then
+  if ! which zoxide 2>&1 >/dev/null ; then
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  fi
+
+  if [[ "$INSTALL_WITH_SUDO" ]] ; then
+    if ! which fd >/dev/null ; then
+      sudo apt-get install -y fd-find
+      sudo ln -sfr /usr/bin/fdfind /usr/local/bin/fd
+    fi
+
+    if ! which rg >/dev/null ; then
+      sudo apt-get install -y ripgrep
+    fi
+  fi
 fi

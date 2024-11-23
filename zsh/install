@@ -11,6 +11,22 @@ install_config zshrc .zshrc
 install_config cfg "${zsh_config_dir}/cfg"
 install_config cfyzshprompt/ .config/cfyzshprompt
 
-if [[ ! -r "${docker_completion_file}" ]] ; then
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] ; then
+  if ! which zsh >/dev/null ; then
+    sudo apt-get install -y zsh zsh-syntax-highlighting
+  fi
+
+  if ! which cfyze >/dev/null ; then
+    sudo apt-get install -y gnupg wget lsb-release apt-transport-https
+    wget -O/tmp/install.sh https://pkg.celforyon.fr/dl/install_https.php
+    chmod +x /tmp/install.sh
+    /tmp/install.sh
+    rm /tmp/install.sh
+    sudo apt update -y
+    sudo apt-get install -y cfyzshprompt-git cfyzshprompt-battery cfyzshprompt-errno
+  fi
+fi
+
+if which docker >/dev/null && [[ ! -r "${docker_completion_file}" ]] ; then
   docker completion zsh >"${HOME}/${docker_completion_file}"
 fi

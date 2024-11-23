@@ -2,6 +2,10 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! which rofi >/dev/null ; then
+  sudo apt-get install -y rofi
+fi
+
 mkdir -p $HOME/.config/rofi/
 
 install_config config.rasi .config/rofi/config.rasi

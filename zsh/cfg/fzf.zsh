@@ -1,6 +1,6 @@
 cfg_fzf_dir='/opt/fzf'
-if [[ -d "${cfg_fzf_dir}" ]] ; then
-  cfg_fzf_dir="${HOME}/.local/src/fzf"
+if [[ ! -d "${cfg_fzf_dir}" ]] ; then
+  cfg_fzf_dir="${HOME}/share/fzf"
 fi
 
 if [[ -d "${cfg_fzf_dir}" ]] ; then

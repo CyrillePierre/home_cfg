@@ -7,17 +7,18 @@ version() {
 }
 
 check_delta_version() {
+  if ! which delta >/dev/null ; then
+    return 1
+  fi
+
   target=0.17.0
   current=$(delta --version | cut -d' ' -f2)
   [[ $(version $current) -ge $(version $target) ]]
 }
 
-install_delta() {
-  if ! which delta >/dev/null || ! check_delta_version ; then
-    wget -O/tmp/git-delta.deb 'https://github.com/dandavison/delta/releases/download/0.17.0/git-delta-musl_0.17.0_amd64.deb'
-    sudo dpkg -i /tmp/git-delta.deb
-  fi
-}
-
 install_config gitconfig .gitconfig
-install_delta
+
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! check_delta_version ; then
+  wget -O/tmp/git-delta.deb 'https://github.com/dandavison/delta/releases/download/0.17.0/git-delta-musl_0.17.0_amd64.deb'
+  sudo dpkg -i /tmp/git-delta.deb
+fi

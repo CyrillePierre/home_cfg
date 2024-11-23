@@ -3,9 +3,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 source common.sh
 
 install() {
-  dir=$1
+  local dir=$1
+  shift
   echo -e "\e[01;34mInstall ${dir}\e[00m"
-  "${dir}/install" "$backup_dir"
+  "${dir}/install" -b "$BACKUP_DIR" "${ARGS[@]}"
 }
 
 install alacritty

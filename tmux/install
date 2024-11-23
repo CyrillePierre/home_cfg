@@ -3,12 +3,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
 make_install_tmux() {
-  src_dir="$HOME/.local/src/"
+  src_dir="$HOME/share"
 
   mkdir -p "$src_dir"
   pushd $src_dir >/dev/null
 
-  apt-get install -y \
+  sudo apt-get install -y \
     libncurses-dev bison gcc make libevent-dev ncurses-dev build-essential bison pkg-config automake
 
   if [[ ! -d "./tmux" ]] ; then
@@ -21,13 +21,13 @@ make_install_tmux() {
   sh autogen.sh
   ./configure
   make -j14
-  make install
+  sudo make install
 
   popd >/dev/null
   popd >/dev/null
 }
 
-if ! which tmux >/dev/null ; then
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! which tmux >/dev/null ; then
   make_install_tmux
 fi
 
