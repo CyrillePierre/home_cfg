@@ -20,3 +20,4 @@ Diagnostics:
       - readability-braces-around-statements
       - readability-isolate-declaration
       - readability-implicit-bool-conversion
+      - modernize-avoid-bind

@@ -1,6 +1,9 @@
 cfg_fzf_dir='/opt/fzf'
+if [[ -d "${cfg_fzf_dir}" ]] ; then
+  cfg_fzf_dir="${HOME}/.local/src/fzf"
+fi
 
-if [ -d "${cfg_fzf_dir}" ] ; then
+if [[ -d "${cfg_fzf_dir}" ]] ; then
   local fzf_regfile_preview_command='bat --theme=gruvbox-dark --style=numbers --color=always {}'
   local fzf_dir_preview_command='fd --color=always --maxdepth 2 . {}'
   export FZF_PREVIEW_COMMAND="(${fzf_regfile_preview_command} || ${fzf_dir_preview_command})"

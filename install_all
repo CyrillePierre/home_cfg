@@ -12,6 +12,7 @@ install alacritty
 install cargo
 install clang
 install fonts
+install fzf
 install gdb
 install git
 install kitty

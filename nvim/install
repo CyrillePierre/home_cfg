@@ -7,7 +7,7 @@ install_nvim() {
 
   curl -LO 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
 
-  if [[ $USER == 'root' ]] ; then
+  if [[ $(whoami) == 'root' ]] ; then
     sudo_cmd=''
     global_install='y'
   else
