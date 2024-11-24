@@ -106,3 +106,43 @@ function AutoFoldToggle()
 		vim.g.autofoldtoggle = 'active'
 	end
 end
+
+function InteractiveBwUnlock()
+    -- Define the size and position of the floating window
+    local width = math.min(100, math.floor(vim.o.columns * 0.8))
+    local height = math.min(5, math.floor(vim.o.lines * 0.3))
+    local row = math.floor((vim.o.lines - height) / 2)
+    local col = math.floor((vim.o.columns - width) / 2)
+
+    -- Create the floating window
+    local opts = {
+        relative = "editor",
+        width = width,
+        height = height,
+        row = row,
+        col = col,
+        style = "minimal",
+        border = "single",
+        title = "bw unlock",
+    }
+    local buf = vim.api.nvim_create_buf(false, true) -- No file, no swap
+    local win = vim.api.nvim_open_win(buf, true, opts)
+
+    -- Start the terminal in the buffer
+    vim.fn.termopen("bw unlock --raw", {
+        on_exit = function(_, _, _)
+            -- Get the output of the command
+            local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+            if lines and #lines > 1 then
+                local bw_session = table.concat(lines, '', 2)
+                vim.env.BW_SESSION = bw_session
+                print("BW_SESSION set: " .. bw_session)
+            else
+                print("Failed to retrieve BW_SESSION.")
+            end
+
+            -- Close the floating window
+            vim.api.nvim_win_close(win, true)
+        end,
+    })
+end
