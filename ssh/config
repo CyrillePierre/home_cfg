@@ -1,0 +1,20 @@
+Host cube
+    User     romea
+    Hostname 10.63.64.48
+    Port     22
+
+Host 192.168.0.*
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+
+Host unitree
+    User     unitree
+    Hostname 192.168.12.1
+
+Host POM4x4 POMbasic Adap2e01 Adap2e02 Ceol ceol pom4x4 pombasic adap2e01 adap2e02
+    ForwardX11 yes
+
+Host oldpc
+    User     cyrille
+    Hostname CLT-APT21032P.local
+
