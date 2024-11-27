@@ -16,8 +16,9 @@ Diagnostics:
     Remove: 
       - misc-non-private-member-variables-in-classes
       - modernize-use-trailing-return-type
+      - modernize-avoid-bind
       - readability-identifier-length
       - readability-braces-around-statements
       - readability-isolate-declaration
       - readability-implicit-bool-conversion
-      - modernize-avoid-bind
+      - readability-redundant-access-specifiers
