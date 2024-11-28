@@ -143,9 +143,8 @@ export_conda() {
 
 ulimit -c unlimited
 export TRACE_CORE=1
-export PATH="$PATH:/sbin:/usr/sbin:$HOME/.local/bin:$HOME/bin"
+export PATH="$HOME/.local/bin:$PATH"
 export LESS=-FRSx2
-export CLANGD_FLAGS="--header-insertion=never"
 [[ -z "$XDG_CONFIG_HOME" ]] && export XDG_CONFIG_HOME="$HOME/.config"
 
 export_vdn() { export PATH="$PATH:/home/cyrille/share/vdn/bin" ; }
@@ -159,6 +158,7 @@ if [[ -d ${__extra_config_dir} ]]; then
 	files=$(find ${__extra_config_dir} -follow -type f)
 	for file in "${=files}"; source "${file}"
 fi
+unset __extra_config_dir
 #######################################################
 
 # load plugins
