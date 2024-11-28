@@ -59,7 +59,7 @@ local servers = {
   clangd = {
 		cmd = {"clangd", "--clang-tidy"},
   },
-  cmake = {},
+  -- cmake = {},
   dockerls = {},
   docker_compose_language_service = {},
   lua_ls = {
@@ -69,56 +69,56 @@ local servers = {
 			telemetry = {enable = false},
 		},
   },
-  -- pyright = {
-  --   python = {
-  --     analysis = {
-  --       autoSearchPaths = true,
-  --       useLibraryCodeForTypes = true,
-  --       typeCheckingMode = 'off',
-  --       diagnosticMode = 'openFilesOnly',
-  --       diagnosticSeverityOverrides = {
-  --       },
-  --     },
-  --   },
-  -- },
-	pylsp = {
-		settings = {
-			plugins = {
-				pycodestyle = {
-					ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
-				}
-			}
-		}
-	},
-  texlab = {},
-  rust_analyzer = {
-    prefix = 'rust-analyzer',
+  pyright = {
     settings = {
-      imports = {
-        granularity = {
-          group = "module",
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = 'off',
+        diagnosticMode = 'openFilesOnly',
+        diagnosticSeverityOverrides = {
         },
-        prefix = "self",
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
-      procMacro = {
-        enable = true
-      },
-    }
-  },
-  ltex = {
-		autostart = false,
-    settings = {
-      additionalRules = {
-        enablePickyRules = true,
-        motherTongues = 'fr',
       },
     },
   },
+	-- pylsp = {
+	-- 	settings = {
+	-- 		plugins = {
+	-- 			pycodestyle = {
+	-- 				ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
+	-- 			}
+	-- 		}
+	-- 	}
+	-- },
+  -- texlab = {},
+  -- rust_analyzer = {
+  --   prefix = 'rust-analyzer',
+  --   settings = {
+  --     imports = {
+  --       granularity = {
+  --         group = "module",
+  --       },
+  --       prefix = "self",
+  --     },
+  --     cargo = {
+  --       buildScripts = {
+  --         enable = true,
+  --       },
+  --     },
+  --     procMacro = {
+  --       enable = true
+  --     },
+  --   }
+  -- },
+  -- ltex = {
+		-- autostart = false,
+  --   settings = {
+  --     additionalRules = {
+  --       enablePickyRules = true,
+  --       motherTongues = 'fr',
+  --     },
+  --   },
+  -- },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -210,5 +210,5 @@ cmp.setup{
 }
 
 require('lint').linters_by_ft = {
-  python = { 'ruff' }
+  -- python = { 'ruff' }
 }
