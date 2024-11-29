@@ -22,3 +22,4 @@ Diagnostics:
       - readability-isolate-declaration
       - readability-implicit-bool-conversion
       - readability-redundant-access-specifiers
+      - readability-math-missing-parentheses
