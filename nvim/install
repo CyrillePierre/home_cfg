@@ -8,6 +8,10 @@ install_nvim() {
   curl -LO 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
   
   if [[ "$INSTALL_WITH_SUDO" ]] ; then
+	  # Install recent version of node for mason
+    curl -fsSL 'https://deb.nodesource.com/setup_23.x' | sudo bash
+    sudo apt-get install -y nodejs unzip xclip python3-venv
+
     sudo rm -rf /opt/nvim
     sudo tar -C /opt -xzf nvim-linux64.tar.gz
     sudo update-alternatives --install /usr/local/bin/nvim nvim /opt/nvim-linux64/bin/nvim 10
