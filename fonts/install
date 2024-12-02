@@ -23,4 +23,6 @@ download() {
 
 download DejaVuSansMono
 download JetBrainsMono
+download UbuntuSans
+download LiberationMono
 fc-cache

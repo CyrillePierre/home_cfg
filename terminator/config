@@ -29,29 +29,32 @@
 [profiles]
   [[default]]
     background_color = "#191919"
-    foreground_color = "#f7ba75"
-    cursor_color = "#f7ba75"
+    term = xterm-direct
     font = DejaVuSansM Nerd Font 12
+    foreground_color = "#f7ba75"
     scrollbar_position = hidden
     scrollback_lines = 1000
     scrollback_infinite = True
     palette = "#494949:#ff3c22:#6cb428:#e4bf1a:#6186b6:#a36aac:#5bef9b:#daa05d:#7c7c7c:#ef2929:#99ff89:#ffe972:#769dc7:#c494be:#89fabe:#eeeeec"
     use_system_font = False
-    term = xterm-direct
   [[tmux]]
     background_color = "#191919"
+    term = xterm-direct
+    font = UbuntuSansMono Nerd Font 12
     foreground_color = "#f7ba75"
-    font = DejaVuSansM Nerd Font 12
-    use_system_font = False
     show_titlebar = False
     scrollbar_position = hidden
-    scrollback_lines = 500
-    scrollback_infinite = False
     palette = "#494949:#ff3c22:#6cb428:#e4bf1a:#6186b6:#a36aac:#5bef9b:#daa05d:#7c7c7c:#ef2929:#99ff89:#ffe972:#769dc7:#c494be:#89fabe:#eeeeec"
     login_shell = True
     use_custom_command = True
     custom_command = tmux
-    term = xterm-direct
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
 [plugins]
-
-# vim:ft=config
