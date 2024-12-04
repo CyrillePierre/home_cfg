@@ -37,6 +37,7 @@
     scrollback_infinite = True
     palette = "#494949:#ff3c22:#6cb428:#e4bf1a:#6186b6:#a36aac:#5bef9b:#daa05d:#7c7c7c:#ef2929:#99ff89:#ffe972:#769dc7:#c494be:#89fabe:#eeeeec"
     use_system_font = False
+    use_theme_colors = True
   [[tmux]]
     background_color = "#191919"
     term = xterm-direct

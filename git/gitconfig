@@ -22,6 +22,7 @@
   sw  = switch
   cam = commit -am
   c = commit
+  pf = push --force-with-lease
 
 [credential]
   helper = store
@@ -64,7 +65,7 @@
 
 # vim:ft=gitconfig:wrap
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
