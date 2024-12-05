@@ -10,7 +10,7 @@ install() {
 }
 
 install tools
-install cargo
+# install cargo
 install clang
 install fzf
 install gdb
@@ -26,9 +26,9 @@ install scripts
 install zellij
 
 # GUI
-install fonts
-install alacritty
-install terminator
-install kitty
-install wezterm
-install rofi
+# install fonts
+# install alacritty
+# install terminator
+# install kitty
+# install wezterm
+# install rofi
