@@ -9,18 +9,18 @@ install() {
   "${dir}/install" -b "$BACKUP_DIR" "${ARGS[@]}"
 }
 
-install alacritty
+# install alacritty
 install cargo
 install clang
-install fonts
+# install fonts
 install fzf
 install gdb
 install git
-install kitty
+# install kitty
 install nvim
 install python
 install rofi
-install terminator
+# install terminator
 install tmux
 install tools
 install vim
