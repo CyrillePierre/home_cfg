@@ -1,0 +1,7 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+mkdir -m700 -p $HOME/.ssh
+
+install_config profile.sh .profile
