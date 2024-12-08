@@ -78,26 +78,6 @@ promptinit
 #prompt adam2 cyan green white
 prompt cfy
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias ..='cd ..'
-alias ll='ls -alsFh'
-alias la='ls -A'
-alias l='ls -CF'
-alias top='top -d 1'
-alias go='xdg-open'
-alias ip='ip -c=auto'
-alias ipa='ip -c=auto -br a'
-alias tectonic='tectonic -X'
-alias dc='docker compose'
-alias dcu='docker compose up -d'
-alias dcr='docker compose restart'
-alias dcd='docker compose down'
-alias dcrun='docker compose run --rm --no-deps'
-alias vc='vcs -nsw6 custom --args'
-
 source_cocos() {
 	# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 	export COCOS_CONSOLE_ROOT="/home/cyrille/share/cocos2d-x/tools/cocos2d-console/bin"

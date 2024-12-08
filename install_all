@@ -25,3 +25,5 @@ install tmux
 install tools
 install vim
 install zsh
+install profile
+install lazygit
