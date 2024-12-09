@@ -2,6 +2,22 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+install_kitty() {
+  if [[ "$INSTALL_WITH_SUDO" ]] ; then
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sudo sh /dev/stdin dest=/opt
+    sudo ln -sf /opt/kitty.app/bin/kitty /usr/local/bin/kitty
+    sudo ln -sf /opt/kitty.app/bin/kitten /usr/local/bin/kitten
+  else
+    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin dest="$HOME/.local/share"
+    ln -sf "$HOME/.local/share/kitty.app/bin/kitty" "$HOME/.local/bin/kitty"
+    ln -sf "$HOME/.local/share/kitty.app/bin/kitten" "$HOME/.local/bin/kitten"
+  fi
+}
+
+if [[ ! "$CONFIG_ONLY" ]] && ! which kitty >/dev/null ; then
+  install_kitty
+fi
+
 mkdir -p $HOME/.config/kitty/
 
 install_config kitty.conf .config/kitty/kitty.conf

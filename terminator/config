@@ -41,7 +41,7 @@
   [[tmux]]
     background_color = "#191919"
     term = xterm-direct
-    font = MonaspiceNe Nerd Font 12
+    font = UbuntuSansMono Nerd Font Propo 12
     foreground_color = "#f7ba75"
     show_titlebar = False
     scrollbar_position = hidden
