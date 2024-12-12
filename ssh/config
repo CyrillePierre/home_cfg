@@ -1,3 +1,6 @@
+Host *
+    ServerAliveInterval 40
+
 Host cube
     User     romea
     Hostname 10.63.64.48
