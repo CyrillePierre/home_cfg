@@ -10,8 +10,8 @@ declare -A theme=(
   [dark,mode]='bg=#4d485c'
   # [dark,cursor]='#f7ba75'
   [dark,blink]='fg=#f7ba75,bg=#333333'
-  [dark,palette]="#535353 #f24b2c #67b121 #e3bf1a #4e85ce #a868b3 #48dfa9 #b6b0aa "
-  [dark,palette]+="#7e7e7e #f8887b #93d76f #f6e16b #8caada #cfa2ca #a5f2d4 #fcfcfc"
+  [dark,palette1]="#535353 #f24b2c #67b121 #e3bf1a #4e85ce #a868b3 #48dfa9 #b6b0aa"
+  [dark,palette2]="#7e7e7e #f8887b #93d76f #f6e16b #8caada #cfa2ca #a5f2d4 #fcfcfc"
 
   [light,window]='fg=#000000,bg=#ffffff'
   [light,border]='fg=#807688,bg=#ffffff'
@@ -22,8 +22,8 @@ declare -A theme=(
   [light,mode]='bg=#c0bad4'
   # [light,cursor]='#000000'
   [light,blink]='fg=#000000,bg=#bababa'
-  [light,palette]="#bababa #f13714 #58971c #bb7f04 #336bb6 #924f9e #28c78e #494949 "
-  [light,palette]+="#8b8b8b #9c230d #3a6610 #8b620f #194b8e #5e3166 #0f704d #282828"
+  [light,palette1]="#bababa #f13714 #58971c #bb7f04 #336bb6 #924f9e #28c78e #494949"
+  [light,palette2]="#8b8b8b #9c230d #3a6610 #8b620f #194b8e #5e3166 #0f704d #282828"
 )
 
 set_style() {
@@ -57,7 +57,7 @@ set_style() {
   tmux set -g pane-active-border-style "${theme[$1,active_border]}"
   tmux set -g mode-style "${theme[$1,mode]}"
   # tmux set -g cursor-colour "${theme[$1,cursor]}"
-  tmux set -g pane-colours "${theme[$1,palette]}"
+  tmux set -g pane-colours "${theme[$1,palette1]} ${theme[$1,palette2]}"
 
   tmux set -g set-titles on
   tmux set -g set-titles-string "[#S] #W"
