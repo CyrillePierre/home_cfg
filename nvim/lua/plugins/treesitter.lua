@@ -41,4 +41,16 @@ return {
     end,
     event = 'VeryLazy',
   },
+
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {
+      enable = true,
+      line_numbers = true,
+      mode = 'cursor',
+      max_lines = 6,
+    },
+    event = 'VeryLazy',
+    dependencies = {'nvim-treesitter/nvim-treesitter'},
+  },
 }
