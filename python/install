@@ -5,3 +5,4 @@ source ../common.sh
 install_config pycodestyle .config/pycodestyle
 install_config yapf .config/yapf
 install_config ruff.toml .ruff.toml
+install_config ruff.toml .config/ruff/pyproject.toml

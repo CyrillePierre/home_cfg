@@ -2,7 +2,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-nerdfonts_url='https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1'
+nerdfonts_url='https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0'
 fonts_dir="$HOME/.local/share/fonts"
 
 mkdir -p "$fonts_dir"
