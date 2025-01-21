@@ -142,7 +142,7 @@ function InteractiveBwUnlock()
       end
 
       -- Close the floating window
-      vim.api.nvim_win_close(win, true)
+      -- vim.api.nvim_win_close(win, true)
     end,
   })
 end

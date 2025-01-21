@@ -7,7 +7,13 @@ return {
 		},
 		config = function()
 			require('fzf-lua').setup{
-				winopts = {width=.95, height=.9},
+				winopts = {
+          width = .95,
+          height = .9,
+          preview = {
+            horizontal = "right:40%",
+          },
+        },
 			}
 		end,
 		cmd = 'FzfLua',
