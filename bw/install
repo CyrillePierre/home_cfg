@@ -1,0 +1,15 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+mkdir -p $HOME/.config/clangd/
+
+install_bw() {
+  ${sudo_cmd} git clone --depth 1 https://github.com/junegunn/fzf.git "${install_dir}"
+  ${sudo_cmd} "${install_dir}/install" --bin
+  ${sudo_cmd} ln -sfr "${install_dir}/bin/fzf" "${bin_link}"
+}
+
+if [[ ! "$CONFIG_ONLY" ]] && ! which bw >/dev/null ; then
+  install_bw
+fi
