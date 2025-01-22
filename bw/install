@@ -5,6 +5,18 @@ source ../common.sh
 mkdir -p $HOME/.config/clangd/
 
 install_bw() {
+  pushd /tmp >/dev/null
+
+  curl -Lo bw.zip 'https://vault.bitwarden.com/download/?app=cli&platform=linux'
+  unzip bw.zip
+
+  if [[ "$INSTALL_WITH_SUDO" ]] ; then
+    sudo install bw -D -t '/usr/local/bin'
+  else
+    install bw -D -t "$HOME/.local/bin"
+  fi
+
+  popd >/dev/null
 }
 
 if [[ ! "$CONFIG_ONLY" ]] && ! which bw >/dev/null ; then

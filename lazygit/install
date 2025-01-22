@@ -25,6 +25,7 @@ update_lazygit() {
   else
     install lazygit -D -t "$HOME/.local/bin"
   fi
+  popd >/dev/null
 }
 
 if [[ ! "$CONFIG_ONLY" ]] ; then
