@@ -26,6 +26,11 @@ local on_attach = function(client, bufnr)
   nmap('<leader>gN', vim.diagnostic.goto_prev, 'Previous diagnostic')
   nmap('<leader>ss', vim.cmd.ClangdSwitchSourceHeader, 'Switch source/header')
 
+  nmap('<leader>gf', function()
+    vim.diagnostic.goto_next()
+    vim.lsp.buf.code_action()
+  end, 'Code action')
+
   vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', {silent = false})
   vim.keymap.set('n', '<leader>ls', ':LspStop<CR>', {silent = false})
 

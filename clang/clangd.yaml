@@ -23,4 +23,6 @@ Diagnostics:
       - readability-implicit-bool-conversion
       - readability-redundant-access-specifiers
       - readability-math-missing-parentheses
+      - readability-magic-numbers
+      - readability-function-cognitive-complexity
       - cppcoreguidelines-avoid-magic-numbers
