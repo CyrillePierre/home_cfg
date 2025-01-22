@@ -42,6 +42,11 @@ generate_backup_dir() {
   echo "backup dir: $BACKUP_DIR"
 }
 
+github_release_version() {
+  repo="$1"
+  curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name'
+}
+
 options=$(getopt -o hb:cs -l help,backup-dir:,sudo,config-only -n "$0" -- "$@")
 eval set -- "$options"
 

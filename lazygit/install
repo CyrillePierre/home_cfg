@@ -2,4 +2,33 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+update_lazygit() {
+  if which fzf >/dev/null ; then
+    current_version=$(lazygit --version | tr , '\n' | sed -n '/^\sversion/s,.*=,v,p')
+  fi
+
+  repo='jesseduffield/lazygit'
+  last_version=$(github_release_version "$repo")
+
+  if [[ "$current_version" == "$last_version" ]] ; then
+    return
+  fi
+  
+  echo "  download lazygit ${last_version}..."
+  pushd /tmp >/dev/null
+  name="${last_version}/lazygit_${last_version#v}_Linux_x86_64.tar.gz"
+  curl -Lo lazygit.tar.gz "https://github.com/${repo}/releases/download/${name}"
+  tar xf lazygit.tar.gz
+
+  if [[ "$INSTALL_WITH_SUDO" ]] ; then
+    sudo install lazygit -D -t '/usr/local/bin'
+  else
+    install lazygit -D -t "$HOME/.local/bin"
+  fi
+}
+
+if [[ ! "$CONFIG_ONLY" ]] ; then
+  update_lazygit
+fi
+
 install_config config.yml .config/lazygit/config.yml
