@@ -16,5 +16,9 @@ if [[ ! "$CONFIG_ONLY" ]] ; then
     if ! which rg >/dev/null ; then
       sudo apt-get install -y ripgrep
     fi
+
+    if ! which jq >/dev/null ; then
+      sudo apt-get install -y jq
+    fi
   fi
 fi

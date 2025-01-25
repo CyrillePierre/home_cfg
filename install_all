@@ -9,6 +9,7 @@ install() {
   "${dir}/install" -b "$BACKUP_DIR" "${ARGS[@]}"
 }
 
+install tools
 install alacritty
 install cargo
 install clang
@@ -22,7 +23,6 @@ install python
 install rofi
 install terminator
 install tmux
-install tools
 install vim
 install zsh
 install profile
