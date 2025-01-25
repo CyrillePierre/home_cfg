@@ -3,7 +3,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
 update_lazygit() {
-  if which fzf >/dev/null ; then
+  if which lazygit >/dev/null ; then
     current_version=$(lazygit --version | tr , '\n' | sed -n '/^\sversion/s,.*=,v,p')
   fi
 
