@@ -1,9 +1,11 @@
 #!/bin/bash
 
 declare -A theme=(
-  [dark,window]='fg=#f7ba75,bg=#191919'
-  [dark,border]='fg=#807688,bg=#191919'
-  [dark,active_border]='fg=#807688,bg=#191919'
+  [dark,bg]='#191919'
+  [dark,ssh_bg]='#181f1e'
+  [dark,window_fg]='#f4ba78'
+  [dark,border_fg]='#807688'
+  [dark,active_border_fg]='#807688'
   [dark,status_theme]='moon'
   [dark,status_bg]='#3b2956'
   [dark,status_bg_inactive]='#565263'
@@ -13,9 +15,11 @@ declare -A theme=(
   [dark,palette1]="#535353 #f24b2c #67b121 #e3bf1a #4e85ce #a868b3 #48dfa9 #b6b0aa"
   [dark,palette2]="#7e7e7e #f8887b #93d76f #f6e16b #8caada #cfa2ca #a5f2d4 #fcfcfc"
 
-  [light,window]='fg=#000000,bg=#ffffff'
-  [light,border]='fg=#807688,bg=#ffffff'
-  [light,active_border]='fg=#807688,bg=#ffffff'
+  [light,bg]='#ffffff'
+  [light,ssh_bg]='#f2f2e2'
+  [light,window_fg]='#000000'
+  [light,border_fg]='#807688'
+  [light,active_border_fg]='#807688'
   [light,status_theme]='dawn'
   [light,status_bg]='#ebe5fb'
   [light,status_bg_inactive]='#b4b0c0'
@@ -27,7 +31,12 @@ declare -A theme=(
 )
 
 set_style() {
-  tmux set -g @ese_window_style ${theme[$1,window]}
+  # If the tmux session is started on ssh, it uses a different background
+  [[ "$SSH_CLIENT" ]] && theme[$1,bg]="${theme[$1,ssh_bg]}"
+
+  tmux set -g @theme "$1"
+
+  tmux set -g @ese_window_style "fg=${theme[$1,window_fg]},bg=${theme[$1,bg]}"
   tmux set -g @ese_blink_style ${theme[$1,blink]}
   tmux set -g @ese_status_style_inactive "bg=${theme[$1,status_bg_inactive]}"
 
@@ -52,9 +61,9 @@ set_style() {
 
   tmux run '~/.config/tmux/plugins/tmux/rose-pine.tmux'
 
-  tmux set -g window-style "${theme[$1,window]}"
-  tmux set -g pane-border-style "${theme[$1,border]}"
-  tmux set -g pane-active-border-style "${theme[$1,active_border]}"
+  tmux set -g window-style "fg=${theme[$1,window_fg]},bg=${theme[$1,bg]}"
+  tmux set -g pane-border-style "fg=${theme[$1,border_fg]},bg=${theme[$1,bg]}"
+  tmux set -g pane-active-border-style "fg=${theme[$1,active_border_fg]},bg=${theme[$1,bg]}"
   tmux set -g mode-style "${theme[$1,mode]}"
   # tmux set -g cursor-colour "${theme[$1,cursor]}"
   tmux set -g pane-colours "${theme[$1,palette1]} ${theme[$1,palette2]}"
@@ -79,13 +88,14 @@ case $1 in
     set_style light
     ;;
   *)
-  case $(tmux show -Av window-style) in
-    ${theme[dark,window]}|'default')
+  # if theme is not specified, toggle the current one
+  window_style=$(tmux show -Av window-style)
+  cur_theme=$(tmux show -gv @theme)
+
+  if [[ "$window_style" == 'default' ]] || [[ "$cur_theme" == 'dark' ]] ; then
       set_style light
-      ;;
-    *)
+  else
       set_style dark
-      ;;
-  esac
+  fi
   ;;
 esac
