@@ -2,4 +2,9 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] ; then
+  which gdb >/dev/null || sudo apt-get -y install gdb
+  which gdbserver >/dev/null || sudo apt-get -y install gdbserver
+fi
+
 install_config gdbinit .gdbinit
