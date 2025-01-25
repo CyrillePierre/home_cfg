@@ -10,20 +10,22 @@ install() {
 }
 
 install tools
-install alacritty
 install cargo
 install clang
-install fonts
 install fzf
 install gdb
 install git
-install kitty
 install nvim
 install python
-install rofi
-install terminator
 install tmux
 install vim
 install zsh
 install profile
 install lazygit
+
+# GUI
+install fonts
+install alacritty
+install terminator
+install kitty
+install rofi
