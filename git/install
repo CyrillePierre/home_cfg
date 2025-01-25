@@ -6,19 +6,28 @@ version() {
   echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'
 }
 
-check_delta_version() {
-  if ! which delta >/dev/null ; then
-    return 1
+update_delta() {
+  if [[ ! "$INSTALL_WITH_SUDO" ]] ; then
+    return
   fi
 
-  target=0.17.0
-  current=$(delta --version | cut -d' ' -f2)
-  [[ $(version $current) -ge $(version $target) ]]
+  if which delta >/dev/null ; then
+    current_version=$(delta --version | cut -d' ' -f2)
+  fi
+
+  repo='dandavison/delta'
+  last_version=$(github_release_version "$repo")
+
+  if [[ "$current_version" != "$last_version" ]] ; then
+    echo "  download delta ${last_version}..."
+    name="${last_version}/git-delta-musl_${last_version}_amd64.deb"
+    wget -O/tmp/git-delta.deb "https://github.com/${repo}/releases/download/${name}"
+    sudo dpkg -i /tmp/git-delta.deb
+  fi
 }
 
 install_config gitconfig .gitconfig
 
-if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! check_delta_version ; then
-  wget -O/tmp/git-delta.deb 'https://github.com/dandavison/delta/releases/download/0.17.0/git-delta-musl_0.17.0_amd64.deb'
-  sudo dpkg -i /tmp/git-delta.deb
+if [[ ! "$CONFIG_ONLY" ]] ; then
+  update_delta
 fi
