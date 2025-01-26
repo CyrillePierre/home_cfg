@@ -10,4 +10,18 @@ return {
 		cmd = {'ToggleTerm', 'ToggleTermSendCurrentLine', 'ToggleTermSendVisualLines'},
 		config = true,
 	},
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      indent = {
+        char = "│",
+      },
+      scope = {
+        enabled = false,
+      },
+    },
+    event = 'VeryLazy',
+  }
 }
