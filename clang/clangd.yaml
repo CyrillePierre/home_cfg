@@ -26,3 +26,4 @@ Diagnostics:
       - readability-magic-numbers
       - readability-function-cognitive-complexity
       - cppcoreguidelines-avoid-magic-numbers
+      - cppcoreguidelines-non-private-member-variables-in-classes
