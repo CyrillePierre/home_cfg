@@ -1,0 +1,3 @@
+#!/bin/bash
+xfconf-query -c xfce4-notifyd -np /do-not-disturb -t bool -s true
+xfconf-query -c xfce4-notifyd -p /do-not-disturb -s false

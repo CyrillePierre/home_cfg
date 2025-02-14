@@ -1,0 +1,5 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+install_config clear_notifications .local/bin/clear_notifications

@@ -14,7 +14,7 @@ Host unitree
     User     unitree
     Hostname 192.168.12.1
 
-Host POM4x4 POMbasic Adap2e01 Adap2e02 Ceol ceol pom4x4 pombasic adap2e01 adap2e02 robufast Robufast
+Host POM4x4 POMbasic Adap2e01 Adap2e02 Ceol ceol pom4x4 pombasic adap2e01 adap2e02 robufast Robufast 192.168.42.*
     ForwardX11 yes
 
 Host oldpc
@@ -24,3 +24,13 @@ Host oldpc
 Host vm_superrob
     User     cyrille
     Hostname 147.100.164.214
+
+Host mesoext
+  User cypierre
+  Hostname ext.mesocentre.uca.fr
+  IdentityFile ~/.ssh/id_ed25519
+
+Host meso
+  User cypierre
+  Hostname hpc2.mesocentre.uca.fr
+  ProxyJump mesoext
