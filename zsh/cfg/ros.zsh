@@ -18,14 +18,12 @@ source_tiara2() {
   export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 }
 
-source_romea2() {
+source_ros2() {
   unset ROS_DISTRO
-  source /usr/share/gazebo/setup.sh
-  source /opt/ros/galactic/setup.zsh
-  source ~/projects/ros/romea_ros2/install/local_setup.zsh
+  source /opt/ros/jazzy/setup.zsh
+  source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
   source /usr/share/colcon_cd/function/colcon_cd.sh
-  eval "$(register-python-argcomplete3 ros2)"
-  eval "$(register-python-argcomplete3 colcon)"
+  source /usr/share/colcon_cd/function/colcon_cd-argcomplete.zsh
   export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity}] {name}: {message}"
 }
 

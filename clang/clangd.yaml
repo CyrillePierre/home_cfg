@@ -27,3 +27,4 @@ Diagnostics:
       - readability-function-cognitive-complexity
       - cppcoreguidelines-avoid-magic-numbers
       - cppcoreguidelines-non-private-member-variables-in-classes
+      - bugprone-easily-swappable-parameters

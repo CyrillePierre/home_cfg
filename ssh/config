@@ -26,11 +26,14 @@ Host vm_superrob
     Hostname 147.100.164.214
 
 Host mesoext
-  User cypierre
-  Hostname ext.mesocentre.uca.fr
-  IdentityFile ~/.ssh/id_ed25519
+    User cypierre
+    Hostname ext.mesocentre.uca.fr
+    IdentityFile ~/.ssh/id_ed25519
 
 Host meso
-  User cypierre
-  Hostname hpc2.mesocentre.uca.fr
-  ProxyJump mesoext
+    User cypierre
+    Hostname hpc2.mesocentre.uca.fr
+    ProxyJump mesoext
+
+Host eseris.fr old.eseris.fr
+    ForwardX11 yes
