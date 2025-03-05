@@ -5,7 +5,6 @@ source ../common.sh
 mkdir -p "$HOME/.zsh/completion"
 
 zsh_config_dir='.zsh'
-docker_completion_file="${zsh_config_dir}/completion/_docker"
 
 install_config zshrc .zshrc
 install_config zshenv .zshenv
@@ -26,8 +25,4 @@ if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] ; then
     sudo apt update -y
     sudo apt-get install -y cfyzshprompt-git cfyzshprompt-battery cfyzshprompt-errno
   fi
-fi
-
-if which docker >/dev/null && [[ ! -r "${docker_completion_file}" ]] ; then
-  docker completion zsh >"${HOME}/${docker_completion_file}"
 fi

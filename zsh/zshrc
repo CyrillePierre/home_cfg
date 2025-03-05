@@ -9,10 +9,11 @@ fpath=(~/.zsh/completion $fpath)
 
 autoload -Uz compinit
 # compinit -i
-if [ "$(find ~/.zcompdump -mtime 1)" ] ; then
-    compinit
+if [ "$(find ~/.zcompdump -mtime +1)" ] ; then
+  compinit
+else
+  compinit -C
 fi
-compinit -C
 
 # End of lines added by compinstall
 
