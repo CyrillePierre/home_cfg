@@ -23,6 +23,7 @@
   cam = commit -am
   c = commit
   pf = push --force-with-lease
+  ff = merge --ff-only
 
 [credential]
   helper = store
