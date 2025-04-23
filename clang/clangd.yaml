@@ -28,3 +28,4 @@ Diagnostics:
       - cppcoreguidelines-avoid-magic-numbers
       - cppcoreguidelines-non-private-member-variables-in-classes
       - bugprone-easily-swappable-parameters
+      - performance-avoid-endl

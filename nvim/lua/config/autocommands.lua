@@ -4,11 +4,11 @@ vim.api.nvim_create_autocmd({'BufReadPre'}, {
 	group = init_lua,
 	command = 'if getfsize(expand("<afile>")) | set noswapfile | endif',
 })
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-	pattern = '*',
-	group = init_lua,
-	command = 'CccHighlighterEnable',
-})
+-- vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+-- 	pattern = '*',
+-- 	group = init_lua,
+-- 	command = 'CccHighlighterEnable',
+-- })
 vim.api.nvim_create_autocmd({'TermOpen'}, {
 	pattern = '*',
 	group = init_lua,

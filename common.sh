@@ -57,7 +57,7 @@ CONFIG_ONLY=
 
 while true ; do
   case "$1" in
-    -h ) print_help ;;
+    -h | --help ) print_help ;;
     -b | --backup-dir ) BACKUP_DIR=$2 ; shift 2 ;;
     -s | --sudo ) INSTALL_WITH_SUDO=1 ; shift ;;
     -c | --config-only ) CONFIG_ONLY=1 ; shift ;;

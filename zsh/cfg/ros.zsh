@@ -43,3 +43,6 @@ source_tirrex() {
 
 alias ccd="colcon_cd"
 alias ccb="colcon build --symlink-install"
+
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces><NetworkInterface name="lo" multicast="true"/></Interfaces></General><Discovery><ParticipantIndex>none</ParticipantIndex></Discovery></Domain></CycloneDDS><Gen><Allow>spdp</Allow></Gen>'
