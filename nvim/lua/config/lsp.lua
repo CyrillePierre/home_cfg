@@ -17,6 +17,7 @@ local on_attach = function(client, bufnr)
   nmap('<leader>gs', vim.lsp.buf.document_symbol, 'Document symbols')
   nmap('<leader>gr', vim.lsp.buf.references, 'List references')
   nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
+  nmap('<leader>=', vim.lsp.buf.format, 'Format')
 
   nmap('<leader>g<space>', vim.lsp.buf.code_action, 'Code action')
 
