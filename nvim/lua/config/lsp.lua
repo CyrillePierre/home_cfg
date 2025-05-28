@@ -32,8 +32,8 @@ local on_attach = function(client, bufnr)
     vim.lsp.buf.code_action()
   end, 'Code action')
 
-  vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', {silent = false})
-  vim.keymap.set('n', '<leader>ls', ':LspStop<CR>', {silent = false})
+  vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', { silent = false })
+  vim.keymap.set('n', '<leader>ls', ':LspStop<CR>', { silent = false })
 
   -- if client:supports_method("textDocument/signatureHelp") then
   --   require('lsp-overloads').setup(client, {
@@ -55,8 +55,8 @@ end
 
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("cfy.lsp", {}),
-	callback = on_attach,
+  group = vim.api.nvim_create_augroup("cfy.lsp", {}),
+  callback = on_attach,
 })
 
 require('mason').setup()
@@ -64,17 +64,17 @@ require('mason').setup()
 local servers = {
   bashls = {},
   clangd = {
-		cmd = {"clangd", "--clang-tidy"},
+    cmd = { "clangd", "--clang-tidy" },
   },
   -- cmake = {},
   dockerls = {},
   docker_compose_language_service = {},
   lua_ls = {
-		prefix = "Lua",
-		settings = {
-			workspace = {checkThirdParty = false},
-			telemetry = {enable = false},
-		},
+    prefix = "Lua",
+    settings = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
   },
   pyright = {
     settings = {
@@ -88,15 +88,15 @@ local servers = {
       },
     },
   },
-	-- pylsp = {
-	-- 	settings = {
-	-- 		plugins = {
-	-- 			pycodestyle = {
-	-- 				ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
-	-- 			}
-	-- 		}
-	-- 	}
-	-- },
+  -- pylsp = {
+  -- 	settings = {
+  -- 		plugins = {
+  -- 			pycodestyle = {
+  -- 				ignore = {'E221', 'E226', 'E251', 'E266', 'W191'}
+  -- 			}
+  -- 		}
+  -- 	}
+  -- },
   -- texlab = {},
   -- rust_analyzer = {
   --   prefix = 'rust-analyzer',
@@ -118,7 +118,7 @@ local servers = {
   --   }
   -- },
   -- ltex = {
-		-- autostart = false,
+  -- autostart = false,
   --   settings = {
   --     additionalRules = {
   --       enablePickyRules = true,
@@ -128,8 +128,15 @@ local servers = {
   -- },
 }
 
+vim.diagnostic.config({
+  virtual_text = { severity = { max = vim.diagnostic.severity.WARN } },
+  virtual_lines = { severity = { min = vim.diagnostic.severity.ERROR } },
+  underline = true,
+  update_in_insert = false,
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local mason_lspconfig = require('mason-lspconfig')
 mason_lspconfig.setup {
@@ -158,79 +165,79 @@ mason_lspconfig.setup {
 -- }
 
 for server, config in pairs(servers) do
-	local prefix = server.prefix or server
-	local autostart = true
-	if config.autostart ~= nil then
-		autostart = config.autostart
-	end
-	vim.lsp.config(server, {
-		autostart = autostart,
-		capabilities = capabilities,
-		settings = {[prefix] = config.settings}
-	})
-	vim.lsp.enable(server)
+  local prefix = server.prefix or server
+  local autostart = true
+  if config.autostart ~= nil then
+    autostart = config.autostart
+  end
+  vim.lsp.config(server, {
+    autostart = autostart,
+    capabilities = capabilities,
+    settings = { [prefix] = config.settings }
+  })
+  vim.lsp.enable(server)
 end
 
-local cmp = require('cmp')
-local luasnip = require('luasnip')
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup{}
+-- local cmp = require('cmp')
+-- local luasnip = require('luasnip')
+-- require('luasnip.loaders.from_vscode').lazy_load()
+-- luasnip.config.setup{}
+--
+-- cmp.setup{
+--   snippet = {
+--     expand = function(args)
+--       luasnip.lsp_expand(args.body)
+--     end,
+--   },
+--   completion = {
+--     completeopt = 'menu,menuone,noinsert',
+--   },
+--   mapping = cmp.mapping.preset.insert {
+--     ['<down>'] = cmp.mapping.select_next_item(),
+--     ['<up>'] = cmp.mapping.select_prev_item(),
+--     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+--     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--     ['<C-Space>'] = cmp.mapping.complete{},
+--     ['<CR>'] = cmp.mapping.confirm{
+--       behavior = cmp.ConfirmBehavior.Insert,
+--       select = true,
+--     },
+--     ['<Tab>'] = cmp.mapping(function(fallback)
+--       if cmp.visible() then
+--         cmp.select_next_item()
+--       elseif luasnip.expand_or_locally_jumpable() then
+--         luasnip.expand_or_jump()
+--       else
+--         fallback()
+--       end
+--     end, { 'i', 's' }),
+--     ['<S-Tab>'] = cmp.mapping(function(fallback)
+--       if cmp.visible() then
+--         cmp.select_prev_item()
+--       elseif luasnip.locally_jumpable(-1) then
+--         luasnip.jump(-1)
+--       else
+--         fallback()
+--       end
+--     end, { 'i', 's' }),
+--   },
+--   sources = {
+--     {name = 'nvim_lsp'},
+--     {name = 'luasnip'},
+--     {name = 'path'},
+--   },
+--   window = {
+--     documentation = {
+--       max_height = 10,
+--     },
+--   },
+--   view = {
+--     docs = {
+--       auto_open = false
+--     },
+--   },
+-- }
 
-cmp.setup{
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<down>'] = cmp.mapping.select_next_item(),
-    ['<up>'] = cmp.mapping.select_prev_item(),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete{},
-    ['<CR>'] = cmp.mapping.confirm{
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    {name = 'nvim_lsp'},
-    {name = 'luasnip'},
-    {name = 'path'},
-  },
-  window = {
-    documentation = {
-      max_height = 10,
-    },
-  },
-  view = {
-    docs = {
-      auto_open = false
-    },
-  },
-}
-
-require('lint').linters_by_ft = {
-  -- python = { 'ruff' }
-}
+-- require('lint').linters_by_ft = {
+--   -- python = { 'ruff' }
+-- }
