@@ -2,10 +2,21 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-install_nvim() {
-  pushd /tmp >/dev/null
+update_nvim() {
+  if which nvim >/dev/null ; then
+    current_version=$(nvim --version | head -1 | cut -d' ' -f2)
+  fi
 
-  curl -LO 'https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz'
+  repo='neovim/neovim'
+  last_version=$(github_release_version "$repo")
+
+  if [[ "$current_version" == "$last_version" ]] ; then
+    return
+  fi
+  
+  echo "  download neovim ${last_version}..."
+  pushd /tmp >/dev/null
+  curl -Lo nvim.tar.gz "https://github.com/${repo}/releases/latest/download/nvim-linux-x86_64.tar.gz"
   
   if [[ "$INSTALL_WITH_SUDO" ]] ; then
 	  # Install recent version of node for mason
@@ -13,15 +24,17 @@ install_nvim() {
     sudo apt-get install -y nodejs unzip xclip python3-venv
 
     sudo rm -rf /opt/nvim
-    sudo tar -C /opt -xzf nvim-linux64.tar.gz
-    sudo update-alternatives --install /usr/local/bin/nvim nvim /opt/nvim-linux64/bin/nvim 10
+    sudo tar -C /opt -xzf nvim.tar.gz
+    sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+    sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/vi
   else
     tar -C "${HOME}/share" -xzf nvim-linux64.tar.gz
     ln -sfr "${HOME}/share/nvim-linux64/bin/nvim" "${HOME}/.local/bin"
+    ln -sfr "${HOME}/share/nvim-linux64/bin/nvim" "${HOME}/.local/bin/vi"
     echo "nvim installed in ${HOME}/.local/bin"
   fi
 
-  rm nvim-linux64.tar.gz
+  rm nvim.tar.gz
   popd >/dev/null
 }
 
@@ -32,8 +45,8 @@ if ! python3 -c 'import venv' ; then
   sudo apt-get install -y python3-venv
 fi
 
-if [[ ! "$CONFIG_ONLY" ]] && ! which nvim >/dev/null ; then
-  install_nvim
+if [[ ! "$CONFIG_ONLY" ]] ; then
+  update_nvim
 fi
 
 install_config after .config/nvim/after

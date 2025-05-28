@@ -35,23 +35,29 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', {silent = false})
   vim.keymap.set('n', '<leader>ls', ':LspStop<CR>', {silent = false})
 
-  if client.server_capabilities.signatureHelpProvider then
-    require('lsp-overloads').setup(client, {
-      ui = {
-        max_height = 12,
-        max_width = 85,
-        offset_y = 0,
-        close_events = { "CursorMoved", "BufHidden", "InsertLeave", "InsertCharPre" },
-      },
-      keymaps = {
-        next_signature = '<down>',
-        previous_signature = '<up>',
-      }
-    })
-    -- issue: seems to break :ClangdSwitchSourceHeader (?)
-    -- vim.api.nvim_set_keymap('n', '<A-s>', ':LspOverloadsSignature<CR>', { noremap = true, silent = true, buffer = bufnr })
-  end
+  -- if client:supports_method("textDocument/signatureHelp") then
+  --   require('lsp-overloads').setup(client, {
+  --     ui = {
+  --       max_height = 12,
+  --       max_width = 85,
+  --       offset_y = 0,
+  --       close_events = { "CursorMoved", "BufHidden", "InsertLeave", "InsertCharPre" },
+  --     },
+  --     keymaps = {
+  --       next_signature = '<down>',
+  --       previous_signature = '<up>',
+  --     }
+  --   })
+  --   -- issue: seems to break :ClangdSwitchSourceHeader (?)
+  --   -- vim.api.nvim_set_keymap('n', '<A-s>', ':LspOverloadsSignature<CR>', { noremap = true, silent = true, buffer = bufnr })
+  -- end
 end
+
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("cfy.lsp", {}),
+	callback = on_attach,
+})
 
 require('mason').setup()
 
@@ -128,27 +134,42 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local mason_lspconfig = require('mason-lspconfig')
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
+  automatic_enable = false,
 }
-mason_lspconfig.setup_handlers {
-	function(server_name)
-		local server = servers[server_name] or {}
-		local prefix = server.prefix or server_name
-		local autostart = true
+-- mason_lspconfig.setup_handlers {
+-- 	function(server_name)
+-- 		local server = servers[server_name] or {}
+-- 		local prefix = server.prefix or server_name
+-- 		local autostart = true
+--
+-- 		if server.autostart ~= nil then
+-- 			autostart = server.autostart
+-- 		end
+--
+-- 		require('lspconfig')[server_name].setup {
+-- 			cmd = server.cmd,
+-- 			autostart = autostart,
+-- 			capabilities = capabilities,
+-- 			on_attach = on_attach,
+-- 			settings = {[prefix] = server.settings},
+-- 			filetypes = server.filetypes,
+-- 		}
+-- 	end,
+-- }
 
-		if server.autostart ~= nil then
-			autostart = server.autostart
-		end
-
-		require('lspconfig')[server_name].setup {
-			cmd = server.cmd,
-			autostart = autostart,
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {[prefix] = server.settings},
-			filetypes = server.filetypes,
-		}
-	end,
-}
+for server, config in pairs(servers) do
+	local prefix = server.prefix or server
+	local autostart = true
+	if config.autostart ~= nil then
+		autostart = config.autostart
+	end
+	vim.lsp.config(server, {
+		autostart = autostart,
+		capabilities = capabilities,
+		settings = {[prefix] = config.settings}
+	})
+	vim.lsp.enable(server)
+end
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
