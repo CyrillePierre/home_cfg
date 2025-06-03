@@ -114,13 +114,14 @@ return {
       require('conform').setup {
         formatters_by_ft = {
           lua = { "stylua" },
-          python = { "ruff" },
+          python = { "ruff_format" },
           cpp = { "clangformat" },
           c = { "clangformat" },
           rust = { "rustfmt" },
           xml = { "xmlformatter" },
-          yaml = { "prettierd" },
+          yaml = { "prettier" },
         },
+        -- log_level = vim.log.levels.DEBUG,
       }
 
       vim.api.nvim_create_user_command("Format", function(args)

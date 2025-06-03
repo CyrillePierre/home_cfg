@@ -85,3 +85,6 @@ vim.keymap.set('n', '<leader>t', vim.cmd.ToggleTerm, {silent = true})
 -- vim.keymap.set('n', '<leader>=', ':Format<CR>')
 vim.keymap.set('n', '<leader>cp', ':CccPick<CR>', {silent = true})
 vim.keymap.set('n', '<leader>cc', ':CccHighlighterToggle<CR>', {silent = true})
+
+vim.keymap.set('n', '<leader>=', ':Format<CR>', {silent = true})
+vim.keymap.set('v', '<leader>=', ':Format<CR>', {silent = true})
