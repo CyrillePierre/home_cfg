@@ -1,0 +1,24 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+update_zellij() {
+  if which zellij >/dev/null ; then
+    current_version=v$(zellij --version | cut -d' ' -f2)
+  fi
+
+  repo='zellij-org/zellij'
+  last_version=$(github_release_version "$repo")
+
+  if [[ "$current_version" == "$last_version" ]] ; then
+    return
+  fi
+  
+  cargo binstall zellij
+}
+
+if [[ ! "$CONFIG_ONLY" ]] ; then
+  update_zellij 
+fi
+
+install_config config.kdl .config/zellij/config.kdl

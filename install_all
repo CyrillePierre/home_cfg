@@ -23,6 +23,7 @@ install zsh
 install profile
 install lazygit
 install scripts
+install zellij
 
 # GUI
 install fonts
