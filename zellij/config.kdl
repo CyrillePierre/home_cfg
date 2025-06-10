@@ -275,7 +275,7 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-// theme "dracula"
+theme "atelier-sulphurpool"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -328,7 +328,7 @@ pane_frames false
 // (Requires restart)
 // Default: false
 // 
-// mirror_session true
+mirror_session false
  
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 // eg. when terminal window with an active zellij session is closed
@@ -367,7 +367,7 @@ pane_frames false
 //   - system (default)
 //   - primary
 // 
-// copy_clipboard "primary"
+copy_clipboard "primary"
  
 // Enable automatic copying (and clearing) of selection when releasing mouse
 // Default: true
@@ -376,7 +376,7 @@ pane_frames false
  
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "/usr/local/bin/nvim"
  
 // A fixed name to always give the Zellij session.
 // Consider also setting `attach_to_session true,`
@@ -396,7 +396,7 @@ pane_frames false
 //   - true (default)
 //   - false
 // 
-// auto_layout false
+auto_layout false
  
 // Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
 // Options:
@@ -427,7 +427,7 @@ pane_frames false
  
 // How often in seconds sessions are serialized
 // 
-// serialization_interval 10000
+serialization_interval 900
  
 // Enable or disable writing of session metadata to disk (if disabled, other sessions might not know
 // metadata info on this session)
