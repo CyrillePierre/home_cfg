@@ -30,4 +30,5 @@ install fonts
 install alacritty
 install terminator
 install kitty
+install wezterm
 install rofi
