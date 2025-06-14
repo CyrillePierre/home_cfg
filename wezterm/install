@@ -21,3 +21,5 @@ if [[ ! "$CONFIG_ONLY" ]] && ! which wezterm >/dev/null ; then
 fi
 
 install_config wezterm.lua .config/wezterm/wezterm.lua
+install_config themes.lua .config/wezterm/themes.lua
+install_config colors .config/wezterm/colors

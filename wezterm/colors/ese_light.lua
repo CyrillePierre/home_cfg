@@ -1,0 +1,31 @@
+return {
+  background = '#ffffff',
+  foreground = '#000000',
+
+  cursor_bg = '#000000',
+  cursor_border = '#000000',
+  cursor_fg = '#ffffff',
+  selection_bg = '#d4d0da',
+  selection_fg = '#402b13',
+
+  ansi = {
+    '#bababa',
+    '#f13714',
+    '#58971c',
+    '#bb7f04',
+    '#336bb6',
+    '#924f9e',
+    '#28c78e',
+    '#494949',
+  },
+  brights = {
+    '#8b8b8b',
+    '#9c230d',
+    '#3a6610',
+    '#8b620f',
+    '#194b8e',
+    '#5e3166',
+    '#0f704d',
+    '#282828',
+  },
+}
