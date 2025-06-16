@@ -1,6 +1,6 @@
-local wezterm = require('wezterm')
-local themes = require('themes')
+require('events')
 
+local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 config.font = wezterm.font {
@@ -15,11 +15,13 @@ config.line_height = 1.1
 config.initial_cols = 90
 config.initial_rows = 24
 config.audible_bell = 'Disabled'
-config.bold_brightens_ansi_colors = true
 config.window_decorations = 'NONE'
+config.term = 'xterm-direct' -- value 'wezterm' does not work with tmux
+config.bold_brightens_ansi_colors = true
 config.hide_tab_bar_if_only_one_tab = true
 config.enable_scroll_bar = false
-config.term = 'xterm-direct' -- value 'wezterm' does not work with tmux
+
+config.color_scheme = 'ese_dark'
 
 -- config.default_prog = { 'tmux' }
 
@@ -41,6 +43,12 @@ config.window_padding = {
   bottom = '0px',
 }
 
-themes.apply_for_config(config)
+config.keys = {
+  {
+    key = 'p',
+    mods = 'ALT',
+    action = wezterm.action.EmitEvent('toggle_light'),
+  }
+}
 
 return config
