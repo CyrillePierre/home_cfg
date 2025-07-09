@@ -25,6 +25,7 @@ Diagnostics:
       - readability-math-missing-parentheses
       - readability-magic-numbers
       - readability-function-cognitive-complexity
+      - cppcoreguidelines-avoid-do-while
       - cppcoreguidelines-avoid-magic-numbers
       - cppcoreguidelines-non-private-member-variables-in-classes
       - bugprone-easily-swappable-parameters
