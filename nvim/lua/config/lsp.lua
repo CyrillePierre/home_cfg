@@ -97,25 +97,25 @@ local servers = {
   -- 	}
   -- },
   -- texlab = {},
-  -- rust_analyzer = {
-  --   prefix = 'rust-analyzer',
-  --   settings = {
-  --     imports = {
-  --       granularity = {
-  --         group = "module",
-  --       },
-  --       prefix = "self",
-  --     },
-  --     cargo = {
-  --       buildScripts = {
-  --         enable = true,
-  --       },
-  --     },
-  --     procMacro = {
-  --       enable = true
-  --     },
-  --   }
-  -- },
+  rust_analyzer = {
+    prefix = 'rust-analyzer',
+    settings = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true
+      },
+    }
+  },
   -- ltex = {
   -- autostart = false,
   --   settings = {
@@ -128,13 +128,15 @@ local servers = {
 }
 
 vim.diagnostic.config({
-  virtual_text = { severity = { max = vim.diagnostic.severity.WARN } },
-  virtual_lines = { severity = { min = vim.diagnostic.severity.ERROR } },
+  -- virtual_text = { severity = { max = vim.diagnostic.severity.WARN } },
+  -- virtual_lines = { severity = { min = vim.diagnostic.severity.ERROR } },
+  virtual_text = true,
+  virtual_lines = false,
   underline = true,
   update_in_insert = false,
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local mason_lspconfig = require('mason-lspconfig')
@@ -171,7 +173,7 @@ for server, config in pairs(servers) do
   end
   vim.lsp.config(server, {
     autostart = autostart,
-    capabilities = capabilities,
+    capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities),
     settings = { [prefix] = config.settings }
   })
   vim.lsp.enable(server)

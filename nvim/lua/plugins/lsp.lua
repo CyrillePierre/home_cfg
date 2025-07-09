@@ -40,14 +40,21 @@ return {
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = 'enter' },
+      keymap = {
+        preset = 'enter',
+        ['<C-s>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      },
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'normal'
       },
       -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = false } },
+      completion = {
+        accept = { auto_brackets = { enabled = true }, },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        ghost_text = { enabled = false },
+      },
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
@@ -55,12 +62,13 @@ return {
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       signature = { enabled = true },
+
     },
     opts_extend = { "sources.default" },
   },
 
   {
-    "folke/neodev.nvim",
+    "folke/lazydev.nvim",
     event = "VeryLazy",
     config = true
   },
@@ -106,7 +114,7 @@ return {
   --     require('mason-formatter').setup()
   --   end,
   -- },
-  
+
   {
     'stevearc/conform.nvim',
     event = 'VeryLazy',

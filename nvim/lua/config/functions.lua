@@ -129,7 +129,7 @@ function InteractiveBwUnlock()
   local win = vim.api.nvim_open_win(buf, true, opts)
 
   -- Start the terminal in the buffer
-  vim.fn.termopen("bw unlock --raw", {
+  vim.fn.jobstart("bw unlock --raw", {
     on_exit = function(_, _, _)
       -- Get the output of the command
       local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
@@ -142,7 +142,8 @@ function InteractiveBwUnlock()
       end
 
       -- Close the floating window
-      -- vim.api.nvim_win_close(win, true)
+      vim.api.nvim_win_close(win, true)
     end,
+    term = true,
   })
 end
