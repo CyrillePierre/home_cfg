@@ -23,7 +23,7 @@ config.enable_scroll_bar = false
 
 config.color_scheme = 'ese_dark'
 
--- config.default_prog = { 'tmux' }
+config.default_prog = { 'tmux' }
 
 config.window_frame = {
   border_left_width = '1px',
@@ -44,11 +44,21 @@ config.window_padding = {
 }
 
 config.keys = {
+  -- {
+  --   key = 'p',
+  --   mods = 'ALT',
+  --   action = wezterm.action.EmitEvent('toggle_light'),
+  -- },
   {
-    key = 'p',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent('toggle_light'),
-  }
+    key = 'LeftArrow',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'RightArrow',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 return config
