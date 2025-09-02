@@ -3,7 +3,7 @@ return {
   'neovim/nvim-lspconfig',
   'williamboman/mason-lspconfig.nvim',
 
-  -- Autocompletion
+  -- Autocompletion (obsolete)
   -- {
   --   'hrsh7th/nvim-cmp',
   --   event = { 'InsertEnter', 'CmdlineEnter' },
@@ -19,7 +19,7 @@ return {
   --     'Issafalcon/lsp-overloads.nvim',
   --   },
   -- },
-  
+
   -- Autocompletion
   {
     'saghen/blink.cmp',
@@ -68,28 +68,32 @@ return {
   },
 
   {
+    -- properly configure lua LSP
     "folke/lazydev.nvim",
     event = "VeryLazy",
     config = true
   },
 
-  {
-    "zeioth/garbage-day.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-    event = "VeryLazy",
-    opts = {
-      grace_period = 10 * 60,  -- seconds
-      wakeup_delay = 2 * 1000, -- milliseconds
-      aggressive_mode = false,
-    }
-  },
+  -- {
+  --   -- stop and restart LSP when not used
+  --   "zeioth/garbage-day.nvim",
+  --   dependencies = "neovim/nvim-lspconfig",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     grace_period = 10 * 60,  -- seconds
+  --     wakeup_delay = 2 * 1000, -- milliseconds
+  --     aggressive_mode = false,
+  --   }
+  -- },
 
   -- {
+  --   -- An asynchronous linter plugin for Neovim complementary to LSP
   --   'mfussenegger/nvim-lint',
   --   event = 'VeryLazy',
   -- },
   --
   -- {
+  --   -- install autoimatically linter configured by nvim-lint
   --   'rshkarin/mason-nvim-lint',
   --   dependencies = { 'mfussenegger/nvim-lint' },
   --   event = 'VeryLazy',
