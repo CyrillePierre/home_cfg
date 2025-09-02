@@ -1,12 +1,9 @@
-Host *
-    ServerAliveInterval 40
-
 Host cube
     User     romea
     Hostname 10.63.64.48
     Port     22
 
-Host 192.168.0.*
+Host 192.168.0.* 192.168.13.1
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
 
@@ -14,7 +11,7 @@ Host unitree
     User     unitree
     Hostname 192.168.12.1
 
-Host POM4x4 POMbasic Adap2e01 Adap2e02 Ceol ceol pom4x4 pombasic adap2e01 adap2e02 robufast Robufast 192.168.42.*
+Host POM4x4 POMbasic Adap2e01 Adap2e02 Ceol ceol pom4x4 pombasic adap2e01 adap2e02 robufast Robufast 192.168.42.* 192.168.13.1 192.168.0.10
     ForwardX11 yes
 
 Host oldpc
@@ -35,5 +32,11 @@ Host meso
     Hostname hpc2.mesocentre.uca.fr
     ProxyJump mesoext
 
-Host eseris.fr old.eseris.fr
+Match host eseris.fr,old.eseris.fr !user git
     ForwardX11 yes
+
+Host *
+    ServerAliveInterval 40
+
+Host forge.inrae.fr
+    LogLevel error
