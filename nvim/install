@@ -38,6 +38,32 @@ update_nvim() {
   popd >/dev/null
 }
 
+make_install_nvim() {
+  src_dir="$HOME/share"
+
+  mkdir -p "$src_dir"
+  pushd $src_dir >/dev/null
+
+  # Install recent version of node for mason
+  curl -fsSL 'https://deb.nodesource.com/setup_23.x' | sudo bash
+  sudo apt-get install -y \
+    nodejs unzip xclip python3-venv \
+    ninja-build gettext cmake curl build-essential
+
+  if [[ ! -d "./tmux" ]] ; then
+    git clone --depth 1 -b stable "https://github.com/neovim/neovim"
+  else
+    git -C neovim pull
+  fi
+
+  pushd neovim >/dev/null
+  make -j CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make install
+
+  popd >/dev/null
+  popd >/dev/null
+}
+
 mkdir -p $HOME/.config/nvim/
 mkdir -p $HOME/.local/share/nvim/sessions
 
@@ -45,8 +71,13 @@ if ! python3 -c 'import venv' ; then
   sudo apt-get install -y python3-venv
 fi
 
-if [[ ! "$CONFIG_ONLY" ]] ; then
-  update_nvim
+# if [[ ! "$CONFIG_ONLY" ]] ; then
+#   update_nvim
+# fi
+set -x
+
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! which nvim >/dev/null ; then
+  make_install_nvim
 fi
 
 install_config after .config/nvim/after
