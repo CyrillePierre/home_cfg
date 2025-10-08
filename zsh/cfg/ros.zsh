@@ -21,9 +21,12 @@ source_tiara2() {
 source_ros2() {
   unset ROS_DISTRO
   source /opt/ros/jazzy/setup.zsh
-  source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
   source /usr/share/colcon_cd/function/colcon_cd.sh
   source /usr/share/colcon_cd/function/colcon_cd-argcomplete.zsh
+  source <(register-python-argcomplete ros2)
+  source <(register-python-argcomplete colcon)
+  export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+  export RCUTILS_COLORIZED_OUTPUT=1
   export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity}] {name}: {message}"
 }
 

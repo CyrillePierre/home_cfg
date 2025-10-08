@@ -59,6 +59,7 @@ make_install_nvim() {
   pushd neovim >/dev/null
   make -j CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
+  sudo ln -sfr /usr/local/bin/nvim /usr/local/bin/vi
 
   popd >/dev/null
   popd >/dev/null
