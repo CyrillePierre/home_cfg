@@ -4,3 +4,4 @@ source ../common.sh
 
 install_config clear_notifications .local/bin/clear_notifications
 install_config router .local/bin/router
+install_config update_inrae_remotes .local/bin/update_inrae_remotes

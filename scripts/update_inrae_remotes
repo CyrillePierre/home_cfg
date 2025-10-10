@@ -1,0 +1,54 @@
+#!/bin/bash
+# set -x
+
+# Specify the name of the remote you want to update.
+remote='origin'
+
+# Modify the pair of 'match' and 'replace' to define what you want to modify in URLs
+# The order is important. Put the more specific rules at the begining.
+match_replace_pairs=$(cat <<EOF
+  gitlab-ssh\.irstea\.fr:romea_projects/tirrex  forge.inrae.fr:tirrex
+  gitlab-ssh\.irstea\.fr:romea_projects         forge.inrae.fr:tscf/projects
+  gitlab-ssh\.irstea\.fr                        forge.inrae.fr
+  forgemia\.inra\.fr                            forge.inrae.fr
+EOF
+)
+
+# if no directory are specified, use the current one
+root="${1:-$PWD}"
+
+url_file=$(mktemp)
+
+# recursively change remote of all git projects from the ${root} directory
+find "${root}" -type d -name '.git' 2>/dev/null | sed 's|/\.git$||' | while read path ; do
+  pushd "${path}" >/dev/null
+
+  echo -e "\e[1;34m${path}\e[0m"
+
+  old_url=$(git remote get-url "${remote}" 2>/dev/null)
+  
+  # skip repos without ${remote}
+  if [[ $? -ne 0 ]] ; then
+    continue 
+  fi
+
+  echo "${old_url}" >"${url_file}"
+
+  # apply each match/replace pair to the URL
+  echo "${match_replace_pairs}" | while read pair ; do
+    match=$(echo "${pair}" | awk '{print $1}')
+    replace=$(echo "${pair}" | awk '{print $2}')
+    sed -i "s|${match}|${replace}|" "${url_file}"
+  done
+
+  new_url=$(cat "${url_file}")
+
+  # execute git command only if the URL changes
+  if [[ "${old_url}" != "${new_url}" ]] ; then
+    echo -e "  old ${remote}: ${old_url}"
+    echo -e "  new ${remote}: \e[92m${new_url}\e[0m"
+    git remote set-url "${remote}" "${new_url}"
+  fi
+
+  popd >/dev/null
+done
