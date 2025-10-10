@@ -50,7 +50,7 @@ make_install_nvim() {
     nodejs unzip xclip python3-venv \
     ninja-build gettext cmake curl build-essential
 
-  if [[ ! -d "./tmux" ]] ; then
+  if [[ ! -d "./neovim" ]] ; then
     git clone --depth 1 -b stable "https://github.com/neovim/neovim"
   else
     git -C neovim pull
