@@ -22,6 +22,10 @@ Host vm_superrob
     User     cyrille
     Hostname 147.100.164.214
 
+Host vm_vaultwarden
+    User     root
+    Hostname 138.102.159.108
+
 Host mesoext
     User cypierre
     Hostname ext.mesocentre.uca.fr
@@ -32,6 +36,18 @@ Host meso
     Hostname hpc2.mesocentre.uca.fr
     ProxyJump mesoext
 
+Host mcapproxy01
+    User cypierre
+    Hostname 193.49.167.101 
+    IdentityFile ~/.ssh/id_ed25519
+
+Host mcapweb01
+    ProxyJump mcapproxy01
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    User ubuntu
+    IdentityFile ~/.ssh/tscf_mcap_marv.rsa
+
 Match host eseris.fr,old.eseris.fr !user git
     ForwardX11 yes
 
@@ -40,3 +56,5 @@ Host *
 
 Host forge.inrae.fr
     LogLevel error
+
+# vim: sw=4 ts=4 sts=4
