@@ -30,8 +30,8 @@ vim.keymap.set('n', '<S-C-left>', ':bN<CR>', {silent = true})
 vim.keymap.set('n', '<S-C-right>', ':bn<CR>', {silent = true})
 vim.keymap.set('n', '<C-D>', ':Bd<CR>', {silent = true})
 
-vim.keymap.set('n', '<S-Up>', '15<C-Y>', {silent = true})
-vim.keymap.set('n', '<S-Down>', '15<C-E>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<S-Up>', '15<C-Y>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<S-Down>', '15<C-E>', {silent = true})
 
 vim.keymap.set('n', '<leader>ff', ':FzfLua files<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fF', ':FzfLua files resume=true<CR>', {silent = true})
@@ -50,6 +50,7 @@ vim.keymap.set('n', '<leader>fi', ':FzfLua lsp_incoming_calls<CR>', {silent = tr
 vim.keymap.set('n', '<leader>fo', ':FzfLua lsp_outgoing_calls<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fh', ':FzfLua files cwd=~<CR>', {silent = true})
 vim.keymap.set('n', '<leader>fs', ':FzfLua files cwd=src<CR>', {silent = true})
+vim.keymap.set('n', '<leader>ft', ':FzfLua files cwd=/opt/tirrex_ws<CR>', {silent = true})
 
 vim.keymap.set('n', '<leader>q', ':BDelete hidden<CR>', {silent = true})
 vim.keymap.set('n', '<leader>Q', ':BDelete other<CR>', {silent = true})
@@ -86,5 +87,4 @@ vim.keymap.set('n', '<leader>t', vim.cmd.ToggleTerm, {silent = true})
 vim.keymap.set('n', '<leader>cp', ':CccPick<CR>', {silent = true})
 vim.keymap.set('n', '<leader>cc', ':CccHighlighterToggle<CR>', {silent = true})
 
-vim.keymap.set('n', '<leader>=', ':Format<CR>', {silent = true})
-vim.keymap.set('v', '<leader>=', ':Format<CR>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<leader>=', ':Format<CR>', {silent = true})
