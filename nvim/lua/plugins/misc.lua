@@ -23,5 +23,12 @@ return {
       },
     },
     event = 'VeryLazy',
-  }
+  },
+
+  {  -- syntax highlighting for lilypond
+    'martineausimon/nvim-lilypond-suite',
+    opts = {
+      -- edit config here (see "Customize default settings" in wiki)
+    }
+  },
 }
