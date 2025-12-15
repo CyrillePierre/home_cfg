@@ -30,6 +30,15 @@ declare -A theme=(
   [light,palette2]="#8b8b8b #9c230d #3a6610 #8b620f #194b8e #5e3166 #0f704d #282828"
 )
 
+# insert ":set bg=$1" in running (n)vim
+change_vim_background() {
+  tmux list-panes -aF "#{pane_id} #{pane_pid}" | while read id pid; do
+    if ps --no-headers -g "${pid}" -o comm | grep -Eq '(vi|n?vim)([-_].*)?'; then
+      tmux send-keys -t "${id}" ESCAPE ":set bg=$1" ENTER
+    fi
+  done
+}
+
 set_style() {
   # If the tmux session is started on ssh, it uses a different background
   [[ "$SSH_CLIENT" ]] && theme[$1,bg]="${theme[$1,ssh_bg]}"
@@ -73,11 +82,7 @@ set_style() {
 
   tmux run '~/.config/tmux/plugins/tmux-mode-indicator/mode_indicator.tmux'
 
-  # change background of running (n)vim
-  tmux list-panes -aF "#{pane_id} #{pane_current_command}" \
-    | grep -E '\<(vi|n?vim)\>' \
-    | cut -d' ' -f1 \
-    | xargs -I% tmux send-keys -t % ESCAPE ":set bg=$1" ENTER
+  change_vim_background "$1" 
 }
 
 case $1 in
