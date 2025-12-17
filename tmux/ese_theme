@@ -30,10 +30,11 @@ declare -A theme=(
   [light,palette2]="#8b8b8b #9c230d #3a6610 #8b620f #194b8e #5e3166 #0f704d #282828"
 )
 
-# insert ":set bg=$1" in running (n)vim
+# insert ":set bg=$1" in running (n)vim-*
 change_vim_background() {
   tmux list-panes -aF "#{pane_id} #{pane_pid}" | while read id pid; do
-    if ps --no-headers -g "${pid}" -o comm | grep -Eq '(vi|n?vim)([-_].*)?'; then
+    # check if the given session ID (group of process) contains a vim-like command
+    if ps --no-headers -g "${pid}" -o args | grep -Eq '\<(vi|n?vim)([-_].*)?\>'; then
       tmux send-keys -t "${id}" ESCAPE ":set bg=$1" ENTER
     fi
   done
