@@ -71,4 +71,8 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
 
+[rerere]
+  enabled = true
+  autoupdate = true
+
 # vim:ft=gitconfig:wrap
