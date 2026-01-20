@@ -2,6 +2,6 @@ Package: *
 Pin: origin download.opensuse.org
 Pin-Priority: 90
 
-Package: podman
+Package: podman crun containers-common
 Pin: origin download.opensuse.org
 Pin-Priority: 1001

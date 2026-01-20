@@ -8,14 +8,14 @@ install_podman() {
     DISTRIB_ID='xUbuntu'
   fi
   export DISTRIB="${DISTRIB_ID}_${DISTRIB_RELEASE}"
-  envsubst <alvistack-prefs | sudo tee /etc/apt/preferences.d/alvistack >/dev/null
+  sudo ln -sfr alvistack-prefs /etc/apt/preferences.d/alvistack
   echo "deb http://download.opensuse.org/repositories/home:/alvistack/${DISTRIB}/ /" \
     | sudo tee /etc/apt/sources.list.d/alvistack.list >/dev/null
   curl -fsSL "https://download.opensuse.org/repositories/home:alvistack/${DISTRIB}/Release.key" \
     | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/alvistack.gpg > /dev/null
 
   sudo apt update
-  sudo apt-get install -y podman
+  sudo apt-get install -y podman crun
 }
 
 if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! command -v podman >/dev/null ; then
