@@ -5,3 +5,4 @@ source ../common.sh
 mkdir -m700 -p $HOME/.ssh
 
 install_config config .ssh/config
+install_config ssh_pre_hook .local/bin/ssh_pre_hook

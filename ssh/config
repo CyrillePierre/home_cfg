@@ -1,3 +1,6 @@
+Match user=git
+    ForwardX11 no
+
 Host cube
     User     romea
     Hostname 10.63.64.48
@@ -48,13 +51,16 @@ Host mcapweb01
     User ubuntu
     IdentityFile ~/.ssh/tscf_mcap_marv.rsa
 
-Match host eseris.fr,old.eseris.fr !user git
-    ForwardX11 yes
+Host eseris.fr
+    Port 22
+    ProxyCommand ~/.local/bin/ssh_pre_hook %h %p
+    IdentityFile ~/.ssh/id_ecdsa_sk
 
 Host *
     ServerAliveInterval 40
 
 Host forge.inrae.fr
     LogLevel error
+    IdentityFile ~/.ssh/cyrille
 
 # vim: sw=4 ts=4 sts=4 ft=sshconfig
