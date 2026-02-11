@@ -1,6 +1,7 @@
 [user]
   name = Cyrille
   email = cypierre58@gmail.com
+  signingkey = /home/cyrille/.ssh/id_ecdsa_sk.pub
 
 [push]
   default = simple
@@ -27,7 +28,7 @@
   ff = merge --ff-only
 
 [credential]
-	helper = "!f() { /home/cyrille/.vscode-server/bin/7d842fb85a0275a4a8e4d7e040d2625abbf7f084/node /tmp/vscode-remote-containers-2fd3571e-e23d-4329-bbfd-06efb7f8e694.js git-credential-helper $*; }; f"
+	helper = "!f() { /home/cyrille/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /tmp/vscode-remote-containers-bdcc0e50-8704-4f47-8a4a-4a805a16aa0f.js git-credential-helper $*; }; f"
 
 [diff]
   tool = meld
@@ -74,5 +75,8 @@
 [rerere]
   enabled = true
   autoupdate = true
+
+[gpg]
+  format = ssh
 
 # vim:ft=gitconfig:wrap
