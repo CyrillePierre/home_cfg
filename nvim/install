@@ -39,7 +39,7 @@ update_nvim() {
 }
 
 make_install_nvim() {
-  src_dir="$HOME/share"
+  src_dir="$HOME/.local/src"
 
   mkdir -p "$src_dir"
   pushd $src_dir >/dev/null
