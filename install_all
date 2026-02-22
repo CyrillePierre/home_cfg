@@ -9,8 +9,8 @@ install() {
   "${dir}/install" -b "$BACKUP_DIR" "${ARGS[@]}"
 }
 
+install rust
 install tools
-install cargo
 install clang
 install fzf
 install gdb
@@ -32,3 +32,4 @@ install terminator
 install kitty
 install wezterm
 install rofi
+install xfce

@@ -1,7 +1,0 @@
-#!/bin/bash
-cd "$(dirname "${BASH_SOURCE[0]}")"
-source ../common.sh
-
-mkdir -p $HOME/.cargo
-
-install_config config.toml .cargo/config.toml
