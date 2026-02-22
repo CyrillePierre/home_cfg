@@ -6,6 +6,11 @@ Host cube
     Hostname 10.63.64.48
     Port     22
 
+Host simulator
+    # Hostname 10.63.65.161
+    Hostname 23-1471A25092-F.local
+    ForwardX11 yes
+
 Host 192.168.0.* 192.168.13.1
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
@@ -32,7 +37,7 @@ Host vm_vaultwarden
 Host mesoext
     User cypierre
     Hostname ext.mesocentre.uca.fr
-    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/cyrille
 
 Host meso
     User cypierre
@@ -42,7 +47,7 @@ Host meso
 Host mcapproxy01
     User cypierre
     Hostname 193.49.167.101 
-    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/cyrille
 
 Host mcapweb01
     ProxyJump mcapproxy01
@@ -55,6 +60,7 @@ Host eseris.fr
     Port 22
     ProxyCommand ~/.local/bin/ssh_pre_hook %h %p
     IdentityFile ~/.ssh/id_ecdsa_sk
+    ForwardX11 yes
 
 Host *
     ServerAliveInterval 40

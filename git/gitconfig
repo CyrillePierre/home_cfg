@@ -28,7 +28,7 @@
   ff = merge --ff-only
 
 [credential]
-	helper = "!f() { /home/cyrille/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /tmp/vscode-remote-containers-bdcc0e50-8704-4f47-8a4a-4a805a16aa0f.js git-credential-helper $*; }; f"
+	helper = "!f() { /home/cyrille/.vscode-server/bin/bdd88df003631aaa0bcbe057cb0a940b80a476fa/node /tmp/vscode-remote-containers-5f08daa0-4110-481f-8857-7b3e84051093.js git-credential-helper $*; }; f"
 
 [diff]
   tool = meld

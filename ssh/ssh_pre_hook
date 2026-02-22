@@ -5,8 +5,9 @@ knock() {
 	knock_ports=("$@"); shift
 
 	for knock_port in "${knock_ports[@]}"; do
-		socat 2>/dev/null -4 -T1 "tcp:${host}:${knock_port},connect-timeout=0.01" /dev/null
-		socat 2>/dev/null -6 -T1 "tcp:${host}:${knock_port},connect-timeout=0.01" /dev/null
+		# socat 2>/dev/null -4 -T1 "tcp:${host}:${knock_port},connect-timeout=0.01" /dev/null
+		# socat 2>/dev/null -6 -T1 "tcp:${host}:${knock_port},connect-timeout=0.01" /dev/null
+		socat 2>/dev/null -T1 "tcp:${host}:${knock_port},connect-timeout=0.01" /dev/null
 	done
 
 	true
@@ -19,4 +20,4 @@ while read -r knock_ports; do
 	knock "${host}" ${knock_ports}
 done< <(grep "^${host} " "${HOME}/.ssh/knock_ports"|cut -d' ' -f2-)
 
-socat 2>/dev/null -d0 "tcp:${host}:${port}" -
+exec socat 2>/dev/null -d0 "tcp:${host}:${port}" -
