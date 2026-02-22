@@ -22,5 +22,12 @@ if [[ "$INSTALL_WITH_SUDO" ]] ; then
   rm -- "$pkg_list"
 fi
 
-install_config xfconf .config/xfce4/xfconf
-install_config panel .config/xfce4/panel
+dir='xfconf/xfce-perchannel-xml'
+dst=".config/xfce4/$dir"
+
+install_config "$dir/keyboards.xml" "$dst/keyboards.xml"
+install_config "$dir/keyboard-layout.xml" "$dst/keyboard-layout.xml"
+install_config "$dir/xfce4-keyboard-shortcuts.xml" "$dst/xfce4-keyboard-shortcuts.xml"
+install_config "$dir/xfce4-panel.xml" "$dst/xfce4-panel.xml"
+install_config "$dir/xfwm4.xml" "$dst/xfwm4.xml"
+install_config "$dir/xsettings.xml" "$dst/xsettings.xml"

@@ -3,7 +3,10 @@
 <channel name="keyboard-layout" version="1.0">
   <property name="Default" type="empty">
     <property name="XkbDisable" type="bool" value="false"/>
-    <property name="XkbLayout" type="string" value="fr,gb"/>
-    <property name="XkbVariant" type="string" value="oss_nodeadkeys,"/>
+    <property name="XkbLayout" type="string" value="fr,us"/>
+    <property name="XkbVariant" type="string" value="oss,"/>
+    <property name="XkbOptions" type="empty">
+      <property name="Group" type="string" value=""/>
+    </property>
   </property>
 </channel>

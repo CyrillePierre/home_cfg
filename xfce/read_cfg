@@ -1,0 +1,22 @@
+#!/bin/bash
+# import config from ~/.config/xfce4 to home_cfg
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+cfg_files=(
+  keyboards.xml
+  keyboard-layout.xml
+  xfce4-keyboard-shortcuts.xml
+  xfce4-panel.xml
+  xfwm4.xml
+  xsettings.xml
+)
+
+for f in ${cfg_files[@]} ; do
+  src="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/$f"
+  dst="xfconf/xfce-perchannel-xml/$f"
+
+  if [[ ! -L "$src" ]] && ! diff "$src" "$dst" &>/dev/null ; then
+    echo "  import $f"
+    cp -f "$src" "$dst"
+  fi
+done
