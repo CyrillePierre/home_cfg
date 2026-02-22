@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-
 knock() {
 	host="$1"; shift
 	knock_ports=("$@"); shift

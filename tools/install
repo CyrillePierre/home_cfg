@@ -21,6 +21,10 @@ if [[ ! "$CONFIG_ONLY" ]] ; then
       sudo apt-get install -y jq
     fi
 
+    if ! command -v socat >/dev/null ; then
+      sudo apt-get install -y socat
+    fi
+
     if ! command -v bat >/dev/null ; then
       sudo apt-get install -y bat
       if ! command -v bat >/dev/null ; then
