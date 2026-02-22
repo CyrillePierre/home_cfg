@@ -1,0 +1,26 @@
+#!/bin/bash
+cd "$(dirname "${BASH_SOURCE[0]}")"
+source ../common.sh
+
+if [[ "$INSTALL_WITH_SUDO" ]] ; then
+  pkg_list=$(mktemp)
+
+  dpkg -l | grep 'xfce4-' | tr -s ' ' | cut -d' ' -f2 >"$pkg_list"
+
+  pkgs=()
+  for pkg_suffix in battery-plugin cpugraph-plugin systemload-plugin power-manager netload-plugin ; do
+    pkg_name="xfce4-$pkg_suffix"
+    if ! grep -q "^$pkg_name" "$pkg_list" ; then
+      pkgs+=("$pkg_name")
+    fi
+  done
+
+  if [[ ${#pkgs[@]} -ne 0 ]] ; then
+    sudo apt-get install -y ${pkgs[@]}
+  fi
+
+  rm -- "$pkg_list"
+fi
+
+install_config xfconf .config/xfce4/xfconf
+install_config panel .config/xfce4/panel
