@@ -24,6 +24,7 @@ install profile
 install lazygit
 install scripts
 install zellij
+install ssh
 
 # GUI
 install fonts
