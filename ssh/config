@@ -11,6 +11,12 @@ Host simulator
     Hostname 23-1471A25092-F.local
     ForwardX11 yes
 
+Host simulator-slow
+    # Hostname 10.63.65.161
+    Hostname 23-1471A25092-F.local
+    KexAlgorithms=ecdh-sha2-nistp521
+    ForwardX11 yes
+
 Host 192.168.0.* 192.168.13.1
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
