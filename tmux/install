@@ -4,17 +4,28 @@ source ../common.sh
 
 make_install_tmux() {
   src_dir="$HOME/share"
+  must_compile=0
 
   mkdir -p "$src_dir"
   pushd $src_dir >/dev/null
 
   sudo apt-get install -y \
-    libncurses-dev bison gcc make libevent-dev ncurses-dev build-essential bison pkg-config automake
+    libncurses-dev bison gcc make libevent-dev ncurses-dev build-essential pkg-config automake
 
   if [[ ! -d "./tmux" ]] ; then
     git clone --recursive --depth 1 https://github.com/tmux/tmux.git
+    must_compile=1
   else
-    git -C tmux pull
+    git -C tmux remote update
+    hash_local="$(git rev-parse @)"
+    hash_remote="$(git rev-parse '@{u}')"
+    if [[ "${hash_local}" != "${hash_remote}" ]]; then
+      git -C tmux pull -r --autostash
+    fi
+  fi
+
+  if [[ "$must_compile" != 1 ]] ; then
+    return
   fi
 
   pushd tmux >/dev/null
@@ -27,7 +38,7 @@ make_install_tmux() {
   popd >/dev/null
 }
 
-if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! which tmux >/dev/null ; then
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] >/dev/null ; then
   make_install_tmux
 fi
 

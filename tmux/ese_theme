@@ -9,6 +9,7 @@ declare -A theme=(
   [dark,status_theme]='moon'
   [dark,status_bg]='#3b2956'
   [dark,status_bg_inactive]='#565263'
+  [dark,message_bg]='#294980'
   [dark,mode]='bg=#4d485c'
   # [dark,cursor]='#f7ba75'
   [dark,blink]='fg=#f7ba75,bg=#333333'
@@ -23,6 +24,7 @@ declare -A theme=(
   [light,status_theme]='dawn'
   [light,status_bg]='#ebe5fb'
   [light,status_bg_inactive]='#b4b0c0'
+  [light,message_bg]='#80a1d6'
   [light,mode]='bg=#c0bad4'
   # [light,cursor]='#000000'
   [light,blink]='fg=#000000,bg=#bababa'
@@ -78,6 +80,7 @@ set_style() {
   tmux set -g pane-border-style "fg=${theme[$1,border_fg]},bg=${theme[$1,bg]}"
   tmux set -g pane-active-border-style "fg=${theme[$1,active_border_fg]},bg=${theme[$1,bg]}"
   tmux set -g mode-style "${theme[$1,mode]}"
+  tmux set -g message-style "bg=${theme[$1,message_bg]},fill=${theme[$1,message_bg]}"
   # tmux set -g cursor-colour "${theme[$1,cursor]}"
   tmux set -g pane-colours "${theme[$1,palette1]} ${theme[$1,palette2]}"
 
