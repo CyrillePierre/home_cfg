@@ -27,9 +27,6 @@
   pf = push --force-with-lease
   ff = merge --ff-only
 
-[credential]
-	helper = "!f() { /home/cyrille/.vscode-server/bin/bdd88df003631aaa0bcbe057cb0a940b80a476fa/node /tmp/vscode-remote-containers-5f08daa0-4110-481f-8857-7b3e84051093.js git-credential-helper $*; }; f"
-
 [diff]
   tool = meld
 
