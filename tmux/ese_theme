@@ -72,7 +72,8 @@ set_style() {
   tmux set -g @rose_pine_show_current_program 'on' # Forces tmux to show the current running program as window name
   tmux set -g @rose_pine_show_pane_directory 'on' # Forces tmux to show the current directory as window name
   tmux set -g @rose_pine_status_left_prepend_section '#{tmux_mode_indicator}'
-  tmux set -g @rose_pine_status_left_append_section '#{}'
+  tmux set -g @rose_pine_field_separator '  '
+  tmux set -g @rose_pine_status_left_append_section ''
 
   tmux run '~/.config/tmux/plugins/tmux/rose-pine.tmux'
 
