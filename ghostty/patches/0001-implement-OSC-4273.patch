@@ -1,0 +1,446 @@
+From ed1390807ab5d667956b78a3f857dd9bdf64a4ec Mon Sep 17 00:00:00 2001
+From: Alexis Pereda <alexis@pereda.fr>
+Date: Mon, 6 Apr 2026 18:07:08 +0200
+Subject: [PATCH] implement OSC 4273
+
+---
+ src/renderer/Thread.zig                    |  4 ++
+ src/renderer/generic.zig                   | 22 +++++++++
+ src/renderer/message.zig                   |  2 +
+ src/renderer/shaders/shadertoy_prefix.glsl |  2 +
+ src/renderer/shadertoy.zig                 |  2 +
+ src/terminal/osc.zig                       | 49 ++++++++++++++++++-
+ src/terminal/osc/parsers.zig               |  1 +
+ src/terminal/osc/parsers/cfy.zig           | 57 ++++++++++++++++++++++
+ src/terminal/stream.zig                    |  8 +++
+ src/terminal/stream_readonly.zig           |  3 ++
+ src/termio/stream_handler.zig              | 17 +++++++
+ 11 files changed, 166 insertions(+), 1 deletion(-)
+ create mode 100644 src/terminal/osc/parsers/cfy.zig
+
+diff --git a/src/renderer/Thread.zig b/src/renderer/Thread.zig
+index 5087213..01e724d 100644
+--- a/src/renderer/Thread.zig
++++ b/src/renderer/Thread.zig
+@@ -481,6 +481,10 @@ fn drainMailbox(self: *Thread) !void {
+                     try self.renderer.setMacOSDisplayID(v);
+                 }
+             },
++
++            .set_cfy_rect => |v| {
++                self.renderer.setCfyRect(v);
++            },
+         }
+     }
+ }
+diff --git a/src/renderer/generic.zig b/src/renderer/generic.zig
+index ff632f6..9420d69 100644
+--- a/src/renderer/generic.zig
++++ b/src/renderer/generic.zig
+@@ -142,6 +142,8 @@ pub fn Renderer(comptime GraphicsAPI: type) type {
+         search_selected_match: ?renderer.Message.SearchMatch,
+         search_matches_dirty: bool,
+ 
++        cfy_rect: [4]f32,
++
+         /// The current set of cells to render. This is rebuilt on every frame
+         /// but we keep this around so that we don't reallocate. Each set of
+         /// cells goes into a separate shader.
+@@ -713,6 +715,8 @@ pub fn Renderer(comptime GraphicsAPI: type) type {
+                 .search_selected_match = null,
+                 .search_matches_dirty = false,
+ 
++                .cfy_rect = .{ -1.0, -1.0, -1.0, -1.0 },
++
+                 // Render state
+                 .cells = .{},
+                 .uniforms = .{
+@@ -769,6 +773,8 @@ pub fn Renderer(comptime GraphicsAPI: type) type {
+                     .cursor_text = @splat(0),
+                     .selection_background_color = @splat(0),
+                     .selection_foreground_color = @splat(0),
++
++                    .current_rect = @splat(0),
+                 },
+                 .bg_image_buffer = undefined,
+ 
+@@ -1109,6 +1115,20 @@ pub fn Renderer(comptime GraphicsAPI: type) type {
+             self.markDirty();
+         }
+ 
++        pub fn setCfyRect(self: *Self, rect: [4]f32) void {
++            const screen_width: f32 = @floatFromInt(self.size.screen.width);
++            const screen_height: f32 = @floatFromInt(self.size.screen.height);
++            const cell_width: f32 = @floatFromInt(self.size.cell.width);
++            const cell_height: f32 = @floatFromInt(self.size.cell.height);
++
++            self.cfy_rect = .{
++                if (rect[0] < 0) screen_width else rect[0] * cell_width,
++                if (rect[1] < 0) screen_height else screen_height - rect[1] * cell_height,
++                if (rect[2] < 0) screen_width else rect[2] * cell_width,
++                if (rect[3] < 0) screen_height else rect[3] * cell_height,
++            };
++        }
++
+         /// Update uniforms that are based on the font grid.
+         ///
+         /// Caller must hold the draw mutex.
+@@ -2094,6 +2114,8 @@ pub fn Renderer(comptime GraphicsAPI: type) type {
+             const cursor_style: renderer.CursorStyle = .fromTerminal(self.terminal_state.cursor.visual_style);
+             uniforms.previous_cursor_style = uniforms.current_cursor_style;
+             uniforms.current_cursor_style = @as(i32, @intFromEnum(cursor_style));
++
++            uniforms.current_rect = self.cfy_rect;
+         }
+ 
+         /// Update per-frame custom shader uniforms.
+diff --git a/src/renderer/message.zig b/src/renderer/message.zig
+index a47b960..78331bb 100644
+--- a/src/renderer/message.zig
++++ b/src/renderer/message.zig
+@@ -67,6 +67,8 @@ pub const Message = union(enum) {
+     /// The macOS display ID has changed for the window.
+     macos_display_id: u32,
+ 
++    set_cfy_rect: [4]f32,
++
+     pub const SearchMatches = struct {
+         arena: ArenaAllocator,
+         matches: []const terminal.highlight.Flattened,
+diff --git a/src/renderer/shaders/shadertoy_prefix.glsl b/src/renderer/shaders/shadertoy_prefix.glsl
+index 4b6d091..407ef1e 100644
+--- a/src/renderer/shaders/shadertoy_prefix.glsl
++++ b/src/renderer/shaders/shadertoy_prefix.glsl
+@@ -28,6 +28,8 @@ layout(binding = 1, std140) uniform Globals {
+     uniform vec3  iCursorText;
+     uniform vec3  iSelectionForegroundColor;
+     uniform vec3  iSelectionBackgroundColor;
++
++		uniform vec4  iCurrentRect;
+ };
+ 
+ #define CURSORSTYLE_BLOCK        0
+diff --git a/src/renderer/shadertoy.zig b/src/renderer/shadertoy.zig
+index 556c282..17f5a51 100644
+--- a/src/renderer/shadertoy.zig
++++ b/src/renderer/shadertoy.zig
+@@ -37,6 +37,8 @@ pub const Uniforms = extern struct {
+     cursor_text: [4]f32 align(16),
+     selection_background_color: [4]f32 align(16),
+     selection_foreground_color: [4]f32 align(16),
++
++    current_rect: [4]f32 align(16),
+ };
+ 
+ /// The target to load shaders for.
+diff --git a/src/terminal/osc.zig b/src/terminal/osc.zig
+index 0086e48..71133de 100644
+--- a/src/terminal/osc.zig
++++ b/src/terminal/osc.zig
+@@ -160,6 +160,11 @@ pub const Command = union(Key) {
+     /// https://uapi-group.org/specifications/specs/osc_context/
+     context_signal: parsers.context_signal.Command,
+ 
++    /// Celforyon − set value to rect (OSC 4273;1)
++    cfy: struct {
++        value: [:0]const u8,
++    },
++
+     pub const SemanticPrompt = parsers.semantic_prompt.Command;
+ 
+     pub const KittyClipboardProtocol = parsers.kitty_clipboard_protocol.OSC;
+@@ -193,6 +198,7 @@ pub const Command = union(Key) {
+             "kitty_text_sizing",
+             "kitty_clipboard_protocol",
+             "context_signal",
++            "cfy",
+         },
+     );
+ 
+@@ -230,6 +236,16 @@ pub const Command = union(Key) {
+         }
+     };
+ 
++    pub const CfySetRect = struct {
++        value: []const u8,
++
++        pub const C = lib.String;
++
++        pub fn cval(self: CfySetRect) C {
++            return .init(self.value);
++        }
++    };
++
+     comptime {
+         assert(@sizeOf(Command) == switch (@sizeOf(usize)) {
+             4 => 44,
+@@ -342,6 +358,7 @@ pub const Parser = struct {
+         @"19",
+         @"21",
+         @"22",
++        @"42",
+         @"52",
+         @"55",
+         @"66",
+@@ -358,9 +375,11 @@ pub const Parser = struct {
+         @"118",
+         @"119",
+         @"133",
++        @"427",
+         @"552",
+         @"777",
+         @"1337",
++        @"4273",
+         @"5522",
+     };
+ 
+@@ -425,6 +444,7 @@ pub const Parser = struct {
+             .kitty_text_sizing,
+             .kitty_clipboard_protocol,
+             .context_signal,
++            .cfy,
+             => {},
+         }
+ 
+@@ -573,7 +593,12 @@ pub const Parser = struct {
+                 else => self.state = .invalid,
+             },
+ 
+-            .@"4",
++            .@"4" => switch (c) {
++                ';' => if (self.ensureAllocator()) self.writeToFixed(),
++                '2' => self.state = .@"42",
++                else => self.state = .invalid,
++            },
++
+             .@"12",
+             .@"14",
+             .@"15",
+@@ -622,6 +647,11 @@ pub const Parser = struct {
+                 else => self.state = .invalid,
+             },
+ 
++            .@"42" => switch (c) {
++                '7' => self.state = .@"427",
++                else => self.state = .invalid,
++            },
++
+             .@"52",
+             .@"66",
+             => switch (c) {
+@@ -652,6 +682,11 @@ pub const Parser = struct {
+                 else => self.state = .invalid,
+             },
+ 
++            .@"427" => switch (c) {
++                '3' => self.state = .@"4273",
++                else => self.state = .invalid,
++            },
++
+             .@"552" => switch (c) {
+                 '2' => self.state = .@"5522",
+                 else => self.state = .invalid,
+@@ -663,6 +698,12 @@ pub const Parser = struct {
+                 else => self.state = .invalid,
+             },
+ 
++            .@"4273",
++            => switch (c) {
++                ';' => self.writeToFixed(),
++                else => self.state = .invalid,
++            },
++
+             .@"5522",
+             => switch (c) {
+                 ';' => self.writeToAllocating(),
+@@ -735,6 +776,8 @@ pub const Parser = struct {
+ 
+             .@"22" => parsers.mouse_shape.parse(self, terminator_ch),
+ 
++            .@"42" => null,
++
+             .@"52" => parsers.clipboard_operation.parse(self, terminator_ch),
+ 
+             .@"55" => null,
+@@ -754,12 +797,16 @@ pub const Parser = struct {
+ 
+             .@"133" => parsers.semantic_prompt.parse(self, terminator_ch),
+ 
++            .@"427" => null,
++
+             .@"552" => null,
+ 
+             .@"777" => parsers.rxvt_extension.parse(self, terminator_ch),
+ 
+             .@"1337" => parsers.iterm2.parse(self, terminator_ch),
+ 
++            .@"4273" => parsers.cfy.parse(self, terminator_ch),
++
+             .@"5522" => parsers.kitty_clipboard_protocol.parse(self, terminator_ch),
+         };
+     }
+diff --git a/src/terminal/osc/parsers.zig b/src/terminal/osc/parsers.zig
+index a56b38e..244d3d0 100644
+--- a/src/terminal/osc/parsers.zig
++++ b/src/terminal/osc/parsers.zig
+@@ -15,6 +15,7 @@ pub const osc9 = @import("parsers/osc9.zig");
+ pub const report_pwd = @import("parsers/report_pwd.zig");
+ pub const rxvt_extension = @import("parsers/rxvt_extension.zig");
+ pub const semantic_prompt = @import("parsers/semantic_prompt.zig");
++pub const cfy = @import("parsers/cfy.zig");
+ 
+ test {
+     std.testing.refAllDecls(@This());
+diff --git a/src/terminal/osc/parsers/cfy.zig b/src/terminal/osc/parsers/cfy.zig
+new file mode 100644
+index 0000000..682f3fd
+--- /dev/null
++++ b/src/terminal/osc/parsers/cfy.zig
+@@ -0,0 +1,57 @@
++const std = @import("std");
++
++const Parser = @import("../../osc.zig").Parser;
++const Command = @import("../../osc.zig").Command;
++
++/// Parse OSC 4273
++pub fn parse(parser: *Parser, _: ?u8) ?*Command {
++    const writer = parser.writer orelse {
++        parser.state = .invalid;
++        return null;
++    };
++
++    cfy: {
++        writer.writeByte(0) catch {
++            parser.state = .invalid;
++            return null;
++        };
++
++        var data = writer.buffered();
++        if (data.len == 0) break :cfy;
++        switch (data[0]) {
++            // Check for OSC 9;1 9;10 9;11 9;12
++            '1' => {
++                if (data.len < 2) break :cfy;
++                switch (data[1]) {
++                    // OSC 4273;1 set rect
++                    ';' => {
++                        parser.command = .{
++                            .cfy = .{
++                                .value = data[2 .. data.len - 1 :0],
++                            },
++                        };
++                        return &parser.command;
++                    },
++                    else => break :cfy,
++                }
++            },
++            else => break :cfy,
++        }
++    }
++
++    parser.state = .invalid;
++    return null;
++}
++
++test "OSC 4273;1: set rect" {
++    const testing = std.testing;
++
++    var p: Parser = .init(null);
++
++    const input = "4273;1;5,6,40,41";
++    for (input) |ch| p.next(ch);
++
++    const cmd = p.end('\x1b').?.*;
++    try testing.expect(cmd == .cfy);
++    try testing.expectEqualStrings("5,6,40,41", cmd.cfy.value);
++}
+diff --git a/src/terminal/stream.zig b/src/terminal/stream.zig
+index e89c73e..275f170 100644
+--- a/src/terminal/stream.zig
++++ b/src/terminal/stream.zig
+@@ -126,6 +126,7 @@ pub const Action = union(Key) {
+     kitty_color_report: kitty.color.OSC,
+     color_operation: ColorOperation,
+     semantic_prompt: SemanticPrompt,
++    cfy_set_rect: CfySetRect,
+ 
+     pub const Key = lib.Enum(
+         lib_target,
+@@ -223,6 +224,8 @@ pub const Action = union(Key) {
+             "kitty_color_report",
+             "color_operation",
+             "semantic_prompt",
++
++            "cfy_set_rect",
+         },
+     );
+ 
+@@ -401,6 +404,8 @@ pub const Action = union(Key) {
+     };
+ 
+     pub const SemanticPrompt = osc.Command.SemanticPrompt;
++
++    pub const CfySetRect = osc.Command.CfySetRect;
+ };
+ 
+ /// Returns a type that can process a stream of tty control characters.
+@@ -2058,6 +2063,9 @@ pub fn Stream(comptime Handler: type) type {
+                 => {
+                     log.debug("unimplemented OSC callback: {}", .{cmd});
+                 },
++                .cfy => |v| {
++                    try self.handler.vt(.cfy_set_rect, .{ .value = v.value });
++                },
+ 
+                 .invalid => {
+                     @branchHint(.cold);
+diff --git a/src/terminal/stream_readonly.zig b/src/terminal/stream_readonly.zig
+index 5b97beb..1a64dcc 100644
+--- a/src/terminal/stream_readonly.zig
++++ b/src/terminal/stream_readonly.zig
+@@ -172,6 +172,9 @@ pub const Handler = struct {
+             .apc_put,
+             => {},
+ 
++            .cfy_set_rect,
++            => {},
++
+             // Have no terminal-modifying effect
+             .bell,
+             .enquiry,
+diff --git a/src/termio/stream_handler.zig b/src/termio/stream_handler.zig
+index 8c1b5b8..864d9b7 100644
+--- a/src/termio/stream_handler.zig
++++ b/src/termio/stream_handler.zig
+@@ -348,6 +348,8 @@ pub const StreamHandler = struct {
+             .apc_end => try self.apcEnd(),
+             .apc_put => self.apc.feed(self.alloc, value),
+ 
++            .cfy_set_rect => self.setCfyRect(value),
++
+             // Unimplemented
+             .title_push,
+             .title_pop,
+@@ -1548,4 +1550,19 @@ pub const StreamHandler = struct {
+     fn progressReport(self: *StreamHandler, report: terminal.osc.Command.ProgressReport) void {
+         self.surfaceMessageWriter(.{ .progress_report = report });
+     }
++
++    fn setCfyRect(self: *StreamHandler, arg: terminal.osc.Command.CfySetRect) void {
++        var parts = std.mem.splitAny(u8, arg.value, ",");
++        var i: usize = 0;
++        var cfy_rect: [4]f32 = .{-1.0, -1.0, -1.0, -1.0};
++
++        while (parts.next()) |part| {
++            if (i >= cfy_rect.len) break;
++            const val = std.fmt.parseFloat(f32, part) catch -1.0;
++            cfy_rect[i] = val;
++            i += 1;
++        }
++
++        self.rendererMessageWriter(.{ .set_cfy_rect = cfy_rect });
++    }
+ };
+-- 
+2.47.3
+

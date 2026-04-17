@@ -1,0 +1,103 @@
+#!/usr/bin/bash
+
+shaders_config_file="${HOME}/.config/ghostty/inc/shaders.ghostty"
+shaders_dir="${HOME}/.config/ghostty/shaders"
+
+declare -A cmds
+
+must_reload=1
+
+cmds[toggle]=1
+toggle() {
+	shader_file="$1"; shift
+
+	if grep -Eq "= ${shader_file}$" "${shaders_config_file}"; then
+		sed -i "\,= ${shader_file},{s/^# //; t; s/^/# /}" "${shaders_config_file}"
+	else
+		echo>>"${shaders_config_file}" "custom-shader = ${shader_file}"
+	fi
+}
+
+cmds[move]=1
+move() {
+	shader_file="$1"; shift
+	dir="$1"; shift
+
+	last="$(wc -l "${shaders_config_file}"|cut -d' ' -f1)"
+	n="$(grep -n "= ${shader_file}$" "${shaders_config_file}"|cut -d: -f1)"
+
+	test "${dir}" = "up" && ((n--))
+
+	test "${n}" -le 0 && return
+	test "${n}" -ge "${last}" && return
+
+	sed -ni "${n}{h;n;G};p" "${shaders_config_file}"
+}
+
+cmds[list]=2
+list() {
+	filter="$1"; shift
+	
+	{
+		# shaders in shaders_dir
+		for p in "${shaders_dir}"/*.frag; do
+			f="$(basename "${p}")"
+			if grep<<<"${f}" -qE "${filter}"; then
+				c=' '
+				grep -q "^custom-shader = ${shaders_dir}/${f}$" "${shaders_config_file}" && c='✓'
+				pos="$(grep -n "custom-shader = ${shaders_dir}/${f}$" "${shaders_config_file}"|cut -d: -f1)"
+				printf "%s\t%s\t%s" "${f%.frag}" "${pos}" "${c}"
+				echo
+			fi
+		done
+
+		# other shaders (any non-shaders_dir currently in the shaders_config_file)
+		while read -r f; do
+			if grep<<<"${f}" -qE "${filter}"; then
+				c=' '
+				grep -q "^custom-shader = ${f}$" "${shaders_config_file}" && c='✓'
+				pos="$(grep -n "custom-shader = ${f}$" "${shaders_config_file}"|cut -d: -f1)"
+				printf "%s\t%s\t%s" "${f%.frag}" "${pos}" "${c}"
+				echo
+			fi
+		done< <(grep -v "= ${shaders_dir}/.*.frag$" "${shaders_config_file}"|cut -d= -f2|cut -d' ' -f2)
+	}|sort -hk2|column -ts $'\t' 
+
+	must_reload=0
+}
+
+reload_config() {
+	xdotool key ctrl+shift+comma
+	# ydotool for wayland?
+}
+
+shaders_config_dir="$(dirname "${shaders_config_file}")"
+test -d "${shaders_config_dir}" || mkdir -p "${shaders_config_dir}"
+test -r "${shaders_config_file}" || :>"${shaders_config_file}"
+
+cmd="$1"; shift
+if test "${cmds[${cmd}]}" -eq 1; then
+	in_shader_file="$1"; shift
+
+	shader_file="${in_shader_file}"
+	test ! -r "${shader_file}" && shader_file="${shaders_dir}/${shader_file}.frag"
+	test ! -r "${shader_file}" && shader_file="${shaders_dir}/${shader_file}"
+
+	if test ! -r "${shader_file}" && shader_file="${shaders_dir}/${shader_file}"; then
+		echo>&2 "[fatal] no shader corresponding to '${in_shader_file}'"
+		exit 2
+	fi
+
+	"${cmd}" "${shader_file}" "$@"
+elif test "${cmds[${cmd}]}" -eq 2; then
+	"${cmd}" "$@"
+else
+	echo>&2 "available commands: ${!cmds[*]}"
+	exit 1
+fi
+
+if test "${must_reload}" -ne 0; then
+	# reloading only once often leads to buggy refreshing rate
+	reload_config
+	reload_config
+fi

@@ -1,0 +1,45 @@
+# Configuration
+command = tmux
+window-decoration = none
+# maximize
+background = 000000
+foreground = aaaaaa
+font-family = "UbuntuSansMono Nerd Font"
+font-size = 12.5
+adjust-cell-height = 1
+adjust-font-baseline = 0
+adjust-box-thickness = -1
+adjust-underline-thickness = -1
+cursor-style = block
+cursor-style-blink = false
+confirm-close-surface = false
+shell-integration-features = no-cursor
+
+window-height = 24
+window-width = 80
+window-padding-x = 1
+window-padding-y = 1
+
+cursor-color = cell-foreground
+cursor-text = cell-background
+
+app-notifications = no-config-reload,no-clipboard-copy
+
+quit-after-last-window-closed = false
+
+theme = Ubuntu
+
+# Key bindings
+keybind = shift+numpadInsert=paste_from_selection
+keybind = ctrl+shift+equal=increase_font_size:1
+keybind = ctrl+shift+digit6=decrease_font_size:1
+keybind = ctrl+shift+digit0=reset_font_size
+keybind = ctrl+shift+minus=set_font_size:21
+# keybind = ctrl+shift+page_up=jump_to_prompt:-1
+# keybind = global:ctrl+shift+digit1=toggle_quick_terminal
+
+# Shaders
+custom-shader-animation = true
+
+# Extra configuration
+config-file = ?inc/shaders.ghostty
