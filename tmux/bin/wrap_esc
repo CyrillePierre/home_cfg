@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+esc=$'\e'
+printf -v force_esc '%b' "$*"
+printf '%b' "${esc}Ptmux;${force_esc//$esc/$esc$esc}${esc}\\"

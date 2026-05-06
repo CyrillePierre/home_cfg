@@ -46,6 +46,7 @@ mkdir -p $HOME/.config/tmux/
 install_config tmux.conf .config/tmux/tmux.conf
 install_config ese_theme .config/tmux/ese_theme
 install_config scripts .config/tmux/scripts
+install_config bin/wrap_esc .local/bin/wrap_esc
 
 TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
 if [[ ! -d "${TPM_DIR}" ]] ; then
