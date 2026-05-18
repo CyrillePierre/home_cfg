@@ -83,7 +83,7 @@ fi
 install_config config.ghostty .config/ghostty/config.ghostty
 install_config inc .config/ghostty/inc
 install_config shaders/ .config/ghostty/shaders
-install_config bin .local/bin
+install_config bin/ghostty-shader .local/bin/ghostty-shader
 
 systemctl --user daemon-reload
 systemctl --user enable app-com.mitchellh.ghostty.service
