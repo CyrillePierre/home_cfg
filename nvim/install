@@ -77,7 +77,7 @@ fi
 #   update_nvim
 # fi
 
-if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] && ! which nvim >/dev/null ; then
+if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] ; then
   make_install_nvim
 fi
 

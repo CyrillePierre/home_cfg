@@ -14,6 +14,7 @@ require('config.filetypes')
 
 require('config.lsp')
 require('config.gdb')
+require('config.tmux')
 
 vim.cmd.colorscheme('ese')
 
