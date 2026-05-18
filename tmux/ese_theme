@@ -44,7 +44,9 @@ change_vim_background() {
 
 set_style() {
   # If the tmux session is started on ssh, it uses a different background
-  [[ "$SSH_CLIENT" ]] && theme[$1,bg]="${theme[$1,ssh_bg]}"
+  if [[ "$SSH_CLIENT" ]] || [[ "$SSH_TTY" ]] || [[ "$SSH_CONNECTION" ]] ; then
+    theme[$1,bg]="${theme[$1,ssh_bg]}"
+  fi
 
   tmux set -g @theme "$1"
 
