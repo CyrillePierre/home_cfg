@@ -47,6 +47,7 @@ vim.o.sessionoptions='buffers,curdir,help,tabpages,winsize,winpos,terminal,local
 vim.opt.termguicolors = true
 
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.mouse = 'nv'
 vim.opt.tw = 100
 
