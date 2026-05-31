@@ -2,4 +2,4 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source ../common.sh
 
-install_config opencode.json .config/opencode/opencode.json
+install_config opencode.jsonc .config/opencode/opencode.jsonc

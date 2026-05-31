@@ -19,5 +19,21 @@
     }
   },
 
-  "model": "inrae/chat-gpt-oss-120b"
+  "model": "inrae/chat-gpt-oss-120b",
+
+  "mcp": {
+    // "thunderbird": {
+    //   "enabled": true,
+    //   "type": "local",
+    //   "command": ["node", "/home/cyrille/.local/src/thunderbird-mcp/mcp-bridge.cjs"]
+    // }
+    "thunderbird": {
+      "enabled": true,
+      "type": "remote",
+      "url": "http://localhost:8765",
+      "headers": {
+        "Authorization": "Bearer {file:~/.secrets/thunderbird_api_key}"
+      }
+    }
+  }
 }
