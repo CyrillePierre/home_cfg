@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+
   "provider": {
     "inrae": {
       "npm": "@ai-sdk/openai-compatible",
@@ -20,6 +21,11 @@
   },
 
   "model": "inrae/chat-gpt-oss-120b",
+
+  "permission": {
+    "webfetch": "allow",
+    "websearch": "allow"
+  },
 
   "mcp": {
     // "thunderbird": {
