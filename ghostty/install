@@ -54,7 +54,7 @@ download_ghostty() {
 
 	popd>/dev/null || exit 1
 
-	patch_ghostty
+	# patch_ghostty
 }
 
 
