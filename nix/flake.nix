@@ -12,7 +12,7 @@
     pkgs = import nixpkgs { inherit system; };
 
     packageDir = ./packages;
-    
+
     packageFiles = builtins.readDir "${packageDir}";
 
     packageNames = builtins.filter

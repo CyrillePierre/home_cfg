@@ -2,4 +2,5 @@
 with pkgs; [
   firefox
   # ghostty
+  rofi
 ]

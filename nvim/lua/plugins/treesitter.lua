@@ -33,6 +33,7 @@ return {
         "markdown",
         "markdown_inline",
         "nginx",
+        "nix",
         "passwd",
         "python",
         "query",
