@@ -11,6 +11,7 @@ with pkgs; [
   bitwarden-cli
   lazygit
   socat
-  zsh
+  # zsh
+  nix-zsh-completions
   bat
 ]

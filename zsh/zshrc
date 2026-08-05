@@ -7,6 +7,12 @@ zstyle :compinstall filename '/home/cyrille/.zshrc'
 # D'autres commande de completion sont dans un répertoire
 fpath=(~/.zsh/completion $fpath)
 
+# load nix profile path
+nix_zsh_functions_dir="$HOME/.nix-profile/share/zsh/site-functions"
+if [[ -e "${nix_zsh_functions_dir}" ]] ; then
+  fpath=("${nix_zsh_functions_dir}" $fpath)
+fi
+
 autoload -Uz compinit
 # compinit -i
 if [ "$(find ~/.zcompdump -mtime +1)" ] ; then
