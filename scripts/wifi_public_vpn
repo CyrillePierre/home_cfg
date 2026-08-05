@@ -1,0 +1,8 @@
+#!/bin/bash
+wifi_interface=$(ls /sys/class/net/ | grep '^wl' | head -1)
+
+if [[ $(systemctl is-active systemd-resolved.service) = 'active' ]] ; then
+  sudo resolvectl dnsovertls "$wifi_interface" off
+fi
+
+
