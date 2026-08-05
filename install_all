@@ -9,6 +9,7 @@ install() {
   "${dir}/install" -b "$BACKUP_DIR" "${ARGS[@]}"
 }
 
+install nix
 install rust
 install tools
 install clang
