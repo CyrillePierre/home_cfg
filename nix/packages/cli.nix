@@ -14,4 +14,5 @@ with pkgs; [
   # zsh
   nix-zsh-completions
   bat
+  zoxide
 ]

@@ -3,5 +3,5 @@ with pkgs; [
   opencode
   gcc
   cmake
-  python3
+  uv     # for python
 ]

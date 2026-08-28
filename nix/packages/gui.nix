@@ -1,6 +1,6 @@
 { pkgs }:
 with pkgs; [
   firefox
-  # ghostty
+  ghostty
   rofi
 ]
