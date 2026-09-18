@@ -75,10 +75,10 @@ if [[ "$INSTALL_WITH_SUDO" ]] ; then
 fi
 
 
-if [[ ! "$CONFIG_ONLY" ]] ; then
-  install_zig
-  install_ghostty
-fi
+# if [[ ! "$CONFIG_ONLY" ]] ; then
+#   install_zig
+#   install_ghostty
+# fi
 
 install_config config.ghostty .config/ghostty/config.ghostty
 install_config inc .config/ghostty/inc
