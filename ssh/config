@@ -43,7 +43,6 @@ Host vm_vaultwarden
 Host mesoext
     User cypierre
     Hostname ext.mesocentre.uca.fr
-    IdentityFile ~/.ssh/cyrille
 
 Host meso
     User cypierre
@@ -65,7 +64,6 @@ Host mcapweb01
 Host eseris.fr
     Port 22
     ProxyCommand ~/.local/bin/ssh_pre_hook %h %p
-    IdentityFile ~/.ssh/id_ecdsa_sk
     ForwardX11 yes
 
 Host *
@@ -73,6 +71,5 @@ Host *
 
 Host forge.inrae.fr
     LogLevel error
-    IdentityFile ~/.ssh/cyrille
 
 # vim: sw=4 ts=4 sts=4 ft=sshconfig
