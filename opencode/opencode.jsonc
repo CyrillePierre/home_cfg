@@ -2,25 +2,35 @@
   "$schema": "https://opencode.ai/config.json",
 
   "provider": {
-    "inrae": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "INRAE ARGO",
+    "inrae-argo": {
+      // "name": "INRAE ARGO",
+      // "npm": "@ai-sdk/openai-compatible",
       "options": {
         "baseURL": "https://chatbot.argo.inrae.fr/api",
         "apiKey": "{file:~/.secrets/inrae_argo_api_key}"
       },
       "models": {
         "chat-gpt-oss-120b": {
-          "name": "GPT OSS 120b"
+          "name": "GPT OSS 120b",
+          "limit": {
+            "context": 128000,
+            "output": 65536
+          }
+        },
+        "assistant-inrae-expert": {
+          "name": "Assistant INRAE large"
         },
         "chat-gpt-oss-20b": {
           "name": "GPT OSS 20b"
+        },
+        "assistant-inrae": {
+          "name": "Assistant INRAE small"
         }
       }
     }
   },
 
-  "model": "inrae/chat-gpt-oss-120b",
+  "model": "inrae-argo/chat-gpt-oss-120b",
 
   "permission": {
     "webfetch": "allow",
@@ -41,5 +51,8 @@
         "Authorization": "Bearer {file:~/.secrets/thunderbird_api_key}"
       }
     }
-  }
+  },
+  "disabled_providers": [
+    "inrae"
+  ]
 }
