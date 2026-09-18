@@ -12,7 +12,7 @@ const float BLUR = 1.0; // blur size in pixels (for antialiasing)
 const float TRAIL_THICKNESS = 1.0;  // 1.0 = full cursor height, 0.0 = zero height, >1.0 = funky aah
 const float TRAIL_THICKNESS_X = 0.9;
 
-const float FADE_ENABLED = 0.0; // 1.0 to enable fade gradient along the trail, 0.0 to disable
+const float FADE_ENABLED = 1.0; // 1.0 to enable fade gradient along the trail, 0.0 to disable
 const float FADE_EXPONENT = 5.0; // exponent for fade gradient along the trail
 
 // --- CONSTANTS for easing functions ---
@@ -33,16 +33,17 @@ const float SPRING_DAMPING = 0.9;
 // }
 
 // // EaseOutQuad
-float ease(float x) {
-    return 1.0 - (1.0 - x) * (1.0 - x);
-}
-
-// // EaseOutCubic
 // float ease(float x) {
-//     return 1.0 - pow(1.0 - x, 3.0);
+//     return 1.0 - (1.0 - x) * (1.0 - x);
 // }
 
-// EaseOutQuart
+// EaseOutCubic
+float ease(float x) {
+    float ox = (1.0 - x);
+    return 1.0 - ox * ox * ox;
+}
+
+// // EaseOutQuart
 // float ease(float x) {
 //     float ox = (1.0 - x);
 //     ox *= ox;
