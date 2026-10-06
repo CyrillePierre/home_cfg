@@ -15,4 +15,6 @@ with pkgs; [
   nix-zsh-completions
   bat
   zoxide
+  fzf
+  btop
 ]
