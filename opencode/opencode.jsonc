@@ -32,9 +32,14 @@
 
   "model": "inrae-argo/chat-gpt-oss-120b",
 
+  "websearch": {
+    "provider": "exa"
+  },
+
   "permission": {
-    "webfetch": "allow",
-    "websearch": "allow"
+    "nextcloud_nc_share_create_public_link": "ask",
+    "webfetch": "ask",
+    "websearch": "ask"
   },
 
   "mcp": {
@@ -50,9 +55,43 @@
       "headers": {
         "Authorization": "Bearer {file:~/.secrets/thunderbird_api_key}"
       }
+    },
+
+    "nextcloud-inrae": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "uvx",
+        "nextcloud-mcp-server",
+        "run",
+        "--transport",
+        "stdio"
+      ],
+      "environment": {
+        "NEXTCLOUD_HOST": "https://nextcloud.inrae.fr",
+        "NEXTCLOUD_USERNAME": "{file:~/.secrets/inrae_nextcloud_mcp_username}",
+        "NEXTCLOUD_PASSWORD": "{file:~/.secrets/inrae_nextcloud_mcp_password}"
+      }
     }
   },
+
   "disabled_providers": [
     "inrae"
-  ]
+  ],
+
+  "tools": {
+    "thunderbird": false,
+    "nextcloud-inrae": false
+  },
+
+  "agents": {
+    "search": {
+      "name": "search",
+      "description": "Agent for searching Nextcloud files and Thunderbird emails",
+      "tools": {
+        "thunderbird": true,
+        "nextcloud-inrae": true
+      }
+    }
+  }
 }
