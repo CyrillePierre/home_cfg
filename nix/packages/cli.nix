@@ -17,4 +17,5 @@ with pkgs; [
   zoxide
   fzf
   btop
+  gpclient
 ]
