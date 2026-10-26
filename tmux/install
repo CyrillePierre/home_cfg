@@ -38,8 +38,28 @@ make_install_tmux() {
   popd >/dev/null
 }
 
+update_lazytmux() {
+  if command -v lazy-tmux >/dev/null ; then
+    current_version=$(lazy-tmux version | cut -d' ' -f2)
+  fi
+
+  last_version=$(github_release_version 'alchemmist/lazy-tmux')
+
+  if [[ "${current_version#v}" == "${last_version#v}" ]] ; then
+    return
+  fi
+
+  echo "  download lazy-tmux ${last_version}..."
+  curl -fsSL https://lazy-tmux.xyz/install.sh | sh
+}
+
+
 if [[ ! "$CONFIG_ONLY" ]] && [[ "$INSTALL_WITH_SUDO" ]] >/dev/null ; then
   make_install_tmux
+fi
+
+if [[ ! "$CONFIG_ONLY" ]] ; then
+  update_lazytmux
 fi
 
 mkdir -p $HOME/.config/tmux/
@@ -47,6 +67,9 @@ install_config tmux.conf .config/tmux/tmux.conf
 install_config ese_theme .config/tmux/ese_theme
 install_config scripts .config/tmux/scripts
 install_config bin/wrap_esc .local/bin/wrap_esc
+install_config bin/tmux-auto .local/bin/tmux-auto
+install_config lazy-tmux.toml .config/lazy-tmux/lazy-tmux.toml
+install_config tmux.service .config/systemd/user/tmux.service
 
 TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
 if [[ ! -d "${TPM_DIR}" ]] ; then
@@ -57,3 +80,6 @@ if [[ ! -d "${TPM_DIR}" ]] ; then
     "${TPM_DIR}/bindings/install_plugins"
   fi
 fi
+
+systemctl --user daemon-reload
+systemctl --user enable --now tmux.service

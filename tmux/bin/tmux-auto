@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+default_session='{term}'
+
+if tmux list-clients -F '#S'|grep -q "^${default_session}$"; then
+	exec tmux new \; switch-kill
+else
+	exec tmux new -As "${default_session}"
+fi

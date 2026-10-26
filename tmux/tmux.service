@@ -1,0 +1,21 @@
+[Unit]
+Description=tmux default session (detached)
+Documentation=man:tmux(1)
+
+[Service]
+Type=forking
+Environment=DISPLAY=:0
+Environment=PATH=%h/.local/bin:%h/.nix-profile/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+#ExecStart=/bin/bash -lc 'exec tmux new-session -d'
+ExecStart=:tmux new-session -d
+
+ExecStop=%h/.local/bin/lazy-tmux save --all
+ExecStop=%h/.local/bin/tmux kill-server
+KillMode=control-group
+
+RestartSec=2
+
+[Install]
+WantedBy=default.target
+
+# vim: ft=systemd

@@ -3,7 +3,7 @@
 declare -A theme=(
   [dark,bg]='#191919'
   [dark,ssh_bg]='#181f1e'
-  [dark,window_fg]='#f4ba78'
+  [dark,window_fg]='#e3bb8e'
   [dark,border_fg]='#807688'
   [dark,active_border_fg]='#807688'
   [dark,status_theme]='moon'
