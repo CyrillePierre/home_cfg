@@ -1,13 +1,17 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
+  "plugins": [
+  ],
+
   "provider": {
     "inrae-argo": {
       // "name": "INRAE ARGO",
       // "npm": "@ai-sdk/openai-compatible",
       "options": {
         "baseURL": "https://chatbot.argo.inrae.fr/api",
-        "apiKey": "{file:~/.secrets/inrae_argo_api_key}"
+        "apiKey": "{file:~/.secrets/inrae_argo_api_key}",
+        "websearch": "always"
       },
       "models": {
         "chat-gpt-oss-120b": {
@@ -32,10 +36,6 @@
 
   "model": "inrae-argo/chat-gpt-oss-120b",
 
-  "websearch": {
-    "provider": "exa"
-  },
-
   "permission": {
     "nextcloud_nc_share_create_public_link": "ask",
     "webfetch": "ask",
@@ -43,13 +43,8 @@
   },
 
   "mcp": {
-    // "thunderbird": {
-    //   "enabled": true,
-    //   "type": "local",
-    //   "command": ["node", "/home/cyrille/.local/src/thunderbird-mcp/mcp-bridge.cjs"]
-    // }
     "thunderbird": {
-      "enabled": true,
+      "enabled": false,
       "type": "remote",
       "url": "http://localhost:8765",
       "headers": {
@@ -58,30 +53,28 @@
     },
 
     "nextcloud-inrae": {
-      "enabled": true,
+      "enabled": false,
       "type": "local",
-      "command": [
-        "uvx",
-        "nextcloud-mcp-server",
-        "run",
-        "--transport",
-        "stdio"
-      ],
+      "command": ["uvx", "nextcloud-mcp-server", "run", "--transport", "stdio"],
       "environment": {
         "NEXTCLOUD_HOST": "https://nextcloud.inrae.fr",
         "NEXTCLOUD_USERNAME": "{file:~/.secrets/inrae_nextcloud_mcp_username}",
         "NEXTCLOUD_PASSWORD": "{file:~/.secrets/inrae_nextcloud_mcp_password}"
       }
+    },
+
+    // web search
+    "donsetch": {
+      "enabled": true,
+      "type": "local",
+      "command": ["npx", "donsetch", "mcp"]
     }
   },
 
-  "disabled_providers": [
-    "inrae"
-  ],
-
   "tools": {
     "thunderbird": false,
-    "nextcloud-inrae": false
+    "nextcloud-inrae": false,
+    "donsetch": true
   },
 
   "agents": {
