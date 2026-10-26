@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 refused() {
-	tmux display "#[fg=red,bold]Cannot switch-kill this session (reason: $1)"
+	session_name="$(tmux display -p '#{session_name}')"
+	tmux display "#[fg=red,bold]Cannot switch-kill this session [${session_name}] (reason: $1)"
 	exit 0
 }
 
 try_switch_to() {
-	target_session="$1"
-	current_session="=$(tmux display -p '#S'):"
+	target_session="$1"; shift
+	current_session="$(tmux display -p '#{session_id}'):"
 	if [ "${target_session}" = "${current_session}" ]; then
 		tmux display '#[fg=yellow,bold]Switch-kill cancelled'
 	else
@@ -17,12 +18,17 @@ try_switch_to() {
 	exit 0
 }
 
-[ -n "$1" ] && try_switch_to "$1"
+[ -n "$1" ] && try_switch_to "$@"
 
-[ "$(tmux display -p '#{session_many_attached}')" -ne 0 ] && refused "multiple clients"
-[ "$(tmux display -p '#{session_windows}')" -ne 1 ] && refused "multiple windows"
-[ "$(tmux display -p '#{window_panes}')" -ne 1 ] && refused "multiple panes"
-[ "$(tmux display -p '#{pane_current_command}')" != zsh ] && refused "something is running"
+n_sessions="$(tmux display -p '#{session_many_attached}')" 
+n_windows="$(tmux display -p '#{session_windows}')" 
+n_panes="$(tmux display -p '#{window_panes}')" 
+cur_cmd="$(tmux display -p '#{pane_current_command}')" 
+
+[ "${n_sessions}" -ne 0 ] && refused "multiple clients (${n_sessions})"
+[ "${n_windows}" -ne 1 ] && refused "multiple windows (${n_windows})"
+[ "${n_panes}" -ne 1 ] && refused "multiple panes (${n_panes})"
+[ "${cur_cmd}" != zsh ] && refused "something is running (${cur_cmd})"
 
 tmux display '#[fg=orange,bold]Switch-kill session, <esc> to cancel'
-tmux choose-tree -Zs -O name "run-shell '$0 %%'"
+tmux choose-tree -GZs -Oname -f '#{m:[^_]*,#S}' "run-shell \"$0 '%%'\""

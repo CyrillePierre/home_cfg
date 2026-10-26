@@ -1,9 +1,10 @@
 #!/usr/bin/bash
 
 default_session='{term}'
+tmux="tmux"  # use default PATH
 
-if tmux list-clients -F '#S'|grep -q "^${default_session}$"; then
-	exec tmux new \; switch-kill
+if ${tmux} list-clients -F '#S'|grep -q "^${default_session}$"; then
+	exec ${tmux} new \; switch-kill
 else
-	exec tmux new -As "${default_session}"
+	exec ${tmux} new -As "${default_session}"
 fi
