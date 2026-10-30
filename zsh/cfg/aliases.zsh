@@ -14,6 +14,7 @@ alias vc='vcs -nsw6 custom --args'
 alias lgl='lazygit -sm full log'
 alias lg='lazygit'
 alias bat='bat -p'
+alias oc='opencode'
 
 # docker compose
 alias dc='docker compose'
