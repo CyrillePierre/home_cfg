@@ -4,31 +4,57 @@
   "plugins": [
   ],
 
-  "provider": {
+  "providers": {
     "inrae-argo": {
       // "name": "INRAE ARGO",
-      // "npm": "@ai-sdk/openai-compatible",
-      "options": {
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "settings": {
         "baseURL": "https://chatbot.argo.inrae.fr/api",
-        "apiKey": "{file:~/.secrets/inrae_argo_api_key}",
-        "websearch": "always"
+        "apiKey": "{file:~/.secrets/inrae_argo_api_key}"
       },
       "models": {
         "chat-gpt-oss-120b": {
           "name": "GPT OSS 120b",
           "limit": {
-            "context": 128000,
-            "output": 65536
+            "context": 131072
           }
         },
         "assistant-inrae-expert": {
-          "name": "Assistant INRAE large"
+          "name": "Assistant INRAE large",
+          "limit": {
+            "context": 131072
+          }
         },
         "chat-gpt-oss-20b": {
-          "name": "GPT OSS 20b"
+          "name": "GPT OSS 20b",
+          "limit": {
+            "context": 20480
+          }
         },
         "assistant-inrae": {
-          "name": "Assistant INRAE small"
+          "name": "Assistant INRAE small",
+          "limit": {
+            "context": 20480
+          }
+        }
+      }
+    },
+
+    "opencode": {
+      "models": {
+        "glm-5.3-flash-free": {
+          "name": "GLM 5.3 Flash Free",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          }
+        },
+        "deepseek-v4.1-flash-free": {
+          "name": "DeepSeek V4.1 Flash Free",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          }
         }
       }
     }
@@ -36,55 +62,63 @@
 
   "model": "inrae-argo/chat-gpt-oss-120b",
 
-  "permission": {
-    "nextcloud_nc_share_create_public_link": "ask",
-    "webfetch": "ask",
-    "websearch": "ask"
-  },
+  "permissions": [
+    // MCP tools are off unless an agent allows them (see agents.search).
+    { "action": "thunderbird_*", "resource": "*", "effect": "deny" },
+    { "action": "nextcloud-inrae_*", "resource": "*", "effect": "deny" },
+    { "action": "donsetch_*", "resource": "*", "effect": "allow" },
+
+    { "action": "nextcloud_nc_share_create_public_link", "resource": "*", "effect": "ask" },
+    { "action": "webfetch", "resource": "*", "effect": "ask" },
+    { "action": "websearch", "resource": "*", "effect": "ask" },
+
+    // V1 asked before touching paths outside the project; V2 allows them by default.
+    { "action": "external_directory", "resource": "*", "effect": "ask" }
+  ],
 
   "mcp": {
-    "thunderbird": {
-      "enabled": false,
-      "type": "remote",
-      "url": "http://localhost:8765",
-      "headers": {
-        "Authorization": "Bearer {file:~/.secrets/thunderbird_api_key}"
-      }
-    },
+    "servers": {
+      "thunderbird": {
+        "type": "remote",
+        "url": "http://localhost:8765",
+        "headers": {
+          "Authorization": "Bearer {file:~/.secrets/thunderbird_api_key}"
+        },
+        "disabled": true
+      },
 
-    "nextcloud-inrae": {
-      "enabled": false,
-      "type": "local",
-      "command": ["uvx", "nextcloud-mcp-server", "run", "--transport", "stdio"],
-      "environment": {
-        "NEXTCLOUD_HOST": "https://nextcloud.inrae.fr",
-        "NEXTCLOUD_USERNAME": "{file:~/.secrets/inrae_nextcloud_mcp_username}",
-        "NEXTCLOUD_PASSWORD": "{file:~/.secrets/inrae_nextcloud_mcp_password}"
-      }
-    },
+      "nextcloud-inrae": {
+        "type": "local",
+        "command": ["uvx", "nextcloud-mcp-server", "run", "--transport", "stdio"],
+        "environment": {
+          "NEXTCLOUD_HOST": "https://nextcloud.inrae.fr",
+          "NEXTCLOUD_USERNAME": "{file:~/.secrets/inrae_nextcloud_mcp_username}",
+          "NEXTCLOUD_PASSWORD": "{file:~/.secrets/inrae_nextcloud_mcp_password}"
+        },
+        "disabled": true
+      },
 
-    // web search
-    "donsetch": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "donsetch", "mcp"]
+      // web search
+      "donsetch": {
+        "type": "local",
+        "command": ["npx", "donsetch", "mcp"],
+        "environment": {
+          "DONSETCH_NO_UPDATE_CHECK": "1"
+        },
+        "disabled": false
+      }
     }
-  },
-
-  "tools": {
-    "thunderbird": false,
-    "nextcloud-inrae": false,
-    "donsetch": true
   },
 
   "agents": {
     "search": {
-      "name": "search",
       "description": "Agent for searching Nextcloud files and Thunderbird emails",
-      "tools": {
-        "thunderbird": true,
-        "nextcloud-inrae": true
-      }
+      "mode": "subagent",
+      "model": "inrae-argo/chat-gpt-oss-120b",
+      "permissions": [
+        { "action": "thunderbird_*", "resource": "*", "effect": "allow" },
+        { "action": "nextcloud-inrae_*", "resource": "*", "effect": "allow" }
+      ]
     }
   }
 }
