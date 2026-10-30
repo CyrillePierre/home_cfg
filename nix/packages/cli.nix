@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 with pkgs; [
   git
   delta
@@ -17,5 +17,4 @@ with pkgs; [
   zoxide
   fzf
   btop
-  gpclient
 ]

@@ -3,9 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    globalprotect-openconnect = {
+      url = "github:yuezk/GlobalProtect-openconnect";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs }: 
+  outputs = { self, nixpkgs, globalprotect-openconnect }: 
   let
     system = "x86_64-linux";
 
@@ -26,7 +30,7 @@
       inherit name;
       value = pkgs.buildEnv {
         inherit name;
-        paths = import ("${packageDir}/${file}") { inherit pkgs; };
+        paths = import ("${packageDir}/${file}") { inherit pkgs globalprotect-openconnect; };
       };
     };
 
@@ -39,7 +43,7 @@
         default = pkgs.buildEnv {
           name = "all";
           paths = pkgs.lib.concatLists (
-            map (file: import ("${packageDir}/${file}") { inherit pkgs; }) packageNames
+            map (file: import ("${packageDir}/${file}") { inherit pkgs globalprotect-openconnect; }) packageNames
           );
         };
       };
