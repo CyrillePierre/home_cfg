@@ -1,7 +1,6 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
   "keybinds": {
-    "model.list": "ctrl+m",
     "agent.cycle": "shift+tab"
   },
   "diffs": {
