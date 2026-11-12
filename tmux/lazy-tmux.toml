@@ -33,17 +33,19 @@ restore_timeout = "5s"
 # allows any ssh command). Omit this key entirely to restore every command (the
 # default). Provide a list to restore only matching commands; use an empty list
 # [] to restore no commands at all.
-# restore_allowlist = [
-#   "nvim( .*)?",
-#   "vim( .*)?",
-#   "vi( .*)?",
-#   "htop",
-#   "btop",
-#   "man .*",
-#   "less .*",
-#   "tail .*",
-#   "ssh .*",
-# ]
+restore_allowlist = [
+  "nvim( .*)?",
+  "vim( .*)?",
+  "vi( .*)?",
+  "htop",
+  "btop",
+  "man .*",
+  "less .*",
+  "tail .*",
+  "ssh .*",
+  "opencode( .*)?",
+  "oc( .*)?",
+]
 
 # Denylist of commands lazy-tmux must never replay on restore. Each entry is a
 # regular expression matched against the full command (anchored). Use this
