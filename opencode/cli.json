@@ -7,9 +7,11 @@
     "wrap": "word"
   },
   "session": {
-    "sidebar": "auto",
+    "sidebar": "hide",
     "scrollbar": false,
-    "thinking": "hide"
+    "thinking": "hide",
+    "grouping": "none",
+    "verbosity": "high"
   },
   "animations": true,
   "mini": {
@@ -21,5 +23,8 @@
     "shell_output": "show",
     "turn_summary": "show",
     "footer": "show"
+  },
+  "theme": {
+    "name": "opencode"
   }
 }
