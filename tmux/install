@@ -68,6 +68,7 @@ install_config ese_theme .config/tmux/ese_theme
 install_config scripts .config/tmux/scripts
 install_config bin/wrap_esc .local/bin/wrap_esc
 install_config bin/tmux-auto .local/bin/tmux-auto
+install_config bin/rm_default_tmux_session .local/bin/rm_default_tmux_session
 install_config lazy-tmux.toml .config/lazy-tmux/lazy-tmux.toml
 install_config tmux.service .config/systemd/user/tmux.service
 

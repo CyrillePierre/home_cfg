@@ -1,0 +1,3 @@
+#!/bin/bash
+# remove all session where the name is just a number
+lazy-tmux list | sed -rn '/^[0-9]+\>/s/(\S+).*/\1/p' | xargs -I% lazy-tmux forget --session %
