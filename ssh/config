@@ -9,7 +9,7 @@ Host cube
 Host simulator
     # Hostname 10.63.65.161
     Hostname 23-1471A25092-F.local
-    ForwardX11 yes
+    # ForwardX11 yes
 
 Host simulator-slow
     # Hostname 10.63.65.161
