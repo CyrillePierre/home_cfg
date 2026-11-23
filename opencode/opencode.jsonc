@@ -57,6 +57,71 @@
           }
         }
       }
+    },
+
+    "agrotwin": {
+      "package": "@opencode/ai/providers/openai-compatible",
+      "name": "Agrotwin",
+      "settings": {
+        "baseURL": "https://23-1471a25092-f.local:8443/v1",
+        // "baseURL": "http://23-1471a25092-f.local:8080/v1",
+        "apiKey": "{file:~/.secrets/agrotwin_strat_api_key}"
+      },
+      "models": {
+        "qwen3.8-flash-next-iq3_s": {
+          "name": "Qwen3.8-Flash-Next iQ3",
+          "type": "chat",
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "effort": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "toggle": true
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning_content"
+          },
+          "variants": [
+            {
+              "id": "low",
+              "settings": {
+                "reasoningEffort": "low"
+              },
+              "body": {
+                "reasoning_budget_tokens": 2048
+              }
+            },
+            {
+              "id": "none",
+              "body": {
+                "reasoning_effort": "none"
+              }
+            },
+            {
+              "id": "budget",
+              "body": {
+                "reasoning_budget_tokens": 4096
+              }
+            }
+          ],
+          "limit": {
+            "context": 262144,
+            "input": 258048,
+            "output": 32768
+          }
+        }
+      }
     }
   },
 
